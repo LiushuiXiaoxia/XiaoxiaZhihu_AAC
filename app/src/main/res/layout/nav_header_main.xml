@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/side_nav_bar"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="50dp">
+
+        <ImageView android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_avatar" />
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/collect"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:text="我的收藏" />
+            <TextView android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/download"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:text="离线下载" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/llMainMenuContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView android:id="@+id/tvHome"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ccc"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/home"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="首页"
+            android:textColor="#333" />
+        <include layout="@layout/item_main_menu" />
+        <include layout="@layout/item_main_menu" />
+        <include layout="@layout/item_main_menu" />
+        <include layout="@layout/item_main_menu" />
+    </LinearLayout>
+</LinearLayout>
