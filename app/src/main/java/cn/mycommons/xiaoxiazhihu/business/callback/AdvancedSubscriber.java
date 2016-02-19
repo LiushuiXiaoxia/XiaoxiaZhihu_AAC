@@ -1,13 +1,13 @@
 package cn.mycommons.xiaoxiazhihu.business.callback;
 
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import com.google.gson.JsonParseException;
 
 import org.json.JSONException;
 
 import java.io.InterruptedIOException;
+import java.lang.ref.SoftReference;
 import java.net.ConnectException;
 import java.net.UnknownHostException;
 import java.util.concurrent.TimeoutException;
@@ -17,6 +17,7 @@ import cn.mycommons.xiaoxiazhihu.app.AppContext;
 import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
 import cn.mycommons.xiaoxiazhihu.core.log.XLog;
 import cn.mycommons.xiaoxiazhihu.core.net.NetWorkException;
+import cn.mycommons.xiaoxiazhihu.ui.base.mvp.ILoadDataView;
 
 /**
  * 业务层建议使用这个，可以抓取到日志
@@ -25,6 +26,27 @@ import cn.mycommons.xiaoxiazhihu.core.net.NetWorkException;
  * Created by xiaqiulei on 2015-10-22.
  */
 public class AdvancedSubscriber<T extends BaseResponse> extends SimpleSubscriber<T> {
+
+    private SoftReference<ILoadDataView> loadDataViewSoftReference;
+
+    public AdvancedSubscriber() {
+        this(null);
+    }
+
+    public AdvancedSubscriber(ILoadDataView loadDataView) {
+        if (loadDataView != null) {
+            this.loadDataViewSoftReference = new SoftReference<>(loadDataView);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if (checkLoadDataView()) {
+            loadDataViewSoftReference.get().showLoading();
+        }
+    }
 
     @Override
     public void onHandleSuccess(T response) {
@@ -82,13 +104,30 @@ public class AdvancedSubscriber<T extends BaseResponse> extends SimpleSubscriber
         }
     }
 
-
     protected void showToast(int msg) {
         showToast(AppContext.getInstance().getString(msg));
     }
 
     protected void showToast(String msg) {
         XLog.d("showToast = " + msg);
-        Toast.makeText(AppContext.getInstance(), msg, Toast.LENGTH_SHORT).show();
+
+        if (checkLoadDataView()) {
+            loadDataViewSoftReference.get().showError(msg);
+        }
+    }
+
+    @Override
+    public void onHandleFinish() {
+        super.onHandleFinish();
+
+        if (checkLoadDataView()) {
+            loadDataViewSoftReference.get().hideLoading();
+            loadDataViewSoftReference.clear();
+            loadDataViewSoftReference = null;
+        }
+    }
+
+    boolean checkLoadDataView() {
+        return loadDataViewSoftReference != null && loadDataViewSoftReference.get() != null;
     }
 }

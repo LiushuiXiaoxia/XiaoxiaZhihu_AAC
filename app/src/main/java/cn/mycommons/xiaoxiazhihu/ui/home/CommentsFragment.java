@@ -169,7 +169,7 @@ public class CommentsFragment extends CommonMvpFragment<CommentsPresenter, Comme
             // 不是第一个
             if (getAdapterPosition() != 0 && !presenter.isLoadShort()) {
                 presenter.doGetShortComments(commentsExtraParam.id)
-                        .subscribe(new AdvancedSubscriber<GetShortCommentsResponse>() {
+                        .subscribe(new AdvancedSubscriber<GetShortCommentsResponse>(mvpActivity) {
                             @Override
                             public void onHandleSuccess(GetShortCommentsResponse response) {
                                 super.onHandleSuccess(response);

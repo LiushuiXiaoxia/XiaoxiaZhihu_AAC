@@ -83,7 +83,7 @@ public class DetailFragment extends CommonMvpFragment<DetailPresenter, DetailPre
 
     private void doGetRequest() {
         presenter.doGetNewsResponse(extraParam.id)
-                .subscribe(new AdvancedSubscriber<GetNewsResponse>() {
+                .subscribe(new AdvancedSubscriber<GetNewsResponse>(mvpActivity) {
                     @Override
                     public void onHandleSuccess(GetNewsResponse response) {
                         super.onHandleSuccess(response);
