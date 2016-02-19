@@ -4,8 +4,6 @@ import android.os.Bundle;
 
 /**
  * 基础Presenter
- * <p/>
- * Created by RemexHuang on 12/30/14.
  */
 public interface IMvpPresenter {
 
@@ -44,5 +42,4 @@ public interface IMvpPresenter {
      * Fragment.onDestory
      */
     void destory();
-
 }

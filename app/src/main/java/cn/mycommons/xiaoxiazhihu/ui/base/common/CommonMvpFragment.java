@@ -13,7 +13,7 @@ import cn.mycommons.xiaoxiazhihu.ui.base.mvp.MvpFragment;
  * CommonMvpFragment <br/>
  * Created by xiaqiulei on 2015-01-24.
  */
-public abstract class CommonMvpFragment<P extends BaseMvpPresenter, V extends IMvpView>
+public abstract class CommonMvpFragment<P extends BaseMvpPresenter<V>, V extends IMvpView>
         extends MvpFragment<P, V> implements ICommonFragment {
 
     protected Context context;

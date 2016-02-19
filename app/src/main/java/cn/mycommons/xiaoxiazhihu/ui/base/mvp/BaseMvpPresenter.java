@@ -4,10 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import cn.mycommons.xiaoxiazhihu.app.AppContext;
+import cn.mycommons.xiaoxiazhihu.app.InjectHelp;
 import de.greenrobot.event.EventBus;
 import de.greenrobot.event.EventBusException;
-import roboguice.RoboGuice;
 
 /**
  * Presenter基类，与BaseActivity配合使用，能自动通过泛型绑定对应Presenrer和View。<p/>
@@ -24,17 +23,16 @@ public class BaseMvpPresenter<V extends IMvpView> implements IMvpPresenter {
     protected Context context;
     private EventBus eventBus;
 
-    /**
-     * 子类的Presenter必须加上{@link com.google.inject.Inject}注解
-     *
-     * @param loadDataView 载入Data的View模型
-     * @param view         子Presenter需要实现的View模型，类型由泛型指定
-     */
-    public BaseMvpPresenter(ILoadDataView loadDataView, V view) {
-        this.view = view;
+    public BaseMvpPresenter() {
+        super();
+    }
+
+    public void initMvpPresenter(ILoadDataView loadDataView, V view) {
         this.loadDataView = loadDataView;
+        this.view = view;
         this.context = loadDataView.getContext();
-        RoboGuice.getInjector(AppContext.getInstance()).injectMembersWithoutViews(this);
+
+        InjectHelp.injectMembersWithoutViews(this);
     }
 
     /**
@@ -88,6 +86,10 @@ public class BaseMvpPresenter<V extends IMvpView> implements IMvpPresenter {
     @Override
     public void destory() {
         unregisterEventBusListener(this);
+        this.loadDataView = null;
+        this.view = null;
+        this.context = null;
+        this.eventBus = null;
     }
 
     /**

@@ -2,8 +2,6 @@ package cn.mycommons.xiaoxiazhihu.ui.base.mvp;
 
 /**
  * 描述用于载入数据的View的接口
- * <p/>
- * Created by RemexHuang on 12/30/14.
  */
 public interface ILoadDataView extends IView {
 
@@ -26,10 +24,5 @@ public interface ILoadDataView extends IView {
 
     void hideLoading(int loadingType);
 
-    void showRetry();
-
-    void hideRetry();
-
     void showError(String message);
-
 }
