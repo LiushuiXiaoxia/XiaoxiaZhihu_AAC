@@ -24,3 +24,15 @@
     compile 'com.squareup.picasso:picasso:2.5.2' // 图片加载
     compile 'com.android.support:design:23.1.1' // md
 ```
+
+## 效果图
+
+![](doc/1.png)
+
+![](doc/2.png)
+
+![](doc/3.png)
+
+![](doc/4.png)
+
+![](doc/5.png)
