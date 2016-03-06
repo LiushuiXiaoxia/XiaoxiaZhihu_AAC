@@ -6,24 +6,10 @@
 
 由于使用非正常手段获取Api，若被告知需停止共享与使用，本人会及时删除此页面与整个项目。
 
-主要使用MVP架构，为了方便锻炼技术。
+客户端使用了MVP架构，网络层使用了okhttp+retrofit2，json解析使用gson。
+图片加载使用picasso，注解使用了roboguice+butterknife，各个层次之间通信使用rxjava+rxandroid+eventbus。
 
-## 主要使用组件
-
-```
-    compile 'de.greenrobot:eventbus:2.4.0' // 事件传递
-    compile 'com.google.code.gson:gson:2.4' // json
-    compile 'com.jakewharton:butterknife:7.0.1' // 注解
-    compile 'org.roboguice:roboguice:3.0.1' // 依赖注入
-    provided 'org.roboguice:roboblender:3.0.1'
-    compile 'com.squareup.okhttp:okhttp:2.4.0' // 网络请求
-    compile 'com.squareup.okhttp:okhttp-urlconnection:2.4.0'
-    compile 'com.squareup.okio:okio:1.6.0' // 
-    compile 'io.reactivex:rxjava:1.1.0' // rx
-    compile 'io.reactivex:rxandroid:1.1.0' / rx
-    compile 'com.squareup.picasso:picasso:2.5.2' // 图片加载
-    compile 'com.android.support:design:23.1.1' // md
-```
+[iOS客户端](https://github.com/LiushuiXiaoxia/XiaoxiaZhihu_iOS)
 
 ## 效果图
 
