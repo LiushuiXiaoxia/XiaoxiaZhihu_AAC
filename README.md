@@ -9,6 +9,8 @@
 客户端使用了MVP架构，网络层使用了okhttp+retrofit2，json解析使用gson。
 图片加载使用picasso，注解使用了roboguice+butterknife，各个层次之间通信使用rxjava+rxandroid+eventbus。
 
+## iOS客户端
+
 [iOS客户端](https://github.com/LiushuiXiaoxia/XiaoxiaZhihu_iOS)
 
 ## 效果图
