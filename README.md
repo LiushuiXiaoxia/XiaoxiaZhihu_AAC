@@ -15,7 +15,7 @@
 
 [Android客户端Java版本](https://github.com/LiushuiXiaoxia/XiaoxiaZhihu)
 
-[Android客户端Kotlin版本](https://github.com/LiushuiXiaoxia/XiaoxiaZhihu_iOS)
+[Android客户端Kotlin版本](https://github.com/LiushuiXiaoxia/XiaoxiaZhihu_Kotlin)
 
 ## 效果图
 
