@@ -171,11 +171,12 @@ public class HotnewsFragment extends CommonMvpFragment<HotnewsPresenter, Hotnews
         }
 
         void bind(List<LastTemeTopStory> tops) {
+            List<LastTemeTopStory> topsLocal = tops;
             if (tops == null) {
-                tops = new ArrayList<>();
+                topsLocal = new ArrayList<>();
             }
 
-            viewPager.setAdapter(new MyFragmentPagerAdapter(fragmentManager, tops));
+            viewPager.setAdapter(new MyFragmentPagerAdapter(fragmentManager, topsLocal));
         }
     }
 
