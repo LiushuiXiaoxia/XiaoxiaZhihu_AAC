@@ -1,9 +1,10 @@
 package cn.mycommons.xiaoxiazhihu.business.api.okhttp;
 
-import com.squareup.okhttp.CacheControl;
-import com.squareup.okhttp.OkHttpClient;
 
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.CacheControl;
+import okhttp3.OkHttpClient;
 
 /**
  * OkHttpUtil <br/>
@@ -11,12 +12,13 @@ import java.util.concurrent.TimeUnit;
  */
 public class OkHttpUtil {
 
-    static final int HTTP_TIME_OUT = 15;
+    private static final int HTTP_TIME_OUT = 15;
 
     public static OkHttpClient newOkHttpClient() {
-        OkHttpClient client = new OkHttpClient();
-        client.setReadTimeout(HTTP_TIME_OUT, TimeUnit.SECONDS);
-        return client;
+        return new OkHttpClient.Builder()
+                .connectTimeout(HTTP_TIME_OUT, TimeUnit.SECONDS)
+                .readTimeout(HTTP_TIME_OUT, TimeUnit.SECONDS)
+                .build();
     }
 
     public static CacheControl getCacheControl() {

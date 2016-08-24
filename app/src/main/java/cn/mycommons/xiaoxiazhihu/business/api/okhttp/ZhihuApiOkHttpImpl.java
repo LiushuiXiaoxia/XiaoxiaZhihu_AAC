@@ -1,9 +1,6 @@
 package cn.mycommons.xiaoxiazhihu.business.api.okhttp;
 
 import com.google.gson.Gson;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
@@ -26,6 +23,9 @@ import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetStoryExtraRespons
 import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetThemeResponse;
 import cn.mycommons.xiaoxiazhihu.core.log.XLog;
 import cn.mycommons.xiaoxiazhihu.core.net.NetWorkException;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * ZhihuApiImpl <br/>
