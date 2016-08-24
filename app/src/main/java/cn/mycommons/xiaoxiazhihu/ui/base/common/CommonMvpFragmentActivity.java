@@ -16,8 +16,12 @@ public class CommonMvpFragmentActivity extends MvpActivity {
 
         delegate.beforeOnCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_common_fm);
         delegate.afterOnCreate(savedInstanceState);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.act_common_fm;
     }
 
     protected ActivityDelegate<CommonMvpFragmentActivity, CommonMvpFragment> getDeledate() {

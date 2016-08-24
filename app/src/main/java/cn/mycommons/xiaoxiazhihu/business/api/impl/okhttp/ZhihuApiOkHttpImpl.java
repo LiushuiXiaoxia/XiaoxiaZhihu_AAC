@@ -1,10 +1,11 @@
-package cn.mycommons.xiaoxiazhihu.business.api.okhttp;
+package cn.mycommons.xiaoxiazhihu.business.api.impl.okhttp;
 
 import com.google.gson.Gson;
 
 import java.io.IOException;
 
 import cn.mycommons.xiaoxiazhihu.business.api.ZhihuApi;
+import cn.mycommons.xiaoxiazhihu.business.api.impl.OkHttpUtil;
 import cn.mycommons.xiaoxiazhihu.business.pojo.request.ext.GetAllThemesRequest;
 import cn.mycommons.xiaoxiazhihu.business.pojo.request.ext.GetLastThemeRequest;
 import cn.mycommons.xiaoxiazhihu.business.pojo.request.ext.GetLongCommentsRequest;
@@ -33,11 +34,11 @@ import okhttp3.Response;
  */
 public class ZhihuApiOkHttpImpl implements ZhihuApi {
 
-    OkHttpClient okHttpClient;
-    Gson gson;
+    private OkHttpClient okHttpClient;
+    private Gson gson;
 
-    public ZhihuApiOkHttpImpl() {
-        okHttpClient = OkHttpUtil.newOkHttpClient();
+    public ZhihuApiOkHttpImpl(OkHttpClient client) {
+        okHttpClient = client;
         gson = new Gson();
     }
 
@@ -47,7 +48,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
 
         String url = "http://news-at.zhihu.com/api/4/start-image/%d*%d";
         url = String.format(url, request.width, request.height);
-        GetStartInfoResponse response = get(url, GetStartInfoResponse.class);
+        GetStartInfoResponse response = call(url, GetStartInfoResponse.class);
 
         XLog.i("req = %s, resp = %s", request, response);
 
@@ -59,7 +60,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
         XLog.d("ZhihuApiOkHttpImpl.getAllThemesResponse request = " + request);
 
         String url = "http://news-at.zhihu.com/api/4/themes";
-        GetAllThemesResponse response = get(url, GetAllThemesResponse.class);
+        GetAllThemesResponse response = call(url, GetAllThemesResponse.class);
 
         XLog.i("req = %s, resp = %s", request, response);
 
@@ -71,7 +72,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
         XLog.d("ZhihuApiOkHttpImpl.getLastThemeResponse request = " + request);
 
         String url = "http://news-at.zhihu.com/api/4/news/latest";
-        GetLastThemeResponse response = get(url, GetLastThemeResponse.class);
+        GetLastThemeResponse response = call(url, GetLastThemeResponse.class);
 
         XLog.i("req = %s, resp = %s", request, response);
 
@@ -84,7 +85,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
 
         String url = "http://news-at.zhihu.com/api/4/news/%s";
         url = String.format(url, request.id);
-        GetNewsResponse response = get(url, GetNewsResponse.class);
+        GetNewsResponse response = call(url, GetNewsResponse.class);
 
         XLog.i("req = %s, resp = %s", request, response);
 
@@ -97,7 +98,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
 
         String url = "http://news-at.zhihu.com/api/4/theme/%s";
         url = String.format(url, request.id);
-        GetThemeResponse response = get(url, GetThemeResponse.class);
+        GetThemeResponse response = call(url, GetThemeResponse.class);
 
         XLog.i("req = %s, resp = %s", request, response);
 
@@ -110,7 +111,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
 
         String url = "http://news-at.zhihu.com/api/4/story-extra/%s";
         url = String.format(url, request.id);
-        GetStoryExtraResponse response = get(url, GetStoryExtraResponse.class);
+        GetStoryExtraResponse response = call(url, GetStoryExtraResponse.class);
 
         XLog.i("req = %s, resp = %s", request, response);
 
@@ -123,7 +124,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
 
         String url = "http://news-at.zhihu.com/api/4/story/%s/short-comments";
         url = String.format(url, request.id);
-        GetShortCommentsResponse response = get(url, GetShortCommentsResponse.class);
+        GetShortCommentsResponse response = call(url, GetShortCommentsResponse.class);
 
         XLog.i("req = %s, resp = %s", request, response);
 
@@ -136,15 +137,15 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
 
         String url = "http://news-at.zhihu.com/api/4/story/%s/long-comments";
         url = String.format(url, request.id);
-        GetLongCommentsResponse response = get(url, GetLongCommentsResponse.class);
+        GetLongCommentsResponse response = call(url, GetLongCommentsResponse.class);
 
         XLog.i("req = %s, resp = %s", request, response);
 
         return response;
     }
 
-    <T> T get(String url, Class<T> tClass) throws NetWorkException {
-        XLog.i("ZhihuApiOkHttpImpl.get url = " + url);
+    <T> T call(String url, Class<T> tClass) throws NetWorkException {
+        XLog.i("ZhihuApiOkHttpImpl.call url = " + url);
         Request request = new Request.Builder()
                 .url(url)
                 .get()
@@ -160,7 +161,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
                 t = gson.fromJson(body, tClass);
             }
         } catch (IOException e) {
-            XLog.e("ZhihuApiOkHttpImpl.get e = " + e, e);
+            XLog.e("ZhihuApiOkHttpImpl.call e = " + e, e);
             throw new NetWorkException(e);
         }
         return t;

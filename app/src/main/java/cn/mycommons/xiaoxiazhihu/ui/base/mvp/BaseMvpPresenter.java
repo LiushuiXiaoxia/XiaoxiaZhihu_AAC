@@ -31,8 +31,6 @@ public class BaseMvpPresenter<V extends IMvpView> implements IMvpPresenter {
         this.loadDataView = loadDataView;
         this.view = view;
         this.context = loadDataView.getContext();
-
-        InjectHelp.injectMembersWithoutViews(this);
     }
 
     /**

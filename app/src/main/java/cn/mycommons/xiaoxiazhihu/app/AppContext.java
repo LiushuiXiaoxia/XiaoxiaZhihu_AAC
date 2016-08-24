@@ -10,7 +10,7 @@ public class AppContext extends Application {
 
     private static AppContext instance;
 
-    public static AppContext getInstance() {
+    protected static AppContext getInstance() {
         return instance;
     }
 

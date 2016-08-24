@@ -1,10 +1,13 @@
 package cn.mycommons.xiaoxiazhihu.ui.home;
 
-import com.google.inject.Inject;
 
+import javax.inject.Inject;
+
+import cn.mycommons.xiaoxiazhihu.app.InjectHelp;
 import cn.mycommons.xiaoxiazhihu.business.domain.ZhihuDomain;
 import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetThemeResponse;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.BaseMvpPresenter;
+import cn.mycommons.xiaoxiazhihu.ui.base.mvp.ILoadDataView;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.IMvpView;
 import rx.Observable;
 
@@ -17,6 +20,13 @@ public class OtherThemePresenter extends BaseMvpPresenter<OtherThemePresenter.IH
 
     @Inject
     ZhihuDomain zhihuDomain;
+
+    @Override
+    public void initMvpPresenter(ILoadDataView loadDataView, IHomeView view) {
+        super.initMvpPresenter(loadDataView, view);
+
+        InjectHelp.appComponent().inject(this);
+    }
 
     public Observable<GetThemeResponse> doGetThemById(int id) {
         return zhihuDomain.getThemeById(id);

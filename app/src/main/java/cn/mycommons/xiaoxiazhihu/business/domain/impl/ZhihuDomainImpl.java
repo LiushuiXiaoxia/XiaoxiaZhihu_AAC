@@ -1,7 +1,5 @@
 package cn.mycommons.xiaoxiazhihu.business.domain.impl;
 
-import com.google.inject.Inject;
-
 import cn.mycommons.xiaoxiazhihu.business.api.ZhihuApi;
 import cn.mycommons.xiaoxiazhihu.business.domain.ZhihuDomain;
 import cn.mycommons.xiaoxiazhihu.business.pojo.request.ext.GetAllThemesRequest;
@@ -32,8 +30,11 @@ import rx.schedulers.Schedulers;
  */
 public class ZhihuDomainImpl implements ZhihuDomain {
 
-    @Inject
-    ZhihuApi zhihuApi;
+    private ZhihuApi zhihuApi;
+
+    public ZhihuDomainImpl(ZhihuApi zhihuApi) {
+        this.zhihuApi = zhihuApi;
+    }
 
     @Override
     public Observable<GetStartInfoResponse> getStartInfo(final int width, final int height) {

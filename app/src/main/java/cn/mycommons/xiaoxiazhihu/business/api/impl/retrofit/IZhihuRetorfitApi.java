@@ -1,4 +1,4 @@
-package cn.mycommons.xiaoxiazhihu.business.api.retrofit;
+package cn.mycommons.xiaoxiazhihu.business.api.impl.retrofit;
 
 import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetAllThemesResponse;
 import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetLastThemeResponse;
@@ -16,7 +16,7 @@ import retrofit2.http.Path;
  * IZhihuApi <br/>
  * Created by xiaqiulei on 2016-01-10.
  */
-public interface IZhihuHttpApi {
+public interface IZhihuRetorfitApi {
 
     @GET("api/4/start-image/{width}*{height}")
     Call<GetStartInfoResponse> getStartInfoResponse(@Path("width") int width, @Path("height") int height);

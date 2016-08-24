@@ -13,7 +13,7 @@ import java.net.UnknownHostException;
 import java.util.concurrent.TimeoutException;
 
 import cn.mycommons.xiaoxiazhihu.R;
-import cn.mycommons.xiaoxiazhihu.app.AppContext;
+import cn.mycommons.xiaoxiazhihu.app.InjectHelp;
 import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
 import cn.mycommons.xiaoxiazhihu.core.log.XLog;
 import cn.mycommons.xiaoxiazhihu.core.net.NetWorkException;
@@ -105,7 +105,7 @@ public class AdvancedSubscriber<T extends BaseResponse> extends SimpleSubscriber
     }
 
     protected void showToast(int msg) {
-        showToast(AppContext.getInstance().getString(msg));
+        showToast(InjectHelp.getAppContext().getString(msg));
     }
 
     protected void showToast(String msg) {

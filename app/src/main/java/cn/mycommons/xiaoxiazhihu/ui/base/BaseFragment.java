@@ -1,16 +1,16 @@
 package cn.mycommons.xiaoxiazhihu.ui.base;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
-import roboguice.activity.RoboActionBarActivity;
-import roboguice.fragment.RoboFragment;
 
-public abstract class BaseFragment extends RoboFragment {
+public abstract class BaseFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public abstract class BaseFragment extends RoboFragment {
     }
 
     protected ActionBar getSupportActionBar() {
-        return ((RoboActionBarActivity) getActivity()).getSupportActionBar();
+        return ((AppCompatActivity) getActivity()).getSupportActionBar();
     }
 
     protected void setTitle(int resId) {

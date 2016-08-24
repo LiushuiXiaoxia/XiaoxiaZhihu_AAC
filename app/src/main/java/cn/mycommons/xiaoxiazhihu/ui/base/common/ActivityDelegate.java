@@ -3,7 +3,8 @@ package cn.mycommons.xiaoxiazhihu.ui.base.common;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
 import java.security.InvalidParameterException;
 
@@ -14,11 +15,11 @@ import cn.mycommons.xiaoxiazhihu.core.log.XLog;
  * CommonFragmentActivityDelegate <br/>
  * Created by xiaqiulei on 2015-04-03.
  */
-public class ActivityDelegate<A extends ActionBarActivity, F extends Fragment> {
+public class ActivityDelegate<A extends AppCompatActivity, F extends Fragment> {
 
-    static final int FRAGMENT_CONTAINER = R.id.fmFragmentContainer;
+    private static final int FRAGMENT_CONTAINER = R.id.fmFragmentContainer;
 
-    protected A activity;
+    private A activity;
     private F commonFragment;
     private CommonExtraParam extraParam;
 
@@ -47,7 +48,10 @@ public class ActivityDelegate<A extends ActionBarActivity, F extends Fragment> {
             if (savedInstanceState == null) {
                 try {
                     commonFragment = (F) extraParam.getFragmentClass().newInstance();
-                    activity.getSupportFragmentManager().beginTransaction().add(FRAGMENT_CONTAINER, commonFragment).commitAllowingStateLoss();
+                    FragmentManager manager = activity.getSupportFragmentManager();
+                    manager.beginTransaction()
+                            .add(FRAGMENT_CONTAINER, commonFragment)
+                            .commitAllowingStateLoss();
                 } catch (InstantiationException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {

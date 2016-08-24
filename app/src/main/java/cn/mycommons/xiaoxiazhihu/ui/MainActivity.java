@@ -31,7 +31,6 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMenu
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         init();
         initSlideMenu();
@@ -45,6 +44,11 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMenu
                 update(response.others);
             }
         });
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
     }
 
     private void init() {

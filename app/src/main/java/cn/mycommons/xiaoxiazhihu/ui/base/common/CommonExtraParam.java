@@ -10,6 +10,7 @@ import cn.mycommons.xiaoxiazhihu.app.IValidate;
 
 
 /**
+ * CommonExtraParam
  * Created by xiaqiulei on 14/11/20.
  */
 public class CommonExtraParam implements Serializable, IValidate {

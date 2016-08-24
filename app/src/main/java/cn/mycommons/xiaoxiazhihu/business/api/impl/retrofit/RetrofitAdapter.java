@@ -1,4 +1,4 @@
-package cn.mycommons.xiaoxiazhihu.business.api.retrofit;
+package cn.mycommons.xiaoxiazhihu.business.api.impl.retrofit;
 
 import cn.mycommons.xiaoxiazhihu.core.net.NetWorkException;
 

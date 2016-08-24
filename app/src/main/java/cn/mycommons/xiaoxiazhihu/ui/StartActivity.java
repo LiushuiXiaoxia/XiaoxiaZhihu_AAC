@@ -12,9 +12,7 @@ import cn.mycommons.xiaoxiazhihu.R;
 import cn.mycommons.xiaoxiazhihu.business.callback.AdvancedSubscriber;
 import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetStartInfoResponse;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.MvpActivity;
-import roboguice.inject.ContentView;
 
-@ContentView(R.layout.activity_start)
 public class StartActivity extends MvpActivity<StartPresenter, StartPresenter.IStartView>
         implements StartPresenter.IStartView {
 
@@ -29,6 +27,11 @@ public class StartActivity extends MvpActivity<StartPresenter, StartPresenter.IS
 
         init();
         gotoNext();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_start;
     }
 
     private void init() {

@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.ILoadDataView;
-import roboguice.activity.RoboActionBarActivity;
 
-public abstract class BaseActivity extends RoboActionBarActivity implements ILoadDataView {
+public abstract class BaseActivity extends AppCompatActivity implements ILoadDataView {
 
     static final String LOADING_DIALOG_TAG = "loading_dialog";
 
@@ -21,11 +21,13 @@ public abstract class BaseActivity extends RoboActionBarActivity implements ILoa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(getLayoutId());
         ButterKnife.bind(this);
         initActionBar();
         uiHandler = new Handler(getMainLooper());
     }
+
+    protected abstract int getLayoutId();
 
     // ***************************************** ActionBar *****************************
     private void initActionBar() {

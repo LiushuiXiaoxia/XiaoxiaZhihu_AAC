@@ -1,8 +1,5 @@
-package cn.mycommons.xiaoxiazhihu.business.api.retrofit;
+package cn.mycommons.xiaoxiazhihu.business.api.impl.retrofit;
 
-
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import cn.mycommons.xiaoxiazhihu.business.api.ZhihuApi;
 import cn.mycommons.xiaoxiazhihu.business.pojo.request.ext.GetAllThemesRequest;
@@ -23,12 +20,6 @@ import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetStoryExtraRespons
 import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetThemeResponse;
 import cn.mycommons.xiaoxiazhihu.core.log.XLog;
 import cn.mycommons.xiaoxiazhihu.core.net.NetWorkException;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * ZhihuApiRetrofitImpl <br/>
@@ -36,31 +27,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ZhihuApiRetrofitImpl implements ZhihuApi {
 
-    IZhihuHttpApi httpApi;
+    private IZhihuRetorfitApi httpApi;
 
-    public ZhihuApiRetrofitImpl() {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        // set time out interval
-        builder.readTimeout(15, TimeUnit.MINUTES);
-        builder.connectTimeout(15, TimeUnit.MINUTES);
-        builder.writeTimeout(15, TimeUnit.MINUTES);
-        builder.interceptors().add(new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request request = chain.request();
-                Response response = chain.proceed(request);
-                XLog.i("Interceptor:request = %s, response = %s", request, response);
-                return response;
-            }
-        });
-
-        httpApi = new Retrofit
-                .Builder()
-                .client(builder.build())
-                .baseUrl("http://news-at.zhihu.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(IZhihuHttpApi.class);
+    public ZhihuApiRetrofitImpl(IZhihuRetorfitApi httpApi) {
+        this.httpApi = httpApi;
     }
 
     @Override

@@ -6,11 +6,10 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 
-import roboguice.fragment.RoboDialogFragment;
-
-public class LoadingDialogFragment extends RoboDialogFragment {
+public class LoadingDialogFragment extends DialogFragment {
 
     public static final String DEFAULT_MSG = "数据加载中,请稍后……";
     private static final String DIMABLE = "dimable";
