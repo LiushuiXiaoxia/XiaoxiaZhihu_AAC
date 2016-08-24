@@ -1,45 +1,11 @@
 package cn.mycommons.xiaoxiazhihu.ui.base.mvp;
 
-import android.os.Bundle;
-
 /**
  * 基础Presenter
  */
-public interface IMvpPresenter {
+public interface IMvpPresenter<V extends IMvpView> {
 
-    /**
-     * Activity.onCreate <br/>
-     * Fragment.onViewCreated
-     */
-    void create(Bundle savedInstanceState);
+    void create(ILoadDataView loadDataView, V mvpView);
 
-    /**
-     * Activity.onStart <br/>
-     * Fragment.onStart
-     */
-    void start();
-
-    /**
-     * Activity.onResume <br/>
-     * Fragment.onResume
-     */
-    void resume();
-
-    /**
-     * Activity.onPause <br/>
-     * Fragment.onPause
-     */
-    void pause();
-
-    /**
-     * Activity.onStop <br/>
-     * Fragment.onStop
-     */
-    void stop();
-
-    /**
-     * Activity.onDestory <br/>
-     * Fragment.onDestory
-     */
     void destory();
 }

@@ -25,8 +25,8 @@ public class CommentsPresenter extends BaseMvpPresenter<CommentsPresenter.IComme
     private boolean isLoadShort = false;
 
     @Override
-    public void initMvpPresenter(ILoadDataView loadDataView, ICommentsView view) {
-        super.initMvpPresenter(loadDataView, view);
+    public void create(ILoadDataView loadDataView, ICommentsView view) {
+        super.create(loadDataView, view);
 
         InjectHelp.appComponent().inject(this);
     }

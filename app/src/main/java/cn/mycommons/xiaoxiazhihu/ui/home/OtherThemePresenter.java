@@ -22,8 +22,8 @@ public class OtherThemePresenter extends BaseMvpPresenter<OtherThemePresenter.IH
     ZhihuDomain zhihuDomain;
 
     @Override
-    public void initMvpPresenter(ILoadDataView loadDataView, IHomeView view) {
-        super.initMvpPresenter(loadDataView, view);
+    public void create(ILoadDataView loadDataView, IHomeView view) {
+        super.create(loadDataView, view);
 
         InjectHelp.appComponent().inject(this);
     }

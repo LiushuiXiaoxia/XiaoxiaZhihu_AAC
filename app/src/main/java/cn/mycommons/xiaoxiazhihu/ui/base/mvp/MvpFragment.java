@@ -33,10 +33,8 @@ public abstract class MvpFragment<P extends BaseMvpPresenter<V>, V extends IMvpV
 
         if (presenter != null) {
             //注册Fragment
-            presenter.initMvpPresenter(mvpActivity, this.view);
+            presenter.create(mvpActivity, this.view);
             presenter.registerEventBusListener(this);
-            presenter.create(savedInstanceState);
-            presenter.initInFragment(savedInstanceState, getArguments());
         }
     }
 
@@ -95,38 +93,6 @@ public abstract class MvpFragment<P extends BaseMvpPresenter<V>, V extends IMvpV
 
     public void onEvent(Object object) {
 
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (presenter != null) {
-            presenter.start();
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (presenter != null) {
-            presenter.resume();
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (presenter != null) {
-            presenter.pause();
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (presenter != null) {
-            presenter.stop();
-        }
     }
 
     @Override

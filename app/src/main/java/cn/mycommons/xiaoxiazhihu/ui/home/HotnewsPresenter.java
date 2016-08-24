@@ -22,8 +22,8 @@ public class HotnewsPresenter extends BaseMvpPresenter<HotnewsPresenter.IHotnews
     ZhihuDomain zhihuDomain;
 
     @Override
-    public void initMvpPresenter(ILoadDataView loadDataView, IHotnewsView view) {
-        super.initMvpPresenter(loadDataView, view);
+    public void create(ILoadDataView loadDataView, IHotnewsView view) {
+        super.create(loadDataView, view);
 
         InjectHelp.appComponent().inject(this);
     }

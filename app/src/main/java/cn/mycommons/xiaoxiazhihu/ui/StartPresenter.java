@@ -21,8 +21,8 @@ public class StartPresenter extends BaseMvpPresenter<StartPresenter.IStartView> 
     ZhihuDomain zhihuDomain;
 
     @Override
-    public void initMvpPresenter(ILoadDataView loadDataView, IStartView view) {
-        super.initMvpPresenter(loadDataView, view);
+    public void create(ILoadDataView loadDataView, IStartView view) {
+        super.create(loadDataView, view);
 
         InjectHelp.appComponent().inject(this);
     }

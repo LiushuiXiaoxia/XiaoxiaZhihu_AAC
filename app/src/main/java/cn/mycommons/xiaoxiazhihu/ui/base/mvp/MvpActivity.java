@@ -23,10 +23,8 @@ public abstract class MvpActivity<P extends BaseMvpPresenter<V>, V extends IMvpV
 
         if (presenter != null) {
             //注册Activity
-            presenter.initMvpPresenter(this, view);
+            presenter.create(this, view);
             presenter.registerEventBusListener(this);
-            presenter.create(savedInstanceState);
-            presenter.initInActivity(savedInstanceState, getIntent());
         }
     }
 
@@ -85,38 +83,6 @@ public abstract class MvpActivity<P extends BaseMvpPresenter<V>, V extends IMvpV
 
     public void onEvent(Object object) {
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (presenter != null) {
-            presenter.start();
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (presenter != null) {
-            presenter.resume();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (presenter != null) {
-            presenter.pause();
-        }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (presenter != null) {
-            presenter.stop();
-        }
     }
 
     @Override

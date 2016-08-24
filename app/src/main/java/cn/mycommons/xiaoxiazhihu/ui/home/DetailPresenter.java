@@ -23,8 +23,8 @@ public class DetailPresenter extends BaseMvpPresenter<DetailPresenter.IDetailVie
     ZhihuDomain domain;
 
     @Override
-    public void initMvpPresenter(ILoadDataView loadDataView, IDetailView view) {
-        super.initMvpPresenter(loadDataView, view);
+    public void create(ILoadDataView loadDataView, IDetailView view) {
+        super.create(loadDataView, view);
 
         InjectHelp.appComponent().inject(this);
     }
