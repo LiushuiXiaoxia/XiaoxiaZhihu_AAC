@@ -17,7 +17,9 @@
 
 [XiaoxiaZhihu Android客户端Kotlin版本](https://github.com/LiushuiXiaoxia/XiaoxiaZhihu_Kotlin)
 
-[XiaoxiaZhihu Android客户端ReactNative版本](https://github.com/LiushuiXiaoxia/XiaoxiaZhihuRN)
+[XiaoxiaZhihu客户端ReactNative版本](https://github.com/LiushuiXiaoxia/XiaoxiaZhihuRN)
+
+[XiaoxiaZhihu客户端Weex版本](https://github.com/LiushuiXiaoxia/XiaoxiaZhihuWeex)
 
 ## 效果图
 
