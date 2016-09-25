@@ -21,6 +21,8 @@
 
 [XiaoxiaZhihu客户端Weex版本](https://github.com/LiushuiXiaoxia/XiaoxiaZhihuWeex)
 
+[XiaoxiaZhihu客户端微信小程序](https://github.com/LiushuiXiaoxia/XiaoxiazhihuWx)
+
 ## 效果图
 
 ![](doc/1.png)
