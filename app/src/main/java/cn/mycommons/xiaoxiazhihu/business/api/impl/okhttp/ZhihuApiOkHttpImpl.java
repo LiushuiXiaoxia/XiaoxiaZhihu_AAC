@@ -34,6 +34,8 @@ import okhttp3.Response;
  */
 public class ZhihuApiOkHttpImpl implements ZhihuApi {
 
+    private static final String MSG = "req = %s, resp = %s";
+
     private OkHttpClient okHttpClient;
     private Gson gson;
 
@@ -50,7 +52,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
         url = String.format(url, request.width, request.height);
         GetStartInfoResponse response = call(url, GetStartInfoResponse.class);
 
-        XLog.i("req = %s, resp = %s", request, response);
+        XLog.i(MSG, request, response);
 
         return response;
     }
@@ -62,7 +64,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
         String url = "http://news-at.zhihu.com/api/4/themes";
         GetAllThemesResponse response = call(url, GetAllThemesResponse.class);
 
-        XLog.i("req = %s, resp = %s", request, response);
+        XLog.i(MSG, request, response);
 
         return response;
     }
@@ -74,7 +76,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
         String url = "http://news-at.zhihu.com/api/4/news/latest";
         GetLastThemeResponse response = call(url, GetLastThemeResponse.class);
 
-        XLog.i("req = %s, resp = %s", request, response);
+        XLog.i(MSG, request, response);
 
         return response;
     }
@@ -87,7 +89,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
         url = String.format(url, request.id);
         GetNewsResponse response = call(url, GetNewsResponse.class);
 
-        XLog.i("req = %s, resp = %s", request, response);
+        XLog.i(MSG, request, response);
 
         return response;
     }
@@ -100,7 +102,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
         url = String.format(url, request.id);
         GetThemeResponse response = call(url, GetThemeResponse.class);
 
-        XLog.i("req = %s, resp = %s", request, response);
+        XLog.i(MSG, request, response);
 
         return response;
     }
@@ -113,7 +115,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
         url = String.format(url, request.id);
         GetStoryExtraResponse response = call(url, GetStoryExtraResponse.class);
 
-        XLog.i("req = %s, resp = %s", request, response);
+        XLog.i(MSG, request, response);
 
         return response;
     }
@@ -126,7 +128,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
         url = String.format(url, request.id);
         GetShortCommentsResponse response = call(url, GetShortCommentsResponse.class);
 
-        XLog.i("req = %s, resp = %s", request, response);
+        XLog.i(MSG, request, response);
 
         return response;
     }
@@ -139,7 +141,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
         url = String.format(url, request.id);
         GetLongCommentsResponse response = call(url, GetLongCommentsResponse.class);
 
-        XLog.i("req = %s, resp = %s", request, response);
+        XLog.i(MSG, request, response);
 
         return response;
     }
