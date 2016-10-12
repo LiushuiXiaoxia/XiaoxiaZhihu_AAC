@@ -11,31 +11,35 @@ public class XLog {
     static final String XIAOXIA_ZHIHU = "XiaoxiaZhihu";
 
     public static int v(String msg, Object... args) {
+        String msgLocal = msg;
         if (args != null && args.length != 0) {
-            msg = String.format(msg, args);
+            msgLocal = String.format(msg, args);
         }
-        return Log.v(XIAOXIA_ZHIHU, msg);
+        return Log.v(XIAOXIA_ZHIHU, msgLocal);
     }
 
     public static int d(String msg, Object... args) {
+        String msgLocal = msg;
         if (args != null && args.length != 0) {
-            msg = String.format(msg, args);
+            msgLocal = String.format(msg, args);
         }
-        return Log.d(XIAOXIA_ZHIHU, msg);
+        return Log.d(XIAOXIA_ZHIHU, msgLocal);
     }
 
     public static int i(String msg, Object... args) {
+        String msgLocal = msg;
         if (args != null && args.length != 0) {
-            msg = String.format(msg, args);
+            msgLocal = String.format(msg, args);
         }
-        return Log.i(XIAOXIA_ZHIHU, msg);
+        return Log.i(XIAOXIA_ZHIHU, msgLocal);
     }
 
     public static int w(String msg, Object... args) {
+        String msgLocal = msg;
         if (args != null && args.length != 0) {
-            msg = String.format(msg, args);
+            msgLocal = String.format(msg, args);
         }
-        return Log.w(XIAOXIA_ZHIHU, msg);
+        return Log.w(XIAOXIA_ZHIHU, msgLocal);
     }
 
     public static int w(Throwable tr) {
@@ -43,10 +47,11 @@ public class XLog {
     }
 
     public static int e(String msg, Object... args) {
+        String msgLocal = msg;
         if (args != null && args.length != 0) {
-            msg = String.format(msg, args);
+            msgLocal = String.format(msg, args);
         }
-        return Log.e(XIAOXIA_ZHIHU, msg);
+        return Log.e(XIAOXIA_ZHIHU, msgLocal);
     }
 
     public static int e(String msg, Throwable tr) {
