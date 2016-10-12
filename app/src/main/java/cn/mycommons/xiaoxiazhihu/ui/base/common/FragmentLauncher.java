@@ -59,4 +59,7 @@ public class FragmentLauncher {
 
         return activityClass;
     }
+
+    private FragmentLauncher() {
+    }
 }

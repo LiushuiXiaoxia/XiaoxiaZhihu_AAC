@@ -29,4 +29,7 @@ public class InjectHelp {
     public static EventBus getEventBus() {
         return EventBus.getDefault();
     }
+
+    private InjectHelp() {
+    }
 }

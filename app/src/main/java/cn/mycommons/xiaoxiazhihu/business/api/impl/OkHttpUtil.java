@@ -39,4 +39,7 @@ public class OkHttpUtil {
     public static CacheControl getCacheControl() {
         return new CacheControl.Builder().noCache().build();
     }
+
+    private OkHttpUtil() {
+    }
 }

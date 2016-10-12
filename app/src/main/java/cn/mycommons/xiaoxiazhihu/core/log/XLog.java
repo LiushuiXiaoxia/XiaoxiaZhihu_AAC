@@ -8,7 +8,7 @@ import android.util.Log;
  */
 public class XLog {
 
-    static final String XIAOXIA_ZHIHU = "XiaoxiaZhihu";
+    private static final String XIAOXIA_ZHIHU = "XiaoxiaZhihu";
 
     public static int v(String msg, Object... args) {
         String msgLocal = msg;
@@ -56,5 +56,8 @@ public class XLog {
 
     public static int e(String msg, Throwable tr) {
         return Log.e(XIAOXIA_ZHIHU, msg, tr);
+    }
+
+    private XLog() {
     }
 }
