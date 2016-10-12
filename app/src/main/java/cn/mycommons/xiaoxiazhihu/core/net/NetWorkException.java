@@ -6,7 +6,7 @@ package cn.mycommons.xiaoxiazhihu.core.net;
  */
 public class NetWorkException extends Throwable {
 
-    private Throwable detailThrowable;
+    private final Throwable detailThrowable;
 
     public NetWorkException(Throwable throwable) {
         super(throwable);
