@@ -11,15 +11,55 @@ import java.io.Serializable;
 public class ThemeItem implements Serializable {
 
     @SerializedName("id")
-    public int id;
+    private int id;
     @SerializedName("name")
-    public String name;
+    private String name;
     @SerializedName("thumbnail")
-    public String thumbnail;
+    private String thumbnail;
     @SerializedName("description")
-    public String description;
+    private String description;
     @SerializedName("color")
-    public int color;
+    private int color;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
 
     @Override
     public String toString() {

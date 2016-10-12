@@ -11,15 +11,55 @@ import java.io.Serializable;
 public class ThemeEditor implements Serializable {
 
     @SerializedName("url")
-    public String url;
+    private String url;
     @SerializedName("bio")
-    public String bio;
+    private String bio;
     @SerializedName("id")
-    public int id;
+    private int id;
     @SerializedName("avatar")
-    public String avatar;
+    private String avatar;
     @SerializedName("name")
-    public String name;
+    private String name;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Override
     public String toString() {

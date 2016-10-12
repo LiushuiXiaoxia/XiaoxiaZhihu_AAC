@@ -12,19 +12,59 @@ import java.util.Arrays;
 public class LastThemeStory implements Serializable {
 
     @SerializedName("id")
-    public int id;
+    private int id;
 
     @SerializedName("type")
-    public int type;
+    private int type;
 
     @SerializedName("title")
-    public String title;
+    private String title;
 
     @SerializedName("ga_prefix")
-    public String gaPrefix;
+    private String gaPrefix;
 
     @SerializedName("images")
-    public String[] images;
+    private String[] images;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getGaPrefix() {
+        return gaPrefix;
+    }
+
+    public void setGaPrefix(String gaPrefix) {
+        this.gaPrefix = gaPrefix;
+    }
+
+    public String[] getImages() {
+        return images;
+    }
+
+    public void setImages(String[] images) {
+        this.images = images;
+    }
 
     @Override
     public String toString() {

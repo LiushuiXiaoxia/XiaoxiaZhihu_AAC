@@ -15,21 +15,85 @@ import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
 public class GetThemeResponse extends BaseResponse {
 
     @SerializedName("stories")
-    public LastThemeStory[] stories;
+    private LastThemeStory[] stories;
     @SerializedName("description")
-    public String description;
+    private String description;
     @SerializedName("background")
-    public String background;
+    private String background;
     @SerializedName("color")
-    public int color;
+    private int color;
     @SerializedName("name")
-    public String name;
+    private String name;
     @SerializedName("image")
-    public String image;
+    private String image;
     @SerializedName("editors")
-    public ThemeEditor[] editors;
+    private ThemeEditor[] editors;
     @SerializedName("image_srouce")
-    public String imageSrouce;
+    private String imageSrouce;
+
+    public LastThemeStory[] getStories() {
+        return stories;
+    }
+
+    public void setStories(LastThemeStory[] stories) {
+        this.stories = stories;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public ThemeEditor[] getEditors() {
+        return editors;
+    }
+
+    public void setEditors(ThemeEditor[] editors) {
+        this.editors = editors;
+    }
+
+    public String getImageSrouce() {
+        return imageSrouce;
+    }
+
+    public void setImageSrouce(String imageSrouce) {
+        this.imageSrouce = imageSrouce;
+    }
 
     @Override
     public String toString() {

@@ -15,13 +15,38 @@ import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
 public class GetLastThemeResponse extends BaseResponse {
 
     @SerializedName("date")
-    public String date;
+    private String date;
 
     @SerializedName("stories")
-    public LastThemeStory[] stories;
+    private LastThemeStory[] stories;
 
     @SerializedName("top_stories")
-    public LastTemeTopStory[] topStories;
+    private LastTemeTopStory[] topStories;
+
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public LastThemeStory[] getStories() {
+        return stories;
+    }
+
+    public void setStories(LastThemeStory[] stories) {
+        this.stories = stories;
+    }
+
+    public LastTemeTopStory[] getTopStories() {
+        return topStories;
+    }
+
+    public void setTopStories(LastTemeTopStory[] topStories) {
+        this.topStories = topStories;
+    }
 
     @Override
     public String toString() {

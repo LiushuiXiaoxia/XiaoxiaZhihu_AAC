@@ -14,13 +14,37 @@ import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
 public class GetAllThemesResponse extends BaseResponse {
 
     @SerializedName("limit")
-    public int limit;
+    private int limit;
 
     @SerializedName("subscribed")
-    public Object[] subscribed;
+    private Object[] subscribed;
 
     @SerializedName("others")
-    public ThemeItem[] others;
+    private ThemeItem[] others;
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    public Object[] getSubscribed() {
+        return subscribed;
+    }
+
+    public void setSubscribed(Object[] subscribed) {
+        this.subscribed = subscribed;
+    }
+
+    public ThemeItem[] getOthers() {
+        return others;
+    }
+
+    public void setOthers(ThemeItem[] others) {
+        this.others = others;
+    }
 
     @Override
     public String toString() {

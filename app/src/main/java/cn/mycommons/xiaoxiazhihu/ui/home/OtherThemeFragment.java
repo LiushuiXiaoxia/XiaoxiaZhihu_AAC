@@ -66,7 +66,7 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
 
-        setTitle(themeItem.name);
+        setTitle(themeItem.getName());
 
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -79,7 +79,7 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
     }
 
     private void doGetRequest() {
-        presenter.doGetThemById(themeItem.id)
+        presenter.doGetThemById(themeItem.getId())
                 .subscribe(new AdvancedSubscriber<GetThemeResponse>() {
                     @Override
                     public void onHandleSuccess(GetThemeResponse response) {
@@ -152,7 +152,7 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
 
         void notifyDataSetChanged(GetThemeResponse response) {
             data.clear();
-            data.addAll(Arrays.asList(response.stories));
+            data.addAll(Arrays.asList(response.getStories()));
             this.getThemeResponse = response;
 
             super.notifyDataSetChanged();
@@ -179,9 +179,9 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
         }
 
         void bind(GetThemeResponse response) {
-            textView.setText(response.name);
+            textView.setText(response.getName());
             Picasso.with(icon.getContext())
-                    .load(response.image)
+                    .load(response.getImage())
                     .into(icon);
         }
     }
@@ -217,10 +217,10 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
 
         void bind(LastThemeStory story) {
             itemView.setTag(story);
-            textView.setText(story.title);
-            if (story.images != null && story.images.length > 0) {
+            textView.setText(story.getTitle());
+            if (story.getImages() != null && story.getImages().length > 0) {
                 Picasso.with(icon.getContext())
-                        .load(story.images[0])
+                        .load(story.getImages()[0])
                         .placeholder(R.drawable.ic_launcher)
                         .into(icon);
             } else {
@@ -233,7 +233,7 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
             LastThemeStory story = (LastThemeStory) v.getTag();
             DetailFragment.DetailExtraParam param = new DetailFragment.DetailExtraParam();
             param.setFragmentClass(DetailFragment.class);
-            param.id = story.id;
+            param.id = story.getId();
             FragmentLauncher.launch(v.getContext(), param);
         }
     }

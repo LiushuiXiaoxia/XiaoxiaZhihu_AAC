@@ -14,7 +14,15 @@ import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
 public class GetShortCommentsResponse extends BaseResponse {
 
     @SerializedName("comments")
-    public Comment[] comments;
+    private Comment[] comments;
+
+    public Comment[] getComments() {
+        return comments;
+    }
+
+    public void setComments(Comment[] comments) {
+        this.comments = comments;
+    }
 
     @Override
     public String toString() {

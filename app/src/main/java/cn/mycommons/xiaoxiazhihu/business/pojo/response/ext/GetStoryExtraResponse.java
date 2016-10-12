@@ -11,13 +11,48 @@ import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
 public class GetStoryExtraResponse extends BaseResponse {
 
     @SerializedName("long_comments")
-    public int longComments;
+    private int longComments;
+
     @SerializedName("popularity")
-    public int popularity;
+    private int popularity;
+
     @SerializedName("short_comments")
-    public int shortComments;
+    private int shortComments;
+
     @SerializedName("comments")
-    public int comments;
+    private int comments;
+
+    public int getLongComments() {
+        return longComments;
+    }
+
+    public void setLongComments(int longComments) {
+        this.longComments = longComments;
+    }
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
+    }
+
+    public int getShortComments() {
+        return shortComments;
+    }
+
+    public void setShortComments(int shortComments) {
+        this.shortComments = shortComments;
+    }
+
+    public int getComments() {
+        return comments;
+    }
+
+    public void setComments(int comments) {
+        this.comments = comments;
+    }
 
     @Override
     public String toString() {

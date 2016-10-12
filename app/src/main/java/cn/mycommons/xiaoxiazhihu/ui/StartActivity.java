@@ -57,10 +57,10 @@ public class StartActivity extends MvpActivity<StartPresenter, StartPresenter.IS
     }
 
     private void update(GetStartInfoResponse response) {
-        tvText.setText(response.text);
+        tvText.setText(response.getText());
 
         Picasso.with(getContext())
-                .load(response.img)
+                .load(response.getImg())
                 .into(ivImage);
     }
 }

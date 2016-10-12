@@ -39,9 +39,9 @@ public class TopItemFragment extends MvpFragment {
         ButterKnife.bind(this, view);
 
         if (topStory != null) {
-            text.setText(topStory.title);
+            text.setText(topStory.getTitle());
             Picasso.with(icon.getContext())
-                    .load(topStory.image)
+                    .load(topStory.getImage())
                     .into(icon);
         }
 
@@ -51,7 +51,7 @@ public class TopItemFragment extends MvpFragment {
             public void onClick(View v) {
                 DetailFragment.DetailExtraParam param = new DetailFragment.DetailExtraParam();
                 param.setFragmentClass(DetailFragment.class);
-                param.id = topStory.id;
+                param.id = topStory.getId();
                 FragmentLauncher.launch(v.getContext(), param);
             }
         });

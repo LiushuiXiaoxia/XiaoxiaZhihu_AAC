@@ -149,9 +149,9 @@ public class HotnewsFragment extends CommonMvpFragment<HotnewsPresenter, Hotnews
 
         void notifyDataSetChanged(GetLastThemeResponse response) {
             data.clear();
-            data.addAll(Arrays.asList(response.stories));
+            data.addAll(Arrays.asList(response.getStories()));
             tops.clear();
-            tops.addAll(Arrays.asList(response.topStories));
+            tops.addAll(Arrays.asList(response.getTopStories()));
 
             super.notifyDataSetChanged();
         }
@@ -236,10 +236,10 @@ public class HotnewsFragment extends CommonMvpFragment<HotnewsPresenter, Hotnews
 
         void bind(LastThemeStory story) {
             itemView.setTag(story);
-            textView.setText(story.title);
-            if (story.images != null && story.images.length > 0) {
+            textView.setText(story.getTitle());
+            if (story.getImages() != null && story.getImages().length > 0) {
                 Picasso.with(icon.getContext())
-                        .load(story.images[0])
+                        .load(story.getImages()[0])
                         .placeholder(R.drawable.ic_launcher)
                         .into(icon);
             }
@@ -250,7 +250,7 @@ public class HotnewsFragment extends CommonMvpFragment<HotnewsPresenter, Hotnews
             LastThemeStory story = (LastThemeStory) v.getTag();
             DetailFragment.DetailExtraParam param = new DetailFragment.DetailExtraParam();
             param.setFragmentClass(DetailFragment.class);
-            param.id = story.id;
+            param.id = story.getId();
             FragmentLauncher.launch(v.getContext(), param);
         }
     }

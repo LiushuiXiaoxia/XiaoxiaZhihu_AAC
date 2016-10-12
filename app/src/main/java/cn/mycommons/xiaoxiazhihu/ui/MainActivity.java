@@ -41,7 +41,7 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMenu
             public void onHandleSuccess(GetAllThemesResponse response) {
                 super.onHandleSuccess(response);
 
-                update(response.others);
+                update(response.getOthers());
             }
         });
     }
@@ -90,7 +90,7 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMenu
         for (final ThemeItem item : themeItems) {
             View view = layoutInflater.inflate(R.layout.item_main_menu, llMainMenuContainer, false);
             TextView menu = (TextView) view.findViewById(R.id.menu);
-            menu.setText(item.name);
+            menu.setText(item.getName());
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

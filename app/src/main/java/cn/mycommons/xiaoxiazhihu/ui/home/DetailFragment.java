@@ -108,17 +108,17 @@ public class DetailFragment extends CommonMvpFragment<DetailPresenter, DetailPre
 
     void update(GetNewsResponse response) {
         if (response != null) {
-            tvTitle.setText(response.title);
-            tvSource.setText(response.imageSource);
+            tvTitle.setText(response.getTitle());
+            tvSource.setText(response.getImageSource());
 
-            if (TextUtils.isEmpty(response.image)) {
+            if (TextUtils.isEmpty(response.getImage())) {
                 rlDetailTop.setVisibility(View.GONE);
             } else {
                 Picasso.with(icon.getContext())
-                        .load(response.image)
+                        .load(response.getImage())
                         .into(icon);
             }
-            webView.loadDataWithBaseURL(null, response.body, "text/html", "utf8", null);
+            webView.loadDataWithBaseURL(null, response.getBody(), "text/html", "utf8", null);
         }
     }
 
@@ -128,12 +128,12 @@ public class DetailFragment extends CommonMvpFragment<DetailPresenter, DetailPre
         super.onCreateOptionsMenu(menu, inflater);
 
         if (storyExtraResponse != null) {
-            if (storyExtraResponse.comments > 0) {
-                String title = String.format("评论(%d)", storyExtraResponse.comments);
+            if (storyExtraResponse.getComments() > 0) {
+                String title = String.format("评论(%d)", storyExtraResponse.getComments());
                 menu.findItem(R.id.menu_comments).setTitle(title);
             }
-            if (storyExtraResponse.popularity > 0) {
-                String title = String.format("赞(%d)", storyExtraResponse.popularity);
+            if (storyExtraResponse.getPopularity() > 0) {
+                String title = String.format("赞(%d)", storyExtraResponse.getPopularity());
                 menu.findItem(R.id.menu_popularity).setTitle(title);
             }
         }

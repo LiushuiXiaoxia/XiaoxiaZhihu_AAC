@@ -11,19 +11,59 @@ import java.io.Serializable;
 public class LastTemeTopStory implements Serializable {
 
     @SerializedName("id")
-    public int id;
+    private int id;
 
     @SerializedName("type")
-    public int type;
+    private int type;
 
     @SerializedName("title")
-    public String title;
+    private String title;
 
     @SerializedName("ga_prefix")
-    public String gaPrefix;
+    private String gaPrefix;
 
     @SerializedName("image")
-    public String image;
+    private String image;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getGaPrefix() {
+        return gaPrefix;
+    }
+
+    public void setGaPrefix(String gaPrefix) {
+        this.gaPrefix = gaPrefix;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     @Override
     public String toString() {

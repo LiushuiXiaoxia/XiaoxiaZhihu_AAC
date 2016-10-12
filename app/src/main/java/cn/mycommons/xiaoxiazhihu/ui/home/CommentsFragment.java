@@ -68,7 +68,7 @@ public class CommentsFragment extends CommonMvpFragment<CommentsPresenter, Comme
         commentsExtraParam = getReqExtraParam();
 
         data = new ArrayList<>();
-        data.add(commentsExtraParam.storyExtraResponse.longComments);
+        data.add(commentsExtraParam.storyExtraResponse.getLongComments());
         adapter = new MyAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
@@ -130,15 +130,15 @@ public class CommentsFragment extends CommonMvpFragment<CommentsPresenter, Comme
 
         void notifLong(GetLongCommentsResponse response) {
             data.clear();
-            data.add(commentsExtraParam.storyExtraResponse.longComments);
-            data.addAll(Arrays.asList(response.comments));
-            data.add(commentsExtraParam.storyExtraResponse.shortComments);
+            data.add(commentsExtraParam.storyExtraResponse.getLongComments());
+            data.addAll(Arrays.asList(response.getComments()));
+            data.add(commentsExtraParam.storyExtraResponse.getShortComments());
 
             super.notifyDataSetChanged();
         }
 
         void notifShort(GetShortCommentsResponse response) {
-            data.addAll(Arrays.asList(response.comments));
+            data.addAll(Arrays.asList(response.getComments()));
 
             super.notifyDataSetChanged();
         }
@@ -208,15 +208,15 @@ public class CommentsFragment extends CommonMvpFragment<CommentsPresenter, Comme
 
         void bind(Comment comment) {
             itemView.setTag(comment);
-            textView.setText(comment.author);
-            textView2.setText(comment.content);
-            textView3.setText(simpleDateFormat.format(new Date(comment.time * 1000L)));
+            textView.setText(comment.getAuthor());
+            textView2.setText(comment.getContent());
+            textView3.setText(simpleDateFormat.format(new Date(comment.getTime() * 1000L)));
 
-            if (TextUtils.isEmpty(comment.avatar)) {
+            if (TextUtils.isEmpty(comment.getAvatar())) {
                 icon.setImageResource(0);
             } else {
                 Picasso.with(icon.getContext())
-                        .load(comment.avatar)
+                        .load(comment.getAvatar())
                         .placeholder(R.drawable.ic_launcher)
                         .into(icon);
             }
