@@ -6,7 +6,7 @@
 
 由于使用非正常手段获取Api，若被告知需停止共享与使用，本人会及时删除此页面与整个项目。
 
-客户端使用了MVP架构，网络层使用了okhttp+retrofit2，json解析使用gson。
+客户端使用了MVP架构，网络层使用了okhttp+retrofit2，json解析使用gson，模型层使用了autovalue。
 图片加载使用picasso，注解使用了dagger2+butterknife，各个层次之间通信使用rxjava+rxandroid+eventbus。
 
 ## 其他客户端
