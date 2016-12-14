@@ -14,7 +14,7 @@ public class InjectHelp {
 
     static synchronized void init(Application application) {
         appComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(application))
+                .appModule(new AppModule())
                 .build();
     }
 

@@ -1,14 +1,14 @@
 package cn.mycommons.xiaoxiazhihu.core.net;
 
 /**
- * NetWorkException <br/>
+ * AppException <br/>
  * Created by xiaqiulei on 2015-10-21.
  */
-public class NetWorkException extends Throwable {
+public class AppException extends Throwable {
 
     private final Throwable detailThrowable;
 
-    public NetWorkException(Throwable throwable) {
+    public AppException(Throwable throwable) {
         super(throwable);
         this.detailThrowable = throwable;
     }
@@ -19,7 +19,7 @@ public class NetWorkException extends Throwable {
 
     @Override
     public String toString() {
-        return "NetWorkException{" +
+        return "AppException{" +
                 "detailThrowable=" + detailThrowable +
                 '}';
     }

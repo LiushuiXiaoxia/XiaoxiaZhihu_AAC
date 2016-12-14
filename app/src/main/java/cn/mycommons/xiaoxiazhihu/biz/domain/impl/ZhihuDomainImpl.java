@@ -18,7 +18,7 @@ import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetShortCommentsResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStartInfoResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStoryExtraResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetThemeResponse;
-import cn.mycommons.xiaoxiazhihu.core.net.NetWorkException;
+import cn.mycommons.xiaoxiazhihu.core.net.AppException;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
@@ -45,7 +45,7 @@ public class ZhihuDomainImpl implements ZhihuDomain {
                         try {
                             GetStartInfoResponse response = zhihuApi.getStartInfoResponse(request);
                             return Observable.just(response);
-                        } catch (NetWorkException e) {
+                        } catch (AppException e) {
                             return Observable.error(e);
                         }
                     }
@@ -63,7 +63,7 @@ public class ZhihuDomainImpl implements ZhihuDomain {
                         try {
                             GetAllThemesResponse response = zhihuApi.getAllThemesResponse(request);
                             return Observable.just(response);
-                        } catch (NetWorkException e) {
+                        } catch (AppException e) {
                             return Observable.error(e);
                         }
                     }
@@ -81,7 +81,7 @@ public class ZhihuDomainImpl implements ZhihuDomain {
                         try {
                             GetLastThemeResponse response = zhihuApi.getLastThemeResponse(request);
                             return Observable.just(response);
-                        } catch (NetWorkException e) {
+                        } catch (AppException e) {
                             return Observable.error(e);
                         }
                     }
@@ -99,7 +99,7 @@ public class ZhihuDomainImpl implements ZhihuDomain {
                         try {
                             GetNewsResponse response = zhihuApi.getNewsResponse(request);
                             return Observable.just(response);
-                        } catch (NetWorkException e) {
+                        } catch (AppException e) {
                             return Observable.error(e);
                         }
                     }
@@ -117,7 +117,7 @@ public class ZhihuDomainImpl implements ZhihuDomain {
                         try {
                             GetThemeResponse response = zhihuApi.getThemeResponse(request);
                             return Observable.just(response);
-                        } catch (NetWorkException e) {
+                        } catch (AppException e) {
                             return Observable.error(e);
                         }
                     }
@@ -135,7 +135,7 @@ public class ZhihuDomainImpl implements ZhihuDomain {
                         try {
                             GetStoryExtraResponse response = zhihuApi.getStoryExtraResponse(request);
                             return Observable.just(response);
-                        } catch (NetWorkException e) {
+                        } catch (AppException e) {
                             return Observable.error(e);
                         }
                     }
@@ -153,7 +153,7 @@ public class ZhihuDomainImpl implements ZhihuDomain {
                         try {
                             GetShortCommentsResponse response = zhihuApi.getShortComments(request);
                             return Observable.just(response);
-                        } catch (NetWorkException e) {
+                        } catch (AppException e) {
                             return Observable.error(e);
                         }
                     }
@@ -171,7 +171,7 @@ public class ZhihuDomainImpl implements ZhihuDomain {
                         try {
                             GetLongCommentsResponse response = zhihuApi.getLongComments(request);
                             return Observable.just(response);
-                        } catch (NetWorkException e) {
+                        } catch (AppException e) {
                             return Observable.error(e);
                         }
                     }

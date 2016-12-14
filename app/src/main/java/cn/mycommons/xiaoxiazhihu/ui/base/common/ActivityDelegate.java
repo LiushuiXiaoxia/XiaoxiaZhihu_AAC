@@ -15,7 +15,7 @@ import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
  * CommonFragmentActivityDelegate <br/>
  * Created by xiaqiulei on 2015-04-03.
  */
-public class ActivityDelegate<A extends AppCompatActivity, F extends Fragment> {
+class ActivityDelegate<A extends AppCompatActivity, F extends Fragment> {
 
     private static final int FRAGMENT_CONTAINER = R.id.fmFragmentContainer;
 
@@ -23,18 +23,18 @@ public class ActivityDelegate<A extends AppCompatActivity, F extends Fragment> {
     private F commonFragment;
     private CommonExtraParam extraParam;
 
-    public ActivityDelegate(A a) {
+    ActivityDelegate(A a) {
         if (a == null) {
             throw new InvalidParameterException("activity is null.");
         }
         activity = a;
     }
 
-    public void beforeOnCreate(Bundle savedInstanceState) {
+    void beforeOnCreate(Bundle savedInstanceState) {
         AppLog.d("beforeOnCreate");
     }
 
-    public void afterOnCreate(Bundle savedInstanceState) {
+    void afterOnCreate(Bundle savedInstanceState) {
         AppLog.d("afterOnCreate");
 
         init(savedInstanceState);
@@ -84,11 +84,11 @@ public class ActivityDelegate<A extends AppCompatActivity, F extends Fragment> {
         return ret;
     }
 
-    public F getCommonFragment() {
+    F getCommonFragment() {
         return commonFragment;
     }
 
-    public CommonExtraParam getExtraParam() {
+    CommonExtraParam getExtraParam() {
         return extraParam;
     }
 }

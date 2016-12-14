@@ -6,5 +6,5 @@ import java.io.Serializable;
  * IRequest <br/>
  * Created by xiaqiulei on 2015-12-30.
  */
-public interface IRequest extends Serializable {
+interface IRequest extends Serializable {
 }

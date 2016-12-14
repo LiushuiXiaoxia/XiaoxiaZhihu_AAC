@@ -25,7 +25,7 @@ public class CommonMvpFragmentActivity extends MvpActivity {
     }
 
     protected ActivityDelegate<CommonMvpFragmentActivity, CommonMvpFragment> getDeledate() {
-        return new ActivityDelegate(this);
+        return new ActivityDelegate<>(this);
     }
 
     protected final CommonExtraParam getExtraParam() {

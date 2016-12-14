@@ -19,7 +19,7 @@ import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStartInfoResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStoryExtraResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetThemeResponse;
 import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
-import cn.mycommons.xiaoxiazhihu.core.net.NetWorkException;
+import cn.mycommons.xiaoxiazhihu.core.net.AppException;
 
 /**
  * ZhihuApiRetrofitImpl <br/>
@@ -34,7 +34,7 @@ public class ZhihuApiRetrofitImpl implements ZhihuApi {
     }
 
     @Override
-    public GetStartInfoResponse getStartInfoResponse(final GetStartInfoRequest request) throws NetWorkException {
+    public GetStartInfoResponse getStartInfoResponse(final GetStartInfoRequest request) throws AppException {
         AppLog.i("ZhihuApiRetrofitImpl.getStartInfoResponse request = " + request);
 
         return new RetrofitAdapter<GetStartInfoResponse>() {
@@ -46,7 +46,7 @@ public class ZhihuApiRetrofitImpl implements ZhihuApi {
     }
 
     @Override
-    public GetAllThemesResponse getAllThemesResponse(GetAllThemesRequest request) throws NetWorkException {
+    public GetAllThemesResponse getAllThemesResponse(GetAllThemesRequest request) throws AppException {
         AppLog.i("ZhihuApiRetrofitImpl.getAllThemesResponse request = " + request);
         return new RetrofitAdapter<GetAllThemesResponse>() {
             @Override
@@ -57,7 +57,7 @@ public class ZhihuApiRetrofitImpl implements ZhihuApi {
     }
 
     @Override
-    public GetLastThemeResponse getLastThemeResponse(GetLastThemeRequest request) throws NetWorkException {
+    public GetLastThemeResponse getLastThemeResponse(GetLastThemeRequest request) throws AppException {
         AppLog.i("ZhihuApiRetrofitImpl.getLastThemeResponse request = " + request);
         return new RetrofitAdapter<GetLastThemeResponse>() {
             @Override
@@ -68,7 +68,7 @@ public class ZhihuApiRetrofitImpl implements ZhihuApi {
     }
 
     @Override
-    public GetNewsResponse getNewsResponse(final GetNewsRequest request) throws NetWorkException {
+    public GetNewsResponse getNewsResponse(final GetNewsRequest request) throws AppException {
         AppLog.i("ZhihuApiRetrofitImpl.getNewsResponse request = " + request);
         return new RetrofitAdapter<GetNewsResponse>() {
             @Override
@@ -79,7 +79,7 @@ public class ZhihuApiRetrofitImpl implements ZhihuApi {
     }
 
     @Override
-    public GetThemeResponse getThemeResponse(final GetThemeRequest request) throws NetWorkException {
+    public GetThemeResponse getThemeResponse(final GetThemeRequest request) throws AppException {
         AppLog.i("ZhihuApiRetrofitImpl.getThemeResponse request = " + request);
         return new RetrofitAdapter<GetThemeResponse>() {
             @Override
@@ -90,7 +90,7 @@ public class ZhihuApiRetrofitImpl implements ZhihuApi {
     }
 
     @Override
-    public GetStoryExtraResponse getStoryExtraResponse(final GetStoryExtraRequest request) throws NetWorkException {
+    public GetStoryExtraResponse getStoryExtraResponse(final GetStoryExtraRequest request) throws AppException {
         AppLog.i("ZhihuApiRetrofitImpl.getStoryExtraResponse request = " + request);
         return new RetrofitAdapter<GetStoryExtraResponse>() {
             @Override
@@ -101,7 +101,7 @@ public class ZhihuApiRetrofitImpl implements ZhihuApi {
     }
 
     @Override
-    public GetShortCommentsResponse getShortComments(final GetShortCommentsRequest request) throws NetWorkException {
+    public GetShortCommentsResponse getShortComments(final GetShortCommentsRequest request) throws AppException {
         AppLog.i("ZhihuApiRetrofitImpl.getShortComments request = " + request);
         return new RetrofitAdapter<GetShortCommentsResponse>() {
             @Override
@@ -112,7 +112,7 @@ public class ZhihuApiRetrofitImpl implements ZhihuApi {
     }
 
     @Override
-    public GetLongCommentsResponse getLongComments(final GetLongCommentsRequest request) throws NetWorkException {
+    public GetLongCommentsResponse getLongComments(final GetLongCommentsRequest request) throws AppException {
         AppLog.i("ZhihuApiRetrofitImpl.GetStartInfoResponse request = " + request);
         return new RetrofitAdapter<GetLongCommentsResponse>() {
             @Override

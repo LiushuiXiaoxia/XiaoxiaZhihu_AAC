@@ -4,13 +4,13 @@ import com.google.gson.TypeAdapterFactory;
 import com.ryanharter.auto.value.gson.GsonTypeAdapterFactory;
 
 /**
- * MyAdapterFactory <br/>
+ * AdapterFactory <br/>
  * Created by xiaqiulei on 2016-12-14.
  */
 @GsonTypeAdapterFactory
-abstract class MyAdapterFactory implements TypeAdapterFactory {
+abstract class AdapterFactory implements TypeAdapterFactory {
 
     public static TypeAdapterFactory create() {
-        return new AutoValueGson_MyAdapterFactory();
+        return new AutoValueGson_AdapterFactory();
     }
 }

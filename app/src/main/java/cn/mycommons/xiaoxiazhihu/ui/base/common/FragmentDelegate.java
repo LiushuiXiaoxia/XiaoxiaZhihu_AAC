@@ -13,24 +13,24 @@ import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
 /**
  * Created by xiaqiulei on 14/11/20.
  */
-public class FragmentDelegate<F extends Fragment, P extends CommonExtraParam> {
+class FragmentDelegate<F extends Fragment, P extends CommonExtraParam> {
 
 
-    protected P extraReqParam;
+    private P extraReqParam;
     private F fragment;
 
-    public FragmentDelegate(F f) {
+    FragmentDelegate(F f) {
         if (f == null) {
             throw new InvalidParameterException("fragment is null.");
         }
         this.fragment = f;
     }
 
-    public void beforeOnViewCreated(View view, Bundle savedInstanceState) {
+    void beforeOnViewCreated(View view, Bundle savedInstanceState) {
         AppLog.i("beforeOnViewCreated");
     }
 
-    public void afterOnViewCreated(View view, Bundle savedInstanceState) {
+    void afterOnViewCreated(View view, Bundle savedInstanceState) {
         AppLog.i("afterOnViewCreated");
 
         extraReqParam = CommonExtraParam.getReqExtraParam(fragment.getActivity());
@@ -39,11 +39,11 @@ public class FragmentDelegate<F extends Fragment, P extends CommonExtraParam> {
         AppLog.d(content);
     }
 
-    public P getReqExtraParam() {
+    P getReqExtraParam() {
         return extraReqParam;
     }
 
-    public void setSuccessResult(CommonExtraParam extraParam) {
+    void setSuccessResult(CommonExtraParam extraParam) {
         Intent it = new Intent();
         it.putExtra(ICommonFragment.EXTRA_RESP, extraParam);
         fragment.getActivity().setResult(Activity.RESULT_OK, it);

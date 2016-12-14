@@ -1,21 +1,21 @@
 package cn.mycommons.xiaoxiazhihu.biz.api.impl.retrofit;
 
-import cn.mycommons.xiaoxiazhihu.core.net.NetWorkException;
+import cn.mycommons.xiaoxiazhihu.core.net.AppException;
 
 /**
  * RetrofitAdapter <br/>
  * Created by xiaqiulei on 2016-01-10.
  */
-public abstract class RetrofitAdapter<T> {
+abstract class RetrofitAdapter<T> {
 
     abstract T call() throws Exception;
 
-    protected T get() throws NetWorkException {
+    protected T get() throws AppException {
         T t;
         try {
             t = call();
         } catch (Exception e) {
-            throw new NetWorkException(e);
+            throw new AppException(e);
         }
         return t;
     }

@@ -16,7 +16,7 @@ import cn.mycommons.xiaoxiazhihu.R;
 import cn.mycommons.xiaoxiazhihu.app.InjectHelp;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.BaseResponse;
 import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
-import cn.mycommons.xiaoxiazhihu.core.net.NetWorkException;
+import cn.mycommons.xiaoxiazhihu.core.net.AppException;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.ILoadDataView;
 
 /**
@@ -82,9 +82,9 @@ public class AdvancedSubscriber<T extends BaseResponse> extends SimpleSubscriber
         }
 
         String toastText = null;
-        if (throwable instanceof NetWorkException) {
-            NetWorkException netWorkException = (NetWorkException) throwable;
-            Throwable detailException = netWorkException.getDetailThrowable();
+        if (throwable instanceof AppException) {
+            AppException appException = (AppException) throwable;
+            Throwable detailException = appException.getDetailThrowable();
             if (detailException instanceof ConnectException) {
                 toastText = "Connect Fail";
             } else if (detailException instanceof UnknownHostException) {
@@ -127,7 +127,7 @@ public class AdvancedSubscriber<T extends BaseResponse> extends SimpleSubscriber
         }
     }
 
-    boolean checkLoadDataView() {
+    private boolean checkLoadDataView() {
         return loadDataViewSoftReference != null && loadDataViewSoftReference.get() != null;
     }
 }

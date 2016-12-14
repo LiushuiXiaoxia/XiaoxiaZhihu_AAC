@@ -3,7 +3,7 @@ package cn.mycommons.xiaoxiazhihu.ui.base.common;
 /**
  * Created by xiaqiulei on 14/11/20.
  */
-public interface ICommonFragment {
+interface ICommonFragment {
 
     String EXTRA_REQ = "extra_req";
 

@@ -23,7 +23,7 @@ import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStartInfoResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStoryExtraResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetThemeResponse;
 import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
-import cn.mycommons.xiaoxiazhihu.core.net.NetWorkException;
+import cn.mycommons.xiaoxiazhihu.core.net.AppException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -45,10 +45,10 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
     }
 
     @Override
-    public GetStartInfoResponse getStartInfoResponse(GetStartInfoRequest request) throws NetWorkException {
+    public GetStartInfoResponse getStartInfoResponse(GetStartInfoRequest request) throws AppException {
         AppLog.d("ZhihuApiOkHttpImpl.getStartInfoResponse request = " + request);
 
-        String url = "http://news-at.zhihu.com/api/4/start-image/%d*%d";
+        String url = "http://news-at.zhihu.com/api/4/start-image/%s*%s";
         url = String.format(url, request.width, request.height);
         GetStartInfoResponse response = call(url, GetStartInfoResponse.class);
 
@@ -58,7 +58,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
     }
 
     @Override
-    public GetAllThemesResponse getAllThemesResponse(GetAllThemesRequest request) throws NetWorkException {
+    public GetAllThemesResponse getAllThemesResponse(GetAllThemesRequest request) throws AppException {
         AppLog.d("ZhihuApiOkHttpImpl.getAllThemesResponse request = " + request);
 
         String url = "http://news-at.zhihu.com/api/4/themes";
@@ -70,7 +70,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
     }
 
     @Override
-    public GetLastThemeResponse getLastThemeResponse(GetLastThemeRequest request) throws NetWorkException {
+    public GetLastThemeResponse getLastThemeResponse(GetLastThemeRequest request) throws AppException {
         AppLog.d("ZhihuApiOkHttpImpl.getLastThemeResponse request = " + request);
 
         String url = "http://news-at.zhihu.com/api/4/news/latest";
@@ -82,7 +82,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
     }
 
     @Override
-    public GetNewsResponse getNewsResponse(GetNewsRequest request) throws NetWorkException {
+    public GetNewsResponse getNewsResponse(GetNewsRequest request) throws AppException {
         AppLog.d("ZhihuApiOkHttpImpl.getNewsResponse request = " + request);
 
         String url = "http://news-at.zhihu.com/api/4/news/%s";
@@ -95,7 +95,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
     }
 
     @Override
-    public GetThemeResponse getThemeResponse(GetThemeRequest request) throws NetWorkException {
+    public GetThemeResponse getThemeResponse(GetThemeRequest request) throws AppException {
         AppLog.d("ZhihuApiOkHttpImpl.getThemeResponse request = " + request);
 
         String url = "http://news-at.zhihu.com/api/4/theme/%s";
@@ -108,7 +108,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
     }
 
     @Override
-    public GetStoryExtraResponse getStoryExtraResponse(GetStoryExtraRequest request) throws NetWorkException {
+    public GetStoryExtraResponse getStoryExtraResponse(GetStoryExtraRequest request) throws AppException {
         AppLog.d("ZhihuApiOkHttpImpl.getStoryExtraResponse request = " + request);
 
         String url = "http://news-at.zhihu.com/api/4/story-extra/%s";
@@ -121,7 +121,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
     }
 
     @Override
-    public GetShortCommentsResponse getShortComments(GetShortCommentsRequest request) throws NetWorkException {
+    public GetShortCommentsResponse getShortComments(GetShortCommentsRequest request) throws AppException {
         AppLog.d("ZhihuApiOkHttpImpl.getShortComments request = " + request);
 
         String url = "http://news-at.zhihu.com/api/4/story/%s/short-comments";
@@ -134,7 +134,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
     }
 
     @Override
-    public GetLongCommentsResponse getLongComments(GetLongCommentsRequest request) throws NetWorkException {
+    public GetLongCommentsResponse getLongComments(GetLongCommentsRequest request) throws AppException {
         AppLog.d("ZhihuApiOkHttpImpl.getLongComments request = " + request);
 
         String url = "http://news-at.zhihu.com/api/4/story/%s/long-comments";
@@ -146,7 +146,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
         return response;
     }
 
-    <T> T call(String url, Class<T> tClass) throws NetWorkException {
+    private <T> T call(String url, Class<T> tClass) throws AppException {
         AppLog.i("ZhihuApiOkHttpImpl.call url = " + url);
         Request request = new Request.Builder()
                 .url(url)
@@ -164,7 +164,7 @@ public class ZhihuApiOkHttpImpl implements ZhihuApi {
             }
         } catch (IOException e) {
             AppLog.e("ZhihuApiOkHttpImpl.call e = " + e, e);
-            throw new NetWorkException(e);
+            throw new AppException(e);
         }
         return t;
     }

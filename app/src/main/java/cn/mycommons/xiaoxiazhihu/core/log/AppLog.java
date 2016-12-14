@@ -8,14 +8,14 @@ import android.util.Log;
  */
 public class AppLog {
 
-    private static final String XIAOXIA_ZHIHU = "XiaoxiaZhihu";
+    private static final String TAG = "XiaoxiaZhihu";
 
     public static int v(String msg, Object... args) {
         String msgLocal = msg;
         if (args != null && args.length != 0) {
             msgLocal = String.format(msg, args);
         }
-        return Log.v(XIAOXIA_ZHIHU, msgLocal);
+        return Log.v(TAG, msgLocal);
     }
 
     public static int d(String msg, Object... args) {
@@ -23,7 +23,7 @@ public class AppLog {
         if (args != null && args.length != 0) {
             msgLocal = String.format(msg, args);
         }
-        return Log.d(XIAOXIA_ZHIHU, msgLocal);
+        return Log.d(TAG, msgLocal);
     }
 
     public static int i(String msg, Object... args) {
@@ -31,7 +31,7 @@ public class AppLog {
         if (args != null && args.length != 0) {
             msgLocal = String.format(msg, args);
         }
-        return Log.i(XIAOXIA_ZHIHU, msgLocal);
+        return Log.i(TAG, msgLocal);
     }
 
     public static int w(String msg, Object... args) {
@@ -39,11 +39,11 @@ public class AppLog {
         if (args != null && args.length != 0) {
             msgLocal = String.format(msg, args);
         }
-        return Log.w(XIAOXIA_ZHIHU, msgLocal);
+        return Log.w(TAG, msgLocal);
     }
 
     public static int w(Throwable tr) {
-        return Log.w(XIAOXIA_ZHIHU, tr);
+        return Log.w(TAG, tr);
     }
 
     public static int e(String msg, Object... args) {
@@ -51,11 +51,11 @@ public class AppLog {
         if (args != null && args.length != 0) {
             msgLocal = String.format(msg, args);
         }
-        return Log.e(XIAOXIA_ZHIHU, msgLocal);
+        return Log.e(TAG, msgLocal);
     }
 
     public static int e(String msg, Throwable tr) {
-        return Log.e(XIAOXIA_ZHIHU, msg, tr);
+        return Log.e(TAG, msg, tr);
     }
 
     private AppLog() {

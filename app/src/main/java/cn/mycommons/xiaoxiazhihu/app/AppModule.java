@@ -1,7 +1,5 @@
 package cn.mycommons.xiaoxiazhihu.app;
 
-import android.app.Application;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -25,43 +23,37 @@ import okhttp3.OkHttpClient;
  */
 
 @Module
-public class AppModule {
-
-    private Application application;
-
-    public AppModule(Application application) {
-        this.application = application;
-    }
+class AppModule {
 
     @Provides
-    public ZhihuDomain providerZhihuDomain(ZhihuApi zhihuApi) {
+    ZhihuDomain providerZhihuDomain(ZhihuApi zhihuApi) {
         return new ZhihuDomainImpl(zhihuApi);
     }
 
     @Provides
-    public ZhihuApi providerZhihuApi(IZhihuRetorfitApi zhihuRetorfitApi) {
+    ZhihuApi providerZhihuApi(IZhihuRetorfitApi zhihuRetorfitApi) {
         return new ZhihuApiRetrofitImpl(zhihuRetorfitApi);
     }
 
     // @Provides
-    public ZhihuApi providerZhihuApi(OkHttpClient client) {
+    ZhihuApi providerZhihuApi(OkHttpClient client) {
         return new ZhihuApiOkHttpImpl(client);
     }
 
     @Provides
     @Singleton
-    public OkHttpClient providerOkHttpClient() {
+    OkHttpClient providerOkHttpClient() {
         return OkHttpUtil.newOkHttpClient();
     }
 
     @Provides
-    public IZhihuRetorfitApi providerIZhihuRetorfitApi(OkHttpClient client, Gson gson) {
+    IZhihuRetorfitApi providerIZhihuRetorfitApi(OkHttpClient client, Gson gson) {
         return RetrofitUtil.createApi(IZhihuRetorfitApi.class, client, gson);
     }
 
     @Provides
     @Singleton
-    public Gson providerGson() {
-        return new GsonBuilder().registerTypeAdapterFactory(MyAdapterFactory.create()).create();
+    Gson providerGson() {
+        return new GsonBuilder().registerTypeAdapterFactory(AdapterFactory.create()).create();
     }
 }

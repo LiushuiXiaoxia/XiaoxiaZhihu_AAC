@@ -30,7 +30,6 @@ public class BaseResponse implements IResponse {
         this.errorMsg = errorMsg;
     }
 
-
     public boolean isSuccess() {
         return status == 0;
     }
