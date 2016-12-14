@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import java.lang.reflect.Type;
 
 import cn.mycommons.xiaoxiazhihu.BuildConfig;
-import cn.mycommons.xiaoxiazhihu.core.log.XLog;
+import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
 
 /**
  * 帮助存取SharedPreferences,支持obj存取，obj是使用gson序列化的 <br/>
@@ -91,7 +91,7 @@ public class SharedPreferencesPlus {
                 json = gson.toJson(object);
             } catch (Exception e) {
                 String content = String.format("save (%s,%s) fail.", key, object);
-                XLog.i(content);
+                AppLog.i(content);
 
                 return false;
             }
@@ -132,7 +132,7 @@ public class SharedPreferencesPlus {
                 t = gson.fromJson(string, type);
             } catch (Exception e) { // json解析出错
                 String msg = String.format("get %s of %s fail", key, type);
-                XLog.i(msg);
+                AppLog.i(msg);
             }
         }
 

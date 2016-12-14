@@ -1,7 +1,7 @@
 package cn.mycommons.xiaoxiazhihu.core.process;
 
 
-import cn.mycommons.xiaoxiazhihu.core.log.XLog;
+import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
 
 /**
  * ProcessItem <br/>
@@ -51,7 +51,7 @@ public class ProcessItem<P> {
                 }
             }
         } catch (Exception e) {
-            XLog.i("process key = %s, param = %s fail", key, param);
+            AppLog.i("process key = %s, param = %s fail", key, param);
         }
     }
 }

@@ -9,8 +9,8 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import cn.mycommons.xiaoxiazhihu.R;
-import cn.mycommons.xiaoxiazhihu.business.callback.AdvancedSubscriber;
-import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetStartInfoResponse;
+import cn.mycommons.xiaoxiazhihu.biz.callback.AdvancedSubscriber;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStartInfoResponse;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.MvpActivity;
 
 public class StartActivity extends MvpActivity<StartPresenter, StartPresenter.IStartView>

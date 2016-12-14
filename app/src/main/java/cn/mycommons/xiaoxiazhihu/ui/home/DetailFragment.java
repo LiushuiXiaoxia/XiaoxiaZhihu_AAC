@@ -17,9 +17,9 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import cn.mycommons.xiaoxiazhihu.R;
-import cn.mycommons.xiaoxiazhihu.business.callback.AdvancedSubscriber;
-import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetNewsResponse;
-import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetStoryExtraResponse;
+import cn.mycommons.xiaoxiazhihu.biz.callback.AdvancedSubscriber;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetNewsResponse;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStoryExtraResponse;
 import cn.mycommons.xiaoxiazhihu.ui.base.common.CommonExtraParam;
 import cn.mycommons.xiaoxiazhihu.ui.base.common.CommonMvpFragment;
 import cn.mycommons.xiaoxiazhihu.ui.base.common.FragmentLauncher;

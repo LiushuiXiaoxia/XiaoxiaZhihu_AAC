@@ -22,11 +22,11 @@ import java.util.Locale;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.mycommons.xiaoxiazhihu.R;
-import cn.mycommons.xiaoxiazhihu.business.callback.AdvancedSubscriber;
-import cn.mycommons.xiaoxiazhihu.business.pojo.bean.Comment;
-import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetLongCommentsResponse;
-import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetShortCommentsResponse;
-import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetStoryExtraResponse;
+import cn.mycommons.xiaoxiazhihu.biz.callback.AdvancedSubscriber;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.Comment;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetLongCommentsResponse;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetShortCommentsResponse;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStoryExtraResponse;
 import cn.mycommons.xiaoxiazhihu.ui.base.common.CommonExtraParam;
 import cn.mycommons.xiaoxiazhihu.ui.base.common.CommonMvpFragment;
 

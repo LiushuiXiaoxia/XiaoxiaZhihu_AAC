@@ -3,7 +3,7 @@ package cn.mycommons.xiaoxiazhihu.ui.base.mvp;
 import android.os.Bundle;
 import android.view.View;
 
-import cn.mycommons.xiaoxiazhihu.core.log.XLog;
+import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
 import cn.mycommons.xiaoxiazhihu.ui.base.BaseFragment;
 
 
@@ -52,7 +52,7 @@ public abstract class MvpFragment<P extends BaseMvpPresenter<V>, V extends IMvpV
             initPresenterAndView();
         } catch (Exception e) {
             // 防止子类未使用泛型所可能产生的意外错误
-            XLog.w("onMvpInit fail, e = " + e);
+            AppLog.w("onMvpInit fail, e = " + e);
         }
     }
 
@@ -70,8 +70,8 @@ public abstract class MvpFragment<P extends BaseMvpPresenter<V>, V extends IMvpV
                 e.printStackTrace();
             }
         }
-        XLog.d("view = " + view);
-        XLog.d("presenter = " + presenter);
+        AppLog.d("view = " + view);
+        AppLog.d("presenter = " + presenter);
     }
 
     /**
@@ -86,7 +86,7 @@ public abstract class MvpFragment<P extends BaseMvpPresenter<V>, V extends IMvpV
                 return (V) this;
             }
         } catch (Exception e) {
-            XLog.w(e.toString());
+            AppLog.w(e.toString());
         }
         return null;
     }

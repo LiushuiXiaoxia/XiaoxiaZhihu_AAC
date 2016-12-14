@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.mycommons.xiaoxiazhihu.R;
-import cn.mycommons.xiaoxiazhihu.business.pojo.bean.LastTemeTopStory;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.LastTemeTopStory;
 import cn.mycommons.xiaoxiazhihu.ui.base.common.FragmentLauncher;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.MvpFragment;
 

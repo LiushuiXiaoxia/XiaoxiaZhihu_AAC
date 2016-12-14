@@ -19,10 +19,10 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.mycommons.xiaoxiazhihu.R;
-import cn.mycommons.xiaoxiazhihu.business.callback.AdvancedSubscriber;
-import cn.mycommons.xiaoxiazhihu.business.pojo.bean.LastThemeStory;
-import cn.mycommons.xiaoxiazhihu.business.pojo.bean.ThemeItem;
-import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetThemeResponse;
+import cn.mycommons.xiaoxiazhihu.biz.callback.AdvancedSubscriber;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.LastThemeStory;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.ThemeItem;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetThemeResponse;
 import cn.mycommons.xiaoxiazhihu.ui.base.common.FragmentLauncher;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.MvpFragment;
 

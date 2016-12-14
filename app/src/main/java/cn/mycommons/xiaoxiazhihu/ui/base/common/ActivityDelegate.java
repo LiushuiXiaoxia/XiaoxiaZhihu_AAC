@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import java.security.InvalidParameterException;
 
 import cn.mycommons.xiaoxiazhihu.R;
-import cn.mycommons.xiaoxiazhihu.core.log.XLog;
+import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
 
 /**
  * CommonFragmentActivityDelegate <br/>
@@ -31,11 +31,11 @@ public class ActivityDelegate<A extends AppCompatActivity, F extends Fragment> {
     }
 
     public void beforeOnCreate(Bundle savedInstanceState) {
-        XLog.d("beforeOnCreate");
+        AppLog.d("beforeOnCreate");
     }
 
     public void afterOnCreate(Bundle savedInstanceState) {
-        XLog.d("afterOnCreate");
+        AppLog.d("afterOnCreate");
 
         init(savedInstanceState);
     }
@@ -59,11 +59,11 @@ public class ActivityDelegate<A extends AppCompatActivity, F extends Fragment> {
                 }
             }
         } else {
-            XLog.e(getClass().getSimpleName() + "参数不合法");
+            AppLog.e(getClass().getSimpleName() + "参数不合法");
             activity.finish();
         }
 
-        XLog.d(String.format("activity = %s, fragment = %s, param = %s", activity, commonFragment, extraParam));
+        AppLog.d(String.format("activity = %s, fragment = %s, param = %s", activity, commonFragment, extraParam));
     }
 
     private boolean validate(Object obj) {

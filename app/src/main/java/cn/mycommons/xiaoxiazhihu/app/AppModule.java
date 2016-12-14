@@ -7,14 +7,14 @@ import com.google.gson.GsonBuilder;
 
 import javax.inject.Singleton;
 
-import cn.mycommons.xiaoxiazhihu.business.api.ZhihuApi;
-import cn.mycommons.xiaoxiazhihu.business.api.impl.OkHttpUtil;
-import cn.mycommons.xiaoxiazhihu.business.api.impl.okhttp.ZhihuApiOkHttpImpl;
-import cn.mycommons.xiaoxiazhihu.business.api.impl.retrofit.IZhihuRetorfitApi;
-import cn.mycommons.xiaoxiazhihu.business.api.impl.retrofit.RetrofitUtil;
-import cn.mycommons.xiaoxiazhihu.business.api.impl.retrofit.ZhihuApiRetrofitImpl;
-import cn.mycommons.xiaoxiazhihu.business.domain.ZhihuDomain;
-import cn.mycommons.xiaoxiazhihu.business.domain.impl.ZhihuDomainImpl;
+import cn.mycommons.xiaoxiazhihu.biz.api.ZhihuApi;
+import cn.mycommons.xiaoxiazhihu.biz.api.impl.OkHttpUtil;
+import cn.mycommons.xiaoxiazhihu.biz.api.impl.okhttp.ZhihuApiOkHttpImpl;
+import cn.mycommons.xiaoxiazhihu.biz.api.impl.retrofit.IZhihuRetorfitApi;
+import cn.mycommons.xiaoxiazhihu.biz.api.impl.retrofit.RetrofitUtil;
+import cn.mycommons.xiaoxiazhihu.biz.api.impl.retrofit.ZhihuApiRetrofitImpl;
+import cn.mycommons.xiaoxiazhihu.biz.domain.ZhihuDomain;
+import cn.mycommons.xiaoxiazhihu.biz.domain.impl.ZhihuDomainImpl;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;

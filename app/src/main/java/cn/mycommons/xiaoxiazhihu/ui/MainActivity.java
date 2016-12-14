@@ -17,9 +17,9 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.mycommons.xiaoxiazhihu.R;
-import cn.mycommons.xiaoxiazhihu.business.callback.AdvancedSubscriber;
-import cn.mycommons.xiaoxiazhihu.business.pojo.bean.ThemeItem;
-import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetAllThemesResponse;
+import cn.mycommons.xiaoxiazhihu.biz.callback.AdvancedSubscriber;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.ThemeItem;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetAllThemesResponse;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.MvpActivity;
 import cn.mycommons.xiaoxiazhihu.ui.home.HotnewsFragment;
 import cn.mycommons.xiaoxiazhihu.ui.home.OtherThemeFragment;

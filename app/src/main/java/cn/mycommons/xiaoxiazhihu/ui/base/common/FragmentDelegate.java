@@ -8,7 +8,7 @@ import android.view.View;
 
 import java.security.InvalidParameterException;
 
-import cn.mycommons.xiaoxiazhihu.core.log.XLog;
+import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
 
 /**
  * Created by xiaqiulei on 14/11/20.
@@ -27,16 +27,16 @@ public class FragmentDelegate<F extends Fragment, P extends CommonExtraParam> {
     }
 
     public void beforeOnViewCreated(View view, Bundle savedInstanceState) {
-        XLog.i("beforeOnViewCreated");
+        AppLog.i("beforeOnViewCreated");
     }
 
     public void afterOnViewCreated(View view, Bundle savedInstanceState) {
-        XLog.i("afterOnViewCreated");
+        AppLog.i("afterOnViewCreated");
 
         extraReqParam = CommonExtraParam.getReqExtraParam(fragment.getActivity());
 
         String content = String.format("fragment = %s, extraReqParam = %s", fragment, extraReqParam);
-        XLog.d(content);
+        AppLog.d(content);
     }
 
     public P getReqExtraParam() {

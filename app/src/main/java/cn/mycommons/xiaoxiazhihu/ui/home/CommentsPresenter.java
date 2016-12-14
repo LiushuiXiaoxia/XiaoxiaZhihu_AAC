@@ -4,9 +4,9 @@ package cn.mycommons.xiaoxiazhihu.ui.home;
 import javax.inject.Inject;
 
 import cn.mycommons.xiaoxiazhihu.app.InjectHelp;
-import cn.mycommons.xiaoxiazhihu.business.domain.ZhihuDomain;
-import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetLongCommentsResponse;
-import cn.mycommons.xiaoxiazhihu.business.pojo.response.ext.GetShortCommentsResponse;
+import cn.mycommons.xiaoxiazhihu.biz.domain.ZhihuDomain;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetLongCommentsResponse;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetShortCommentsResponse;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.BaseMvpPresenter;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.ILoadDataView;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.IMvpView;
