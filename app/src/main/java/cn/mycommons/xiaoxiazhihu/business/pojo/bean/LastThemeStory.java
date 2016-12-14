@@ -1,79 +1,41 @@
 package cn.mycommons.xiaoxiazhihu.business.pojo.bean;
 
+import android.support.annotation.Nullable;
+
+import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.List;
 
 /**
  * LastThemeStory <br/>
  * Created by xiaqiulei on 2016-01-04.
  */
-public class LastThemeStory implements Serializable {
+@AutoValue
+public abstract class LastThemeStory implements Serializable {
+
+    public static TypeAdapter<LastThemeStory> typeAdapter(Gson gson) {
+        return new AutoValue_LastThemeStory.GsonTypeAdapter(gson);
+    }
 
     @SerializedName("id")
-    private int id;
+    public abstract int getId();
 
     @SerializedName("type")
-    private int type;
+    public abstract int getType();
 
+    @Nullable
     @SerializedName("title")
-    private String title;
+    public abstract String getTitle();
 
+    @Nullable
     @SerializedName("ga_prefix")
-    private String gaPrefix;
+    public abstract String getGaPrefix();
 
+    @Nullable
     @SerializedName("images")
-    private String[] images;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getGaPrefix() {
-        return gaPrefix;
-    }
-
-    public void setGaPrefix(String gaPrefix) {
-        this.gaPrefix = gaPrefix;
-    }
-
-    public String[] getImages() {
-        return images;
-    }
-
-    public void setImages(String[] images) {
-        this.images = images;
-    }
-
-    @Override
-    public String toString() {
-        return "LastThemeStory{" +
-                "id=" + id +
-                ", type=" + type +
-                ", title='" + title + '\'' +
-                ", gaPrefix='" + gaPrefix + '\'' +
-                ", images=" + Arrays.toString(images) +
-                '}';
-    }
+    public abstract List<String> getImages();
 }

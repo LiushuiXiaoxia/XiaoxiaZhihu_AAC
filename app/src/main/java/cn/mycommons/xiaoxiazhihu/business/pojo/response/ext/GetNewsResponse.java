@@ -1,8 +1,13 @@
 package cn.mycommons.xiaoxiazhihu.business.pojo.response.ext;
 
+import android.support.annotation.Nullable;
+
+import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Arrays;
+import java.util.List;
 
 import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
 
@@ -10,123 +15,48 @@ import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
  * GetNewsResponse <br/>
  * Created by xiaqiulei on 2016-01-04.
  */
-public class GetNewsResponse extends BaseResponse {
+@AutoValue
+public abstract class GetNewsResponse extends BaseResponse {
+
+    public static TypeAdapter<GetNewsResponse> typeAdapter(Gson gson) {
+        return new AutoValue_GetNewsResponse.GsonTypeAdapter(gson);
+    }
 
     @SerializedName("id")
-    private int id;
+    public abstract int getId();
+
     @SerializedName("type")
-    private int type;
+    public abstract int getType();
+
+    @Nullable
     @SerializedName("title")
-    private String title;
+    public abstract String getTitle();
+
+    @Nullable
     @SerializedName("image")
-    private String image;
+    public abstract String getImage();
+
+    @Nullable
     @SerializedName("image_source")
-    private String imageSource;
+    public abstract String getImageSource();
+
+    @Nullable
     @SerializedName("body")
-    private String body;
+    public abstract String getBody();
+
+    @Nullable
     @SerializedName("share_url")
-    private String shareUrl;
+    public abstract String getShareUrl();
+
+    @Nullable
     @SerializedName("css")
-    private String[] css;
+    public abstract List<String> getCss();
+
+    @Nullable
     @SerializedName("js")
-    private String[] js;
+    public abstract List<String> getJs();
+
+    @Nullable
     @SerializedName("ga_prefix")
-    private String gaPrefix;
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getImageSource() {
-        return imageSource;
-    }
-
-    public void setImageSource(String imageSource) {
-        this.imageSource = imageSource;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public String getShareUrl() {
-        return shareUrl;
-    }
-
-    public void setShareUrl(String shareUrl) {
-        this.shareUrl = shareUrl;
-    }
-
-    public String[] getCss() {
-        return css;
-    }
-
-    public void setCss(String[] css) {
-        this.css = css;
-    }
-
-    public String[] getJs() {
-        return js;
-    }
-
-    public void setJs(String[] js) {
-        this.js = js;
-    }
-
-    public String getGaPrefix() {
-        return gaPrefix;
-    }
-
-    public void setGaPrefix(String gaPrefix) {
-        this.gaPrefix = gaPrefix;
-    }
-
-    @Override
-    public String toString() {
-        return "GetNewsResponse{" +
-                "id=" + id +
-                ", type=" + type +
-                ", title='" + title + '\'' +
-                ", image='" + image + '\'' +
-                ", imageSource='" + imageSource + '\'' +
-                ", body='" + body + '\'' +
-                ", shareUrl='" + shareUrl + '\'' +
-                ", css=" + Arrays.toString(css) +
-                ", js=" + Arrays.toString(js) +
-                ", gaPrefix='" + gaPrefix + '\'' +
-                "} " + super.toString();
-    }
+    public abstract String getGaPrefix();
 }

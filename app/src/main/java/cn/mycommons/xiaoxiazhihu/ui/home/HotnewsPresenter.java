@@ -28,11 +28,11 @@ public class HotnewsPresenter extends BaseMvpPresenter<HotnewsPresenter.IHotnews
         InjectHelp.appComponent().inject(this);
     }
 
-    public Observable<GetLastThemeResponse> doGetLastTheme() {
+    Observable<GetLastThemeResponse> doGetLastTheme() {
         return zhihuDomain.getLastTheme();
     }
 
-    public interface IHotnewsView extends IMvpView {
+    interface IHotnewsView extends IMvpView {
 
     }
 }

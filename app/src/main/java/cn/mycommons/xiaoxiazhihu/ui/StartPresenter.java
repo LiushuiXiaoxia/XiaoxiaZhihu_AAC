@@ -27,11 +27,11 @@ public class StartPresenter extends BaseMvpPresenter<StartPresenter.IStartView> 
         InjectHelp.appComponent().inject(this);
     }
 
-    public Observable<GetStartInfoResponse> doGetStartInfo() {
+    Observable<GetStartInfoResponse> doGetStartInfo() {
         return zhihuDomain.getStartInfo(1080, 1776);
     }
 
-    public interface IStartView extends IMvpView {
+    interface IStartView extends IMvpView {
 
     }
 }

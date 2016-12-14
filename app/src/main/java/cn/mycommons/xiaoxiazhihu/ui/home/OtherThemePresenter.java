@@ -28,11 +28,11 @@ public class OtherThemePresenter extends BaseMvpPresenter<OtherThemePresenter.IH
         InjectHelp.appComponent().inject(this);
     }
 
-    public Observable<GetThemeResponse> doGetThemById(int id) {
+    Observable<GetThemeResponse> doGetThemById(int id) {
         return zhihuDomain.getThemeById(id);
     }
 
-    public interface IHomeView extends IMvpView {
+    interface IHomeView extends IMvpView {
 
     }
 }

@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cn.mycommons.xiaoxiazhihu.R;
 import cn.mycommons.xiaoxiazhihu.business.callback.AdvancedSubscriber;
 import cn.mycommons.xiaoxiazhihu.business.pojo.bean.ThemeItem;
@@ -59,7 +61,7 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMenu
         int close = R.string.navigation_drawer_close;
         int open = R.string.navigation_drawer_open;
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, open, close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
     }
 
@@ -81,7 +83,7 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMenu
         });
     }
 
-    void update(ThemeItem[] themeItems) {
+    void update(List<ThemeItem> themeItems) {
         while (llMainMenuContainer.getChildCount() > 1) {
             llMainMenuContainer.removeViewAt(llMainMenuContainer.getChildCount() - 1);
         }

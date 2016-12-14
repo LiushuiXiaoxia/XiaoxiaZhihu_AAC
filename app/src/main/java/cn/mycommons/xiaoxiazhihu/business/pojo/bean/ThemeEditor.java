@@ -1,5 +1,9 @@
 package cn.mycommons.xiaoxiazhihu.business.pojo.bean;
 
+import android.support.annotation.*;
+
+import com.google.auto.value.*;
+import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -8,67 +12,29 @@ import java.io.Serializable;
  * ThemeEditor <br/>
  * Created by xiaqiulei on 2016-01-04.
  */
-public class ThemeEditor implements Serializable {
+@AutoValue
+public abstract class ThemeEditor implements Serializable {
 
+    public static TypeAdapter<ThemeEditor> typeAdapter(Gson gson) {
+        return new AutoValue_ThemeEditor.GsonTypeAdapter(gson);
+    }
+
+    @Nullable
     @SerializedName("url")
-    private String url;
+    public abstract String getUrl();
+
+    @Nullable
     @SerializedName("bio")
-    private String bio;
+    public abstract String getBio();
+
     @SerializedName("id")
-    private int id;
+    public abstract int getId();
+
+    @Nullable
     @SerializedName("avatar")
-    private String avatar;
+    public abstract String getAvatar();
+
+    @Nullable
     @SerializedName("name")
-    private String name;
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "ThemeEditor{" +
-                "url='" + url + '\'' +
-                ", bio='" + bio + '\'' +
-                ", id=" + id +
-                ", avatar='" + avatar + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
+    public abstract String getName();
 }

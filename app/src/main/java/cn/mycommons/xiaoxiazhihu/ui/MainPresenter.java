@@ -28,11 +28,11 @@ public class MainPresenter extends BaseMvpPresenter<MainPresenter.IMenuListView>
         InjectHelp.appComponent().inject(this);
     }
 
-    public Observable<GetAllThemesResponse> doGetAllThemesResponse() {
+    Observable<GetAllThemesResponse> doGetAllThemesResponse() {
         return zhihuDomain.getAllThemes();
     }
 
-    public interface IMenuListView extends IMvpView {
+    interface IMenuListView extends IMvpView {
 
     }
 }

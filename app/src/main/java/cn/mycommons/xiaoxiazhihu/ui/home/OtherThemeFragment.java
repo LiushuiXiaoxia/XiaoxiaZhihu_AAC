@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
@@ -48,8 +47,8 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    ThemeItem themeItem;
-    MyAdapter adapter;
+    private ThemeItem themeItem;
+    private MyAdapter adapter;
 
     @Override
     protected int getFragmentLayout() {
@@ -95,7 +94,7 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
         swipeRefreshLayout.setRefreshing(false);
     }
 
-    class MyAdapter extends RecyclerView.Adapter {
+    private class MyAdapter extends RecyclerView.Adapter {
 
         static final int TYPE_HEADER = 1;
         static final int TYPE_ITEM = 2;
@@ -152,7 +151,9 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
 
         void notifyDataSetChanged(GetThemeResponse response) {
             data.clear();
-            data.addAll(Arrays.asList(response.getStories()));
+            if (response.getStories() != null) {
+                data.addAll(response.getStories());
+            }
             this.getThemeResponse = response;
 
             super.notifyDataSetChanged();
@@ -173,7 +174,7 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
         @Bind(R.id.icon)
         ImageView icon;
 
-        public TypeHeader(View itemView) {
+        TypeHeader(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -191,7 +192,7 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
         @Bind(R.id.text)
         TextView textView;
 
-        public TypeTitle(View itemView) {
+        TypeTitle(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -208,7 +209,7 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
         @Bind(R.id.icon)
         ImageView icon;
 
-        public TypeItem(View itemView) {
+        TypeItem(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
@@ -218,9 +219,9 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
         void bind(LastThemeStory story) {
             itemView.setTag(story);
             textView.setText(story.getTitle());
-            if (story.getImages() != null && story.getImages().length > 0) {
+            if (story.getImages() != null && !story.getImages().isEmpty()) {
                 Picasso.with(icon.getContext())
-                        .load(story.getImages()[0])
+                        .load(story.getImages().get(0))
                         .placeholder(R.drawable.ic_launcher)
                         .into(icon);
             } else {

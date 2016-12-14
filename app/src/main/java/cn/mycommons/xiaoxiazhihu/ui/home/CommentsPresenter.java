@@ -31,20 +31,20 @@ public class CommentsPresenter extends BaseMvpPresenter<CommentsPresenter.IComme
         InjectHelp.appComponent().inject(this);
     }
 
-    public Observable<GetShortCommentsResponse> doGetShortComments(int id) {
+    Observable<GetShortCommentsResponse> doGetShortComments(int id) {
         isLoadShort = true;
         return zhihuDomain.getShortCommentsById(id);
     }
 
-    public Observable<GetLongCommentsResponse> doGetLongCommentsById(int id) {
+    Observable<GetLongCommentsResponse> doGetLongCommentsById(int id) {
         return zhihuDomain.getLongCommentsById(id);
     }
 
-    public boolean isLoadShort() {
+    boolean isLoadShort() {
         return isLoadShort;
     }
 
-    public interface ICommentsView extends IMvpView {
+    interface ICommentsView extends IMvpView {
 
     }
 }

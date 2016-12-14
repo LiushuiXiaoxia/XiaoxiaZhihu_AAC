@@ -1,5 +1,10 @@
 package cn.mycommons.xiaoxiazhihu.business.pojo.response.ext;
 
+import android.support.annotation.Nullable;
+
+import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 
 import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
@@ -8,36 +13,18 @@ import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
  * StartInfoResponse <br/>
  * Created by xiaqiulei on 2015-12-30.
  */
-public class GetStartInfoResponse extends BaseResponse {
+@AutoValue
+public abstract class GetStartInfoResponse extends BaseResponse {
 
+    public static TypeAdapter<GetStartInfoResponse> typeAdapter(Gson gson) {
+        return new AutoValue_GetStartInfoResponse.GsonTypeAdapter(gson);
+    }
+
+    @Nullable
     @SerializedName("text")
-    private String text;
+    public abstract String getText();
 
+    @Nullable
     @SerializedName("img")
-    private String img;
-
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    @Override
-    public String toString() {
-        return "StartInfoResponse{" +
-                "text='" + text + '\'' +
-                ", img='" + img + '\'' +
-                "} " + super.toString();
-    }
+    public abstract String getImg();
 }

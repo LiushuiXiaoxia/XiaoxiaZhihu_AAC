@@ -1,5 +1,8 @@
 package cn.mycommons.xiaoxiazhihu.business.pojo.response.ext;
 
+import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 
 import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
@@ -8,59 +11,22 @@ import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
  * GetStoryExtraResponse <br/>
  * Created by xiaqiulei on 2016-01-04.
  */
-public class GetStoryExtraResponse extends BaseResponse {
+@AutoValue
+public abstract class GetStoryExtraResponse extends BaseResponse {
+
+    public static TypeAdapter<GetStoryExtraResponse> typeAdapter(Gson gson) {
+        return new AutoValue_GetStoryExtraResponse.GsonTypeAdapter(gson);
+    }
 
     @SerializedName("long_comments")
-    private int longComments;
+    public abstract int getLongComments();
 
     @SerializedName("popularity")
-    private int popularity;
+    public abstract int getPopularity();
 
     @SerializedName("short_comments")
-    private int shortComments;
+    public abstract int getShortComments();
 
     @SerializedName("comments")
-    private int comments;
-
-    public int getLongComments() {
-        return longComments;
-    }
-
-    public void setLongComments(int longComments) {
-        this.longComments = longComments;
-    }
-
-    public int getPopularity() {
-        return popularity;
-    }
-
-    public void setPopularity(int popularity) {
-        this.popularity = popularity;
-    }
-
-    public int getShortComments() {
-        return shortComments;
-    }
-
-    public void setShortComments(int shortComments) {
-        this.shortComments = shortComments;
-    }
-
-    public int getComments() {
-        return comments;
-    }
-
-    public void setComments(int comments) {
-        this.comments = comments;
-    }
-
-    @Override
-    public String toString() {
-        return "GetStoryExtraResponse{" +
-                "longComments=" + longComments +
-                ", popularity=" + popularity +
-                ", shortComments=" + shortComments +
-                ", comments=" + comments +
-                "} " + super.toString();
-    }
+    public abstract int getComments();
 }

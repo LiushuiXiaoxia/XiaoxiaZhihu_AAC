@@ -1,8 +1,13 @@
 package cn.mycommons.xiaoxiazhihu.business.pojo.response.ext;
 
+import android.support.annotation.Nullable;
+
+import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Arrays;
+import java.util.List;
 
 import cn.mycommons.xiaoxiazhihu.business.pojo.bean.LastThemeStory;
 import cn.mycommons.xiaoxiazhihu.business.pojo.bean.ThemeEditor;
@@ -12,100 +17,41 @@ import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
  * GetThemeResponse <br/>
  * Created by xiaqiulei on 2016-01-04.
  */
-public class GetThemeResponse extends BaseResponse {
+@AutoValue
+public abstract class GetThemeResponse extends BaseResponse {
 
+    public static TypeAdapter<GetThemeResponse> typeAdapter(Gson gson) {
+        return new AutoValue_GetThemeResponse.GsonTypeAdapter(gson);
+    }
+
+    @Nullable
     @SerializedName("stories")
-    private LastThemeStory[] stories;
+    public abstract List<LastThemeStory> getStories();
+
+    @Nullable
     @SerializedName("description")
-    private String description;
+    public abstract String getDescription();
+
+    @Nullable
     @SerializedName("background")
-    private String background;
+    public abstract String getBackground();
+
     @SerializedName("color")
-    private int color;
+    public abstract int getColor();
+
+    @Nullable
     @SerializedName("name")
-    private String name;
+    public abstract String getName();
+
+    @Nullable
     @SerializedName("image")
-    private String image;
+    public abstract String getImage();
+
+    @Nullable
     @SerializedName("editors")
-    private ThemeEditor[] editors;
+    public abstract List<ThemeEditor> getEditors();
+
+    @Nullable
     @SerializedName("image_srouce")
-    private String imageSrouce;
-
-    public LastThemeStory[] getStories() {
-        return stories;
-    }
-
-    public void setStories(LastThemeStory[] stories) {
-        this.stories = stories;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getBackground() {
-        return background;
-    }
-
-    public void setBackground(String background) {
-        this.background = background;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public ThemeEditor[] getEditors() {
-        return editors;
-    }
-
-    public void setEditors(ThemeEditor[] editors) {
-        this.editors = editors;
-    }
-
-    public String getImageSrouce() {
-        return imageSrouce;
-    }
-
-    public void setImageSrouce(String imageSrouce) {
-        this.imageSrouce = imageSrouce;
-    }
-
-    @Override
-    public String toString() {
-        return "GetThemeResponse{" +
-                "stories=" + Arrays.toString(stories) +
-                ", description='" + description + '\'' +
-                ", background='" + background + '\'' +
-                ", color=" + color +
-                ", name='" + name + '\'' +
-                ", image='" + image + '\'' +
-                ", editors=" + Arrays.toString(editors) +
-                ", imageSrouce='" + imageSrouce + '\'' +
-                "} " + super.toString();
-    }
+    public abstract String getImageSrouce();
 }

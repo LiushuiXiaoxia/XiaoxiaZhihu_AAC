@@ -15,7 +15,6 @@ import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -88,7 +87,7 @@ public class CommentsFragment extends CommonMvpFragment<CommentsPresenter, Comme
                 });
     }
 
-    class MyAdapter extends RecyclerView.Adapter {
+    private class MyAdapter extends RecyclerView.Adapter {
 
         static final int TYPE_TITLE = 1;
         static final int TYPE_ITEM = 2;
@@ -131,14 +130,19 @@ public class CommentsFragment extends CommonMvpFragment<CommentsPresenter, Comme
         void notifLong(GetLongCommentsResponse response) {
             data.clear();
             data.add(commentsExtraParam.storyExtraResponse.getLongComments());
-            data.addAll(Arrays.asList(response.getComments()));
+            if (response.getComments() != null) {
+                data.addAll(response.getComments());
+            }
             data.add(commentsExtraParam.storyExtraResponse.getShortComments());
 
             super.notifyDataSetChanged();
         }
 
         void notifShort(GetShortCommentsResponse response) {
-            data.addAll(Arrays.asList(response.getComments()));
+            List<Comment> comments = response.getComments();
+            if (comments != null) {
+                data.addAll(comments);
+            }
 
             super.notifyDataSetChanged();
         }
@@ -149,7 +153,7 @@ public class CommentsFragment extends CommonMvpFragment<CommentsPresenter, Comme
         @Bind(R.id.text)
         TextView textView;
 
-        public TypeTitle(View itemView) {
+        TypeTitle(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
@@ -158,9 +162,9 @@ public class CommentsFragment extends CommonMvpFragment<CommentsPresenter, Comme
 
         void bind(Integer count) {
             if (getAdapterPosition() == 0) {
-                textView.setText(String.format("%d条长评论", count));
+                textView.setText(String.format("%s条长评论", count));
             } else {
-                textView.setText(String.format("%d条短评论", count));
+                textView.setText(String.format("%s条短评论", count));
             }
         }
 
@@ -197,7 +201,7 @@ public class CommentsFragment extends CommonMvpFragment<CommentsPresenter, Comme
 
         SimpleDateFormat simpleDateFormat;
 
-        public TypeItem(View itemView) {
+        TypeItem(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 

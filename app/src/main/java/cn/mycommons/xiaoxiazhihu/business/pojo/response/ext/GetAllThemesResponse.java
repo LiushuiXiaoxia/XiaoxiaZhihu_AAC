@@ -1,8 +1,13 @@
 package cn.mycommons.xiaoxiazhihu.business.pojo.response.ext;
 
+import android.support.annotation.Nullable;
+
+import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Arrays;
+import java.util.List;
 
 import cn.mycommons.xiaoxiazhihu.business.pojo.bean.ThemeItem;
 import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
@@ -11,47 +16,14 @@ import cn.mycommons.xiaoxiazhihu.business.pojo.response.BaseResponse;
  * GetAllThemesResponse <br/>
  * Created by xiaqiulei on 2015-12-30.
  */
-public class GetAllThemesResponse extends BaseResponse {
+@AutoValue
+public abstract class GetAllThemesResponse extends BaseResponse {
 
-    @SerializedName("limit")
-    private int limit;
+    public static TypeAdapter<GetAllThemesResponse> typeAdapter(Gson gson) {
+        return new AutoValue_GetAllThemesResponse.GsonTypeAdapter(gson);
+    }
 
-    @SerializedName("subscribed")
-    private Object[] subscribed;
-
+    @Nullable
     @SerializedName("others")
-    private ThemeItem[] others;
-
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
-
-    public Object[] getSubscribed() {
-        return subscribed;
-    }
-
-    public void setSubscribed(Object[] subscribed) {
-        this.subscribed = subscribed;
-    }
-
-    public ThemeItem[] getOthers() {
-        return others;
-    }
-
-    public void setOthers(ThemeItem[] others) {
-        this.others = others;
-    }
-
-    @Override
-    public String toString() {
-        return "GetAllThemesResponse{" +
-                "limit=" + limit +
-                ", subscribed=" + Arrays.toString(subscribed) +
-                ", others=" + Arrays.toString(others) +
-                "} " + super.toString();
-    }
+    public abstract List<ThemeItem> getOthers();
 }

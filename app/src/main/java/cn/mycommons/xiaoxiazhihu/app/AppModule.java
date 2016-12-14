@@ -2,6 +2,9 @@ package cn.mycommons.xiaoxiazhihu.app;
 
 import android.app.Application;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import javax.inject.Singleton;
 
 import cn.mycommons.xiaoxiazhihu.business.api.ZhihuApi;
@@ -52,7 +55,13 @@ public class AppModule {
     }
 
     @Provides
-    public IZhihuRetorfitApi providerIZhihuRetorfitApi(OkHttpClient client) {
-        return RetrofitUtil.createApi(IZhihuRetorfitApi.class, client);
+    public IZhihuRetorfitApi providerIZhihuRetorfitApi(OkHttpClient client, Gson gson) {
+        return RetrofitUtil.createApi(IZhihuRetorfitApi.class, client, gson);
+    }
+
+    @Provides
+    @Singleton
+    public Gson providerGson() {
+        return new GsonBuilder().registerTypeAdapterFactory(MyAdapterFactory.create()).create();
     }
 }

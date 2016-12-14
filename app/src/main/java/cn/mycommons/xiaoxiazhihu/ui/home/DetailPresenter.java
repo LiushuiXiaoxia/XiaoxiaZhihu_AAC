@@ -37,7 +37,7 @@ public class DetailPresenter extends BaseMvpPresenter<DetailPresenter.IDetailVie
         return domain.getStoryExtraById(id);
     }
 
-    public interface IDetailView extends IMvpView {
+    interface IDetailView extends IMvpView {
 
     }
 }

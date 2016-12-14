@@ -1,5 +1,10 @@
 package cn.mycommons.xiaoxiazhihu.business.pojo.bean;
 
+import android.support.annotation.Nullable;
+
+import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -8,67 +13,28 @@ import java.io.Serializable;
  * ThemeItem <br/>
  * Created by xiaqiulei on 2015-12-30.
  */
-public class ThemeItem implements Serializable {
+@AutoValue
+public abstract class ThemeItem implements Serializable {
+
+    public static TypeAdapter<ThemeItem> typeAdapter(Gson gson) {
+        return new AutoValue_ThemeItem.GsonTypeAdapter(gson);
+    }
 
     @SerializedName("id")
-    private int id;
+    public abstract int getId();
+
+    @Nullable
     @SerializedName("name")
-    private String name;
+    public abstract String getName();
+
+    @Nullable
     @SerializedName("thumbnail")
-    private String thumbnail;
+    public abstract String getThumbnail();
+
+    @Nullable
     @SerializedName("description")
-    private String description;
+    public abstract String getDescription();
+
     @SerializedName("color")
-    private int color;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
-    }
-
-    @Override
-    public String toString() {
-        return "ThemeItem{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", thumbnail='" + thumbnail + '\'' +
-                ", description='" + description + '\'' +
-                ", color=" + color +
-                '}';
-    }
+    public abstract int getColor();
 }

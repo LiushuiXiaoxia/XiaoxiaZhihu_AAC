@@ -129,11 +129,11 @@ public class DetailFragment extends CommonMvpFragment<DetailPresenter, DetailPre
 
         if (storyExtraResponse != null) {
             if (storyExtraResponse.getComments() > 0) {
-                String title = String.format("评论(%d)", storyExtraResponse.getComments());
+                String title = String.format("评论(%s)", storyExtraResponse.getComments());
                 menu.findItem(R.id.menu_comments).setTitle(title);
             }
             if (storyExtraResponse.getPopularity() > 0) {
-                String title = String.format("赞(%d)", storyExtraResponse.getPopularity());
+                String title = String.format("赞(%s)", storyExtraResponse.getPopularity());
                 menu.findItem(R.id.menu_popularity).setTitle(title);
             }
         }

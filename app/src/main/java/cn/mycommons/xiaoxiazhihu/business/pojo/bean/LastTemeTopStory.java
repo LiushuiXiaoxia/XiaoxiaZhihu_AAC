@@ -1,5 +1,9 @@
 package cn.mycommons.xiaoxiazhihu.business.pojo.bean;
 
+import android.support.annotation.*;
+
+import com.google.auto.value.*;
+import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -8,71 +12,28 @@ import java.io.Serializable;
  * LastTemeTopStory <br/>
  * Created by xiaqiulei on 2016-01-04.
  */
-public class LastTemeTopStory implements Serializable {
+@AutoValue
+public abstract class LastTemeTopStory implements Serializable {
+
+    public static TypeAdapter<LastTemeTopStory> typeAdapter(Gson gson) {
+        return new AutoValue_LastTemeTopStory.GsonTypeAdapter(gson);
+    }
 
     @SerializedName("id")
-    private int id;
+    public abstract int getId();
 
     @SerializedName("type")
-    private int type;
+    public abstract int getType();
 
+    @Nullable
     @SerializedName("title")
-    private String title;
+    public abstract String getTitle();
 
+    @Nullable
     @SerializedName("ga_prefix")
-    private String gaPrefix;
+    public abstract String getGaPrefix();
 
+    @Nullable
     @SerializedName("image")
-    private String image;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getGaPrefix() {
-        return gaPrefix;
-    }
-
-    public void setGaPrefix(String gaPrefix) {
-        this.gaPrefix = gaPrefix;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    @Override
-    public String toString() {
-        return "LastTemeTopStory{" +
-                "id=" + id +
-                ", type=" + type +
-                ", title='" + title + '\'' +
-                ", gaPrefix='" + gaPrefix + '\'' +
-                ", image='" + image + '\'' +
-                '}';
-    }
+    public abstract String getImage();
 }
