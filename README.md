@@ -9,6 +9,8 @@
 客户端使用了MVP架构，网络层使用了okhttp+retrofit2，json解析使用gson，模型层使用了autovalue。
 图片加载使用picasso，注解使用了dagger2+butterknife，各个层次之间通信使用rxjava+rxandroid+eventbus。
 
+[![Build Status](https://travis-ci.org/LiushuiXiaoxia/XiaoxiaZhihu.svg?branch=master)](https://travis-ci.org/LiushuiXiaoxia/XiaoxiaZhihu)
+
 ## 其他客户端
 
 [XiaoxiaZhihu iOS客户端](https://github.com/LiushuiXiaoxia/XiaoxiaZhihu_iOS)
