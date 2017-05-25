@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.mycommons.xiaoxiazhihu.R;
 import cn.mycommons.xiaoxiazhihu.biz.callback.AdvancedSubscriber;
@@ -36,9 +36,9 @@ import cn.mycommons.xiaoxiazhihu.ui.base.common.FragmentLauncher;
  */
 public class HotnewsFragment extends CommonMvpFragment<HotnewsPresenter, HotnewsPresenter.IHotnewsView> {
 
-    @Bind(R.id.swipeRefreshLayout)
+    @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
     MyAdapter adapter;
@@ -163,7 +163,7 @@ public class HotnewsFragment extends CommonMvpFragment<HotnewsPresenter, Hotnews
 
     static class TypeHeader extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.viewPager)
+        @BindView(R.id.viewPager)
         ViewPager viewPager;
         FragmentManager fragmentManager;
 
@@ -210,7 +210,7 @@ public class HotnewsFragment extends CommonMvpFragment<HotnewsPresenter, Hotnews
 
     static class TypeTitle extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.text)
+        @BindView(R.id.text)
         TextView textView;
 
         TypeTitle(View itemView) {
@@ -225,9 +225,9 @@ public class HotnewsFragment extends CommonMvpFragment<HotnewsPresenter, Hotnews
 
     static class TypeItem extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @Bind(R.id.text)
+        @BindView(R.id.text)
         TextView textView;
-        @Bind(R.id.icon)
+        @BindView(R.id.icon)
         ImageView icon;
 
         TypeItem(View itemView) {

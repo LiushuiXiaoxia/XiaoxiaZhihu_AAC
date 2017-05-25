@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.mycommons.xiaoxiazhihu.R;
 import cn.mycommons.xiaoxiazhihu.biz.callback.AdvancedSubscriber;
@@ -42,9 +42,9 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
         return fragment;
     }
 
-    @Bind(R.id.swipeRefreshLayout)
+    @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
     private ThemeItem themeItem;
@@ -169,9 +169,9 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
 
 
     static class TypeHeader extends RecyclerView.ViewHolder {
-        @Bind(R.id.text)
+        @BindView(R.id.text)
         TextView textView;
-        @Bind(R.id.icon)
+        @BindView(R.id.icon)
         ImageView icon;
 
         TypeHeader(View itemView) {
@@ -189,7 +189,7 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
 
     static class TypeTitle extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.text)
+        @BindView(R.id.text)
         TextView textView;
 
         TypeTitle(View itemView) {
@@ -204,9 +204,9 @@ public class OtherThemeFragment extends MvpFragment<OtherThemePresenter, OtherTh
 
     static class TypeItem extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @Bind(R.id.text)
+        @BindView(R.id.text)
         TextView textView;
-        @Bind(R.id.icon)
+        @BindView(R.id.icon)
         ImageView icon;
 
         TypeItem(View itemView) {

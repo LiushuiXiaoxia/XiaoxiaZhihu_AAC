@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.mycommons.xiaoxiazhihu.R;
 import cn.mycommons.xiaoxiazhihu.biz.callback.AdvancedSubscriber;
@@ -50,7 +50,7 @@ public class CommentsFragment extends CommonMvpFragment<CommentsPresenter, Comme
         }
     }
 
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
     CommentsExtraParam commentsExtraParam;
@@ -150,7 +150,7 @@ public class CommentsFragment extends CommonMvpFragment<CommentsPresenter, Comme
 
     class TypeTitle extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @Bind(R.id.text)
+        @BindView(R.id.text)
         TextView textView;
 
         TypeTitle(View itemView) {
@@ -190,13 +190,13 @@ public class CommentsFragment extends CommonMvpFragment<CommentsPresenter, Comme
 
     static class TypeItem extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @Bind(R.id.text)
+        @BindView(R.id.text)
         TextView textView;
-        @Bind(R.id.text2)
+        @BindView(R.id.text2)
         TextView textView2;
-        @Bind(R.id.text3)
+        @BindView(R.id.text3)
         TextView textView3;
-        @Bind(R.id.icon)
+        @BindView(R.id.icon)
         ImageView icon;
 
         SimpleDateFormat simpleDateFormat;

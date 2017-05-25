@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.BaseMvpPresenter;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.IMvpView;
 import cn.mycommons.xiaoxiazhihu.ui.base.mvp.MvpFragment;
@@ -19,6 +21,7 @@ public abstract class CommonMvpFragment<P extends BaseMvpPresenter<V>, V extends
     protected Context context;
 
     private FragmentDelegate<CommonMvpFragment, CommonExtraParam> delegate;
+    private Unbinder unbinder;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public abstract class CommonMvpFragment<P extends BaseMvpPresenter<V>, V extends
         delegate.beforeOnViewCreated(view, savedInstanceState);
         super.onViewCreated(view, savedInstanceState);
         delegate.afterOnViewCreated(view, savedInstanceState);
+
+        unbinder = ButterKnife.bind(this, view);
 
         init(savedInstanceState);
     }
@@ -55,5 +60,14 @@ public abstract class CommonMvpFragment<P extends BaseMvpPresenter<V>, V extends
 
     public boolean onActivitySupportNavigateUp() {
         return false;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
     }
 }

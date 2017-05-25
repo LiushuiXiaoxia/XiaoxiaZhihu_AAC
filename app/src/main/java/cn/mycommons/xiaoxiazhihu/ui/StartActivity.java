@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import cn.mycommons.xiaoxiazhihu.R;
 import cn.mycommons.xiaoxiazhihu.biz.callback.AdvancedSubscriber;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStartInfoResponse;
@@ -16,9 +16,9 @@ import cn.mycommons.xiaoxiazhihu.ui.base.mvp.MvpActivity;
 public class StartActivity extends MvpActivity<StartPresenter, StartPresenter.IStartView>
         implements StartPresenter.IStartView {
 
-    @Bind(R.id.tvText)
+    @BindView(R.id.tvText)
     TextView tvText;
-    @Bind(R.id.ivImage)
+    @BindView(R.id.ivImage)
     ImageView ivImage;
 
     @Override

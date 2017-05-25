@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import cn.mycommons.xiaoxiazhihu.R;
 import cn.mycommons.xiaoxiazhihu.biz.callback.AdvancedSubscriber;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetNewsResponse;
@@ -42,15 +42,15 @@ public class DetailFragment extends CommonMvpFragment<DetailPresenter, DetailPre
         }
     }
 
-    @Bind(R.id.rlDetailTop)
+    @BindView(R.id.rlDetailTop)
     RelativeLayout rlDetailTop;
-    @Bind(R.id.icon)
+    @BindView(R.id.icon)
     ImageView icon;
-    @Bind(R.id.webview)
+    @BindView(R.id.webview)
     WebView webView;
-    @Bind(R.id.tvTitle)
+    @BindView(R.id.tvTitle)
     TextView tvTitle;
-    @Bind(R.id.tvSource)
+    @BindView(R.id.tvSource)
     TextView tvSource;
 
     DetailExtraParam extraParam;

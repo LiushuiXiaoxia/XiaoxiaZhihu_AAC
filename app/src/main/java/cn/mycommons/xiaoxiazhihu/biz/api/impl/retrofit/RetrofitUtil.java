@@ -16,7 +16,7 @@ public class RetrofitUtil {
         return new Retrofit
                 .Builder()
                 .client(client)
-                .baseUrl("http://news-at.zhihu.com/")
+                .baseUrl("https://news-at.zhihu.com/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
                 .create(tClass);
