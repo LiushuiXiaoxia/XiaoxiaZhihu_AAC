@@ -1,5 +1,6 @@
 package cn.mycommons.xiaoxiazhihu.ui.base;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
+import cn.mycommons.xiaoxiazhihu.app.AppContext;
 
 public abstract class BaseFragment extends Fragment {
 
@@ -46,4 +48,8 @@ public abstract class BaseFragment extends Fragment {
      * 每个Fragment自己的布局
      */
     protected abstract int getFragmentLayout();
+
+    protected ViewModelProvider.Factory viewModelFactory() {
+        return AppContext.getInstance().getViewModelFactory();
+    }
 }

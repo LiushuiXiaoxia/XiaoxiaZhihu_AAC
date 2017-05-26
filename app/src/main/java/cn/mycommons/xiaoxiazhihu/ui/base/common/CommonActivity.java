@@ -1,17 +1,18 @@
 package cn.mycommons.xiaoxiazhihu.ui.base.common;
 
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
 import cn.mycommons.xiaoxiazhihu.R;
-import cn.mycommons.xiaoxiazhihu.ui.base.mvp.MvpActivity;
+import cn.mycommons.xiaoxiazhihu.ui.base.AacBaseActivity;
 
-public class CommonMvpFragmentActivity extends MvpActivity {
+public class CommonActivity<T extends ViewDataBinding> extends AacBaseActivity<T> {
 
-    private ActivityDelegate<CommonMvpFragmentActivity, CommonMvpFragment> delegate;
+    private ActivityDelegate<T, CommonActivity<T>, CommonFragment> delegate;
 
     protected void onCreate(Bundle savedInstanceState) {
         if (delegate == null) {
-            delegate = getDeledate();
+            delegate = getActivityDelegate();
         }
 
         delegate.beforeOnCreate(savedInstanceState);
@@ -24,7 +25,7 @@ public class CommonMvpFragmentActivity extends MvpActivity {
         return R.layout.act_common_fm;
     }
 
-    protected ActivityDelegate<CommonMvpFragmentActivity, CommonMvpFragment> getDeledate() {
+    protected ActivityDelegate<T, CommonActivity<T>, CommonFragment> getActivityDelegate() {
         return new ActivityDelegate<>(this);
     }
 
@@ -32,7 +33,7 @@ public class CommonMvpFragmentActivity extends MvpActivity {
         return delegate.getExtraParam();
     }
 
-    protected CommonMvpFragment getCommonFragment() {
+    protected CommonFragment getCommonFragment() {
         return delegate.getCommonFragment();
     }
 

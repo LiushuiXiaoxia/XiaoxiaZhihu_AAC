@@ -1,34 +1,30 @@
-package cn.mycommons.xiaoxiazhihu.ui.home;
+package cn.mycommons.xiaoxiazhihu.ui.home.detail;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import butterknife.BindView;
 import cn.mycommons.xiaoxiazhihu.R;
-import cn.mycommons.xiaoxiazhihu.biz.callback.AdvancedSubscriber;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetNewsResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStoryExtraResponse;
+import cn.mycommons.xiaoxiazhihu.databinding.FragmentDetailBinding;
 import cn.mycommons.xiaoxiazhihu.ui.base.common.CommonExtraParam;
-import cn.mycommons.xiaoxiazhihu.ui.base.common.CommonMvpFragment;
+import cn.mycommons.xiaoxiazhihu.ui.base.common.CommonFragment;
 import cn.mycommons.xiaoxiazhihu.ui.base.common.FragmentLauncher;
+import cn.mycommons.xiaoxiazhihu.ui.home.CommentsFragment;
 
 /**
  * DetailFragment <br/>
  * Created by xiaqiulei on 2016-01-04.
  */
-public class DetailFragment extends CommonMvpFragment<DetailPresenter, DetailPresenter.IDetailView> {
+public class DetailFragment extends CommonFragment<FragmentDetailBinding> {
 
     public static class DetailExtraParam extends CommonExtraParam {
 
@@ -42,19 +38,8 @@ public class DetailFragment extends CommonMvpFragment<DetailPresenter, DetailPre
         }
     }
 
-    @BindView(R.id.rlDetailTop)
-    RelativeLayout rlDetailTop;
-    @BindView(R.id.icon)
-    ImageView icon;
-    @BindView(R.id.webview)
-    WebView webView;
-    @BindView(R.id.tvTitle)
-    TextView tvTitle;
-    @BindView(R.id.tvSource)
-    TextView tvSource;
-
-    DetailExtraParam extraParam;
-    GetStoryExtraResponse storyExtraResponse;
+    private DetailExtraParam extraParam;
+    private GetStoryExtraResponse storyExtraResponse;
 
     @Override
     protected int getFragmentLayout() {
@@ -64,7 +49,8 @@ public class DetailFragment extends CommonMvpFragment<DetailPresenter, DetailPre
     @Override
     protected void init(Bundle savedInstanceState) {
         extraParam = getReqExtraParam();
-        webView.setWebViewClient(new WebViewClient() {
+
+        binding.webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
@@ -72,7 +58,7 @@ public class DetailFragment extends CommonMvpFragment<DetailPresenter, DetailPre
             }
         });
         //启用支持javascript
-        WebSettings settings = webView.getSettings();
+        WebSettings settings = binding.webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setDefaultTextEncodingName("utf-8");
 
@@ -82,25 +68,22 @@ public class DetailFragment extends CommonMvpFragment<DetailPresenter, DetailPre
     }
 
     private void doGetRequest() {
-        presenter.doGetNewsResponse(extraParam.id)
-                .subscribe(new AdvancedSubscriber<GetNewsResponse>(mvpActivity) {
-                    @Override
-                    public void onHandleSuccess(GetNewsResponse response) {
-                        super.onHandleSuccess(response);
+        DetailViewModel viewModel = ViewModelProviders.of(this, viewModelFactory()).get(DetailViewModel.class);
 
+        viewModel.getGetNewsResponse(extraParam.id)
+                .observe(this, new Observer<GetNewsResponse>() {
+                    @Override
+                    public void onChanged(@Nullable GetNewsResponse response) {
                         update(response);
                     }
                 });
 
-        presenter.doGetStoryExtra(extraParam.id)
-                .subscribe(new AdvancedSubscriber<GetStoryExtraResponse>() {
+        viewModel.getGetStoryExtra(extraParam.id)
+                .observe(this, new Observer<GetStoryExtraResponse>() {
                     @Override
-                    public void onHandleSuccess(GetStoryExtraResponse response) {
-                        super.onHandleSuccess(response);
+                    public void onChanged(@Nullable GetStoryExtraResponse response) {
                         storyExtraResponse = response;
-
                         getActivity().invalidateOptionsMenu();
-                        getSupportActionBar().invalidateOptionsMenu();
                     }
                 });
     }
@@ -108,17 +91,11 @@ public class DetailFragment extends CommonMvpFragment<DetailPresenter, DetailPre
 
     void update(GetNewsResponse response) {
         if (response != null) {
-            tvTitle.setText(response.getTitle());
-            tvSource.setText(response.getImageSource());
+            binding.tvTitle.setText(response.getTitle());
+            binding.tvSource.setText(response.getImageSource());
 
-            if (TextUtils.isEmpty(response.getImage())) {
-                rlDetailTop.setVisibility(View.GONE);
-            } else {
-                Picasso.with(icon.getContext())
-                        .load(response.getImage())
-                        .into(icon);
-            }
-            webView.loadDataWithBaseURL(null, response.getBody(), "text/html", "utf8", null);
+            binding.setNews(response);
+            binding.webView.loadDataWithBaseURL(null, response.getBody(), "text/html", "utf8", null);
         }
     }
 
@@ -150,12 +127,5 @@ public class DetailFragment extends CommonMvpFragment<DetailPresenter, DetailPre
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected DetailPresenter.IDetailView getViewInstance() {
-        return new DetailPresenter.IDetailView() {
-
-        };
     }
 }

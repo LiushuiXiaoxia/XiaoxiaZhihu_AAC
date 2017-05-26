@@ -1,34 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="cn.mycommons.xiaoxiazhihu.ui.StartActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView android:id="@+id/ivImage"
+    <data>
+
+        <variable
+            name="info"
+            type="cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStartInfoResponse" />
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        tools:src="@drawable/ic_start_logo" />
+        tools:context="cn.mycommons.xiaoxiazhihu.ui.StartActivity">
 
-    <LinearLayout android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:orientation="vertical">
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="知乎日报"
-            android:textColor="#fff"
-            android:textSize="18sp" />
-        <TextView android:id="@+id/tvText"
+        <ImageView
+            android:id="@+id/ivImage"
+            imageUrl="@{info.img}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_start_logo" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:textSize="14sp"
-            tools:text="M" />
-    </LinearLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
-</RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="知乎日报"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{info.text}"
+                android:textColor="#fff"
+                android:textSize="14sp"
+                tools:text="M" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

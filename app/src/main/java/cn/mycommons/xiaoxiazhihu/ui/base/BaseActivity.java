@@ -1,5 +1,6 @@
 package cn.mycommons.xiaoxiazhihu.ui.base;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
-import cn.mycommons.xiaoxiazhihu.ui.base.mvp.ILoadDataView;
+import cn.mycommons.xiaoxiazhihu.app.AppContext;
 
 public abstract class BaseActivity extends AppCompatActivity implements ILoadDataView {
 
@@ -21,10 +22,15 @@ public abstract class BaseActivity extends AppCompatActivity implements ILoadDat
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
-        ButterKnife.bind(this);
+        initContentView();
+
         initActionBar();
         uiHandler = new Handler(getMainLooper());
+    }
+
+    protected void initContentView() {
+        setContentView(getLayoutId());
+        ButterKnife.bind(this);
     }
 
     protected abstract int getLayoutId();
@@ -110,5 +116,9 @@ public abstract class BaseActivity extends AppCompatActivity implements ILoadDat
     @Override
     public void showError(String message) {
         Toast.makeText(BaseActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    protected final ViewModelProvider.Factory viewModelFactory() {
+        return AppContext.getInstance().getViewModelFactory();
     }
 }

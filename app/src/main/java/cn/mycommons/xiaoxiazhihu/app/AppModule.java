@@ -1,5 +1,7 @@
 package cn.mycommons.xiaoxiazhihu.app;
 
+import android.arch.lifecycle.ViewModelProvider;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -8,11 +10,12 @@ import javax.inject.Singleton;
 import cn.mycommons.xiaoxiazhihu.biz.api.ZhihuApi;
 import cn.mycommons.xiaoxiazhihu.biz.api.impl.OkHttpUtil;
 import cn.mycommons.xiaoxiazhihu.biz.api.impl.okhttp.ZhihuApiOkHttpImpl;
-import cn.mycommons.xiaoxiazhihu.biz.api.impl.retrofit.IZhihuRetorfitApi;
+import cn.mycommons.xiaoxiazhihu.biz.api.impl.retrofit.IZhihuRetrofitApi;
 import cn.mycommons.xiaoxiazhihu.biz.api.impl.retrofit.RetrofitUtil;
 import cn.mycommons.xiaoxiazhihu.biz.api.impl.retrofit.ZhihuApiRetrofitImpl;
 import cn.mycommons.xiaoxiazhihu.biz.domain.ZhihuDomain;
 import cn.mycommons.xiaoxiazhihu.biz.domain.impl.ZhihuDomainImpl;
+import cn.mycommons.xiaoxiazhihu.viewmodel.ViewModelFactory;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
@@ -22,7 +25,7 @@ import okhttp3.OkHttpClient;
  * Created by xiaqiulei on 2016-06-29.
  */
 
-@Module
+@Module(subcomponents = ViewModelSubComponent.class)
 class AppModule {
 
     @Provides
@@ -31,7 +34,7 @@ class AppModule {
     }
 
     @Provides
-    ZhihuApi providerZhihuApi(IZhihuRetorfitApi zhihuRetorfitApi) {
+    ZhihuApi providerZhihuApi(IZhihuRetrofitApi zhihuRetorfitApi) {
         return new ZhihuApiRetrofitImpl(zhihuRetorfitApi);
     }
 
@@ -47,13 +50,19 @@ class AppModule {
     }
 
     @Provides
-    IZhihuRetorfitApi providerIZhihuRetorfitApi(OkHttpClient client, Gson gson) {
-        return RetrofitUtil.createApi(IZhihuRetorfitApi.class, client, gson);
+    IZhihuRetrofitApi providerIZhihuRetrofitApi(OkHttpClient client, Gson gson) {
+        return RetrofitUtil.createApi(IZhihuRetrofitApi.class, client, gson);
     }
 
     @Provides
     @Singleton
     Gson providerGson() {
         return new GsonBuilder().registerTypeAdapterFactory(AdapterFactory.create()).create();
+    }
+
+    @Singleton
+    @Provides
+    ViewModelProvider.Factory provideViewModelFactory(ViewModelSubComponent.Builder builder) {
+        return new ViewModelFactory(builder.build());
     }
 }

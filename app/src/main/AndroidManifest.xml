@@ -44,7 +44,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.base.common.CommonMvpFragmentActivity"
+        <activity android:name=".ui.base.common.CommonActivity"
             android:screenOrientation="portrait" />
     </application>
 

@@ -1,6 +1,9 @@
 package cn.mycommons.xiaoxiazhihu.app;
 
 import android.app.Application;
+import android.arch.lifecycle.ViewModelProvider;
+
+import javax.inject.Inject;
 
 /**
  * AppContext <br/>
@@ -10,9 +13,12 @@ public class AppContext extends Application {
 
     private static AppContext instance;
 
-    protected static AppContext getInstance() {
+    public static AppContext getInstance() {
         return instance;
     }
+
+    @Inject
+    ViewModelProvider.Factory factory;
 
     @Override
     public void onCreate() {
@@ -22,7 +28,11 @@ public class AppContext extends Application {
         initInject();
     }
 
-    void initInject(){
+    void initInject() {
         InjectHelp.init(this);
+    }
+
+    public ViewModelProvider.Factory getViewModelFactory() {
+        return factory;
     }
 }

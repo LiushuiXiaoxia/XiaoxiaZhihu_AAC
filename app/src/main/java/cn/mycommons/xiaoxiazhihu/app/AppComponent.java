@@ -2,12 +2,12 @@ package cn.mycommons.xiaoxiazhihu.app;
 
 import javax.inject.Singleton;
 
-import cn.mycommons.xiaoxiazhihu.ui.MainPresenter;
-import cn.mycommons.xiaoxiazhihu.ui.StartPresenter;
-import cn.mycommons.xiaoxiazhihu.ui.home.CommentsPresenter;
-import cn.mycommons.xiaoxiazhihu.ui.home.DetailPresenter;
-import cn.mycommons.xiaoxiazhihu.ui.home.HotnewsPresenter;
-import cn.mycommons.xiaoxiazhihu.ui.home.OtherThemePresenter;
+import cn.mycommons.xiaoxiazhihu.ui.MainViewModel;
+import cn.mycommons.xiaoxiazhihu.ui.StartViewModel;
+import cn.mycommons.xiaoxiazhihu.ui.home.CommentsViewModel;
+import cn.mycommons.xiaoxiazhihu.ui.home.detail.DetailViewModel;
+import cn.mycommons.xiaoxiazhihu.ui.home.hot.HotNewsViewModel;
+import cn.mycommons.xiaoxiazhihu.ui.home.other.OtherThemeViewModel;
 import dagger.Component;
 
 /**
@@ -18,15 +18,17 @@ import dagger.Component;
 @Component(modules = {AppModule.class})
 public interface AppComponent {
 
-    void inject(CommentsPresenter presenter);
+    void inject(AppContext context);
 
-    void inject(DetailPresenter presenter);
+    void inject(StartViewModel model);
 
-    void inject(HotnewsPresenter presenter);
+    void inject(MainViewModel model);
 
-    void inject(OtherThemePresenter presenter);
+    void inject(HotNewsViewModel model);
 
-    void inject(MainPresenter presenter);
+    void inject(OtherThemeViewModel model);
 
-    void inject(StartPresenter presenter);
+    void inject(DetailViewModel model);
+
+    void inject(CommentsViewModel model);
 }

@@ -1,4 +1,4 @@
-package cn.mycommons.xiaoxiazhihu.ui.base.mvp;
+package cn.mycommons.xiaoxiazhihu.ui.base;
 
 /**
  * 描述用于载入数据的View的接口

@@ -17,7 +17,7 @@ import cn.mycommons.xiaoxiazhihu.app.InjectHelp;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.BaseResponse;
 import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
 import cn.mycommons.xiaoxiazhihu.core.net.AppException;
-import cn.mycommons.xiaoxiazhihu.ui.base.mvp.ILoadDataView;
+import cn.mycommons.xiaoxiazhihu.ui.base.ILoadDataView;
 
 /**
  * 业务层建议使用这个，可以抓取到日志

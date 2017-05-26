@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView android:id="@+id/icon"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        tools:src="@drawable/ic_top_image" />
+    <data>
 
-    <TextView android:id="@+id/text"
+        <variable
+            name="story"
+            type="cn.mycommons.xiaoxiazhihu.biz.pojo.bean.LastThemeTopStory" />
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:maxLines="2"
-        android:padding="10dp"
-        android:textColor="#fff"
-        android:textSize="16sp"
-        tools:text="呵呵呵呵" />
-</RelativeLayout>
+        android:layout_height="200dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/icon"
+            imageUrl="@{story.image}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/ic_top_image" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:maxLines="2"
+            android:padding="10dp"
+            android:text="@{story.title}"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            tools:text="呵呵呵呵" />
+    </RelativeLayout>
+</layout>

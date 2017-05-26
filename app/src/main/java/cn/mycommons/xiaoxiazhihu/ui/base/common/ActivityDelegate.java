@@ -1,10 +1,10 @@
 package cn.mycommons.xiaoxiazhihu.ui.base.common;
 
 import android.content.Intent;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 
 import java.security.InvalidParameterException;
 
@@ -15,7 +15,7 @@ import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
  * CommonFragmentActivityDelegate <br/>
  * Created by xiaqiulei on 2015-04-03.
  */
-class ActivityDelegate<A extends AppCompatActivity, F extends Fragment> {
+class ActivityDelegate<T extends ViewDataBinding, A extends CommonActivity<T>, F extends Fragment> {
 
     private static final int FRAGMENT_CONTAINER = R.id.fmFragmentContainer;
 

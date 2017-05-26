@@ -1,7 +1,5 @@
 package cn.mycommons.xiaoxiazhihu.app;
 
-import android.app.Application;
-
 import de.greenrobot.event.EventBus;
 
 /**
@@ -12,10 +10,11 @@ public class InjectHelp {
 
     private static AppComponent appComponent;
 
-    static synchronized void init(Application application) {
+    static synchronized void init(AppContext appContext) {
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule())
                 .build();
+        appComponent.inject(appContext);
     }
 
     public static AppComponent appComponent() {

@@ -1,47 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <RelativeLayout android:id="@+id/rlDetailTop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView android:id="@+id/icon"
-                android:layout_width="fill_parent"
-                android:layout_height="200dp"
-                android:contentDescription="@string/app_name"
-                android:scaleType="centerCrop"
-                tools:src="@drawable/ic_start_logo" />
-            <TextView android:id="@+id/tvTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:maxLines="2"
-                android:paddingBottom="30dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textColor="#fff"
-                android:textSize="16sp"
-                tools:text="2015 ACG 大事件：不管你宅不宅，所有人都被 duang 字洗脑了" />
-            <TextView android:id="@+id/tvSource"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:gravity="right"
-                android:maxLines="2"
-                android:paddingBottom="10dp"
-                android:paddingRight="10dp"
-                android:textColor="#fff"
-                android:textSize="13sp"
-                tools:text="所有人都被 duang 字洗脑了" />
-        </RelativeLayout>
+    <data>
 
-        <WebView android:id="@+id/webview"
+        <variable
+            name="news"
+            type="cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetNewsResponse" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-</ScrollView>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rlDetailTop"
+                visibleGone="@{news==null?false: (news.image==null? false:news.image.length()>0)}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    imageUrl="@{news.image}"
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/ic_start_logo" />
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:maxLines="2"
+                    android:paddingBottom="30dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@{news.title}"
+                    android:textColor="#fff"
+                    android:textSize="16sp"
+                    tools:text="2015 ACG 大事件：不管你宅不宅，所有人都被 duang 字洗脑了" />
+
+                <TextView
+                    android:id="@+id/tvSource"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="right"
+                    android:maxLines="2"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@{news.imageSource}"
+                    android:textColor="#fff"
+                    android:textSize="13sp"
+                    tools:text="所有人都被 duang 字洗脑了" />
+            </RelativeLayout>
+
+            <WebView
+                android:id="@+id/webView"
+                html="@{news.body}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

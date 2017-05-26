@@ -1,4 +1,4 @@
-package cn.mycommons.xiaoxiazhihu.ui.base.mvp;
+package cn.mycommons.xiaoxiazhihu.ui.base;
 
 import android.content.Context;
 

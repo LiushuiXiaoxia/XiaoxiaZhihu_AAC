@@ -1,26 +1,24 @@
 package cn.mycommons.xiaoxiazhihu.ui.base.common;
 
 import android.content.Context;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.view.View;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import cn.mycommons.xiaoxiazhihu.ui.base.mvp.BaseMvpPresenter;
-import cn.mycommons.xiaoxiazhihu.ui.base.mvp.IMvpView;
-import cn.mycommons.xiaoxiazhihu.ui.base.mvp.MvpFragment;
+import cn.mycommons.xiaoxiazhihu.ui.base.AacFragment;
 
 
 /**
- * CommonMvpFragment <br/>
+ * CommonFragment <br/>
  * Created by xiaqiulei on 2015-01-24.
  */
-public abstract class CommonMvpFragment<P extends BaseMvpPresenter<V>, V extends IMvpView>
-        extends MvpFragment<P, V> implements ICommonFragment {
+public abstract class CommonFragment<T extends ViewDataBinding> extends AacFragment<T> implements ICommonFragment {
 
     protected Context context;
 
-    private FragmentDelegate<CommonMvpFragment, CommonExtraParam> delegate;
+    private FragmentDelegate<CommonFragment, CommonExtraParam> delegate;
     private Unbinder unbinder;
 
     @Override
@@ -42,12 +40,12 @@ public abstract class CommonMvpFragment<P extends BaseMvpPresenter<V>, V extends
 
     protected abstract void init(Bundle savedInstanceState);
 
-    protected FragmentDelegate<CommonMvpFragment, CommonExtraParam> getDelegate() {
-        return new FragmentDelegate<CommonMvpFragment, CommonExtraParam>(this);
+    protected FragmentDelegate<CommonFragment, CommonExtraParam> getDelegate() {
+        return new FragmentDelegate<CommonFragment, CommonExtraParam>(this);
     }
 
-    public final <T extends CommonExtraParam> T getReqExtraParam() {
-        return (T) delegate.getReqExtraParam();
+    public final <R extends CommonExtraParam> R getReqExtraParam() {
+        return (R) delegate.getReqExtraParam();
     }
 
     protected final void setSuccessResult(CommonExtraParam extraParam) {

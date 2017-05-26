@@ -1,8 +1,10 @@
 package cn.mycommons.xiaoxiazhihu.ui;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -17,18 +19,22 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.mycommons.xiaoxiazhihu.R;
-import cn.mycommons.xiaoxiazhihu.biz.callback.AdvancedSubscriber;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.ThemeItem;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetAllThemesResponse;
-import cn.mycommons.xiaoxiazhihu.ui.base.mvp.MvpActivity;
-import cn.mycommons.xiaoxiazhihu.ui.home.HotnewsFragment;
-import cn.mycommons.xiaoxiazhihu.ui.home.OtherThemeFragment;
+import cn.mycommons.xiaoxiazhihu.databinding.ActivityMainBinding;
+import cn.mycommons.xiaoxiazhihu.ui.base.AacBaseActivity;
+import cn.mycommons.xiaoxiazhihu.ui.home.hot.HotNewsFragment;
+import cn.mycommons.xiaoxiazhihu.ui.home.other.OtherThemeFragment;
 
-public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMenuListView>
-        implements MainPresenter.IMenuListView {
+public class MainActivity extends AacBaseActivity<ActivityMainBinding> {
 
     LinearLayout llMainMenuContainer;
     ThemeItem currentThemeItem;
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +43,7 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMenu
         init();
         initSlideMenu();
         updateFragment();
-
-        presenter.doGetAllThemesResponse().subscribe(new AdvancedSubscriber<GetAllThemesResponse>() {
-            @Override
-            public void onHandleSuccess(GetAllThemesResponse response) {
-                super.onHandleSuccess(response);
-
-                update(response.getOthers());
-            }
-        });
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_main;
+        loadData();
     }
 
     private void init() {
@@ -66,8 +59,7 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMenu
     }
 
     void initSlideMenu() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        llMainMenuContainer = (LinearLayout) navigationView.getHeaderView(0).findViewById(R.id.llMainMenuContainer);
+        llMainMenuContainer = (LinearLayout) binding.navView.getHeaderView(0).findViewById(R.id.llMainMenuContainer);
 
         llMainMenuContainer.findViewById(R.id.tvHome).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +73,19 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMenu
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
+    }
+
+    private void loadData() {
+        MainViewModel mainViewModel = ViewModelProviders.of(this, viewModelFactory()).get(MainViewModel.class);
+        mainViewModel.getAllThemeResponse().observe(this, new Observer<GetAllThemesResponse>() {
+            @Override
+            public void onChanged(@Nullable GetAllThemesResponse getAllThemesResponse) {
+                if (getAllThemesResponse != null) {
+                    update(getAllThemesResponse.getOthers());
+                }
+            }
+        });
+        mainViewModel.loadAllTheme();
     }
 
     void update(List<ThemeItem> themeItems) {
@@ -116,7 +121,7 @@ public class MainActivity extends MvpActivity<MainPresenter, MainPresenter.IMenu
         if (currentThemeItem != null) {
             fragment = OtherThemeFragment.newInstance(currentThemeItem);
         } else {
-            fragment = new HotnewsFragment();
+            fragment = new HotNewsFragment();
         }
         transaction.replace(R.id.flFragmentContainer, fragment, tag).commitAllowingStateLoss();
     }

@@ -9,14 +9,14 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * LastTemeTopStory <br/>
+ * LastThemeTopStory <br/>
  * Created by xiaqiulei on 2016-01-04.
  */
 @AutoValue
-public abstract class LastTemeTopStory implements Serializable {
+public abstract class LastThemeTopStory implements Serializable {
 
-    public static TypeAdapter<LastTemeTopStory> typeAdapter(Gson gson) {
-        return new AutoValue_LastTemeTopStory.GsonTypeAdapter(gson);
+    public static TypeAdapter<LastThemeTopStory> typeAdapter(Gson gson) {
+        return new AutoValue_LastThemeTopStory.GsonTypeAdapter(gson);
     }
 
     @SerializedName("id")

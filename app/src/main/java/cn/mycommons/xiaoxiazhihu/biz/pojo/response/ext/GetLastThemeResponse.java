@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.LastTemeTopStory;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.LastThemeTopStory;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.LastThemeStory;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.BaseResponse;
 
@@ -30,5 +30,5 @@ public abstract class GetLastThemeResponse extends BaseResponse {
 
     @Nullable
     @SerializedName("top_stories")
-    public abstract List<LastTemeTopStory> getTopStories();
+    public abstract List<LastThemeTopStory> getTopStories();
 }

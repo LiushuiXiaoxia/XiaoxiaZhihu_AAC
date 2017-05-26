@@ -27,9 +27,9 @@ import cn.mycommons.xiaoxiazhihu.core.net.AppException;
  */
 public class ZhihuApiRetrofitImpl implements ZhihuApi {
 
-    private IZhihuRetorfitApi httpApi;
+    private IZhihuRetrofitApi httpApi;
 
-    public ZhihuApiRetrofitImpl(IZhihuRetorfitApi httpApi) {
+    public ZhihuApiRetrofitImpl(IZhihuRetrofitApi httpApi) {
         this.httpApi = httpApi;
     }
 

@@ -1,25 +1,22 @@
 package cn.mycommons.xiaoxiazhihu.ui;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.support.annotation.Nullable;
 
-import com.squareup.picasso.Picasso;
-
-import butterknife.BindView;
 import cn.mycommons.xiaoxiazhihu.R;
-import cn.mycommons.xiaoxiazhihu.biz.callback.AdvancedSubscriber;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStartInfoResponse;
-import cn.mycommons.xiaoxiazhihu.ui.base.mvp.MvpActivity;
+import cn.mycommons.xiaoxiazhihu.databinding.ActivityStartBinding;
+import cn.mycommons.xiaoxiazhihu.ui.base.AacBaseActivity;
 
-public class StartActivity extends MvpActivity<StartPresenter, StartPresenter.IStartView>
-        implements StartPresenter.IStartView {
+public class StartActivity extends AacBaseActivity<ActivityStartBinding> {
 
-    @BindView(R.id.tvText)
-    TextView tvText;
-    @BindView(R.id.ivImage)
-    ImageView ivImage;
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_start;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +26,17 @@ public class StartActivity extends MvpActivity<StartPresenter, StartPresenter.IS
         gotoNext();
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_start;
-    }
-
     private void init() {
-        presenter.doGetStartInfo()
-                .subscribe(new AdvancedSubscriber<GetStartInfoResponse>() {
-                    @Override
-                    public void onHandleSuccess(GetStartInfoResponse response) {
-                        super.onHandleSuccess(response);
-
-                        update(response);
-                    }
-                });
+        StartViewModel viewModel = ViewModelProviders.of(this, viewModelFactory()).get(StartViewModel.class);
+        viewModel.getStartInfo().observe(this, new Observer<GetStartInfoResponse>() {
+            @Override
+            public void onChanged(@Nullable GetStartInfoResponse response) {
+                if (response != null) {
+                    binding.setInfo(response);
+                    binding.executePendingBindings();
+                }
+            }
+        });
     }
 
     private void gotoNext() {
@@ -56,11 +49,8 @@ public class StartActivity extends MvpActivity<StartPresenter, StartPresenter.IS
         }, 3000);
     }
 
-    private void update(GetStartInfoResponse response) {
-        tvText.setText(response.getText());
-
-        Picasso.with(getContext())
-                .load(response.getImg())
-                .into(ivImage);
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
     }
 }

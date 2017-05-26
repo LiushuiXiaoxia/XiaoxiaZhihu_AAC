@@ -51,7 +51,7 @@ public class FragmentLauncher {
     }
 
     private static Class<? extends Activity> getTargetActivityClass(CommonExtraParam param) {
-        Class<? extends Activity> activityClass = CommonMvpFragmentActivity.class;
+        Class<? extends Activity> activityClass = CommonActivity.class;
         if (param.getActivityClass() != null) {
             activityClass = param.getActivityClass();
         }

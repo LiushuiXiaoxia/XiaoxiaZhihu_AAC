@@ -28,15 +28,15 @@ class FragmentDelegate<F extends Fragment, P extends CommonExtraParam> {
 
     void beforeOnViewCreated(View view, Bundle savedInstanceState) {
         AppLog.i("beforeOnViewCreated");
-    }
-
-    void afterOnViewCreated(View view, Bundle savedInstanceState) {
-        AppLog.i("afterOnViewCreated");
 
         extraReqParam = CommonExtraParam.getReqExtraParam(fragment.getActivity());
 
         String content = String.format("fragment = %s, extraReqParam = %s", fragment, extraReqParam);
         AppLog.d(content);
+    }
+
+    void afterOnViewCreated(View view, Bundle savedInstanceState) {
+        AppLog.i("afterOnViewCreated");
     }
 
     P getReqExtraParam() {

@@ -16,7 +16,7 @@ import retrofit2.http.Path;
  * IZhihuApi <br/>
  * Created by xiaqiulei on 2016-01-10.
  */
-public interface IZhihuRetorfitApi {
+public interface IZhihuRetrofitApi {
 
     @GET("api/4/start-image/{width}*{height}")
     Call<GetStartInfoResponse> getStartInfoResponse(@Path("width") int width, @Path("height") int height);
