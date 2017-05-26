@@ -1,9 +1,13 @@
 package cn.mycommons.xiaoxiazhihu.biz.api.impl.okhttp;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+
 import com.google.gson.Gson;
 
 import java.io.IOException;
 
+import cn.mycommons.xiaoxiazhihu.app.InjectHelp;
 import cn.mycommons.xiaoxiazhihu.biz.api.ZhihuApi;
 import cn.mycommons.xiaoxiazhihu.biz.api.impl.OkHttpUtil;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.request.ext.GetAllThemesRequest;
@@ -23,10 +27,12 @@ import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStartInfoResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStoryExtraResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetThemeResponse;
 import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
-import cn.mycommons.xiaoxiazhihu.core.net.AppException;
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * ZhihuApiImpl <br/>
@@ -34,138 +40,147 @@ import okhttp3.Response;
  */
 public class ZhihuApiOkHttpImpl implements ZhihuApi {
 
-    private static final String MSG = "req = %s, resp = %s";
-
     private OkHttpClient okHttpClient;
     private Gson gson;
 
     public ZhihuApiOkHttpImpl(OkHttpClient client) {
         okHttpClient = client;
-        gson = new Gson();
+        gson = InjectHelp.appComponent().gson();
     }
 
     @Override
-    public GetStartInfoResponse getStartInfoResponse(GetStartInfoRequest request) throws AppException {
+    public LiveData<GetStartInfoResponse> getStartInfoResponse(GetStartInfoRequest request) {
         AppLog.d("ZhihuApiOkHttpImpl.getStartInfoResponse request = " + request);
 
-        String url = "http://news-at.zhihu.com/api/4/start-image/%s*%s";
+        String url = "https://news-at.zhihu.com/api/4/start-image/%s*%s";
         url = String.format(url, request.width, request.height);
-        GetStartInfoResponse response = call(url, GetStartInfoResponse.class);
 
-        AppLog.i(MSG, request, response);
+        MutableLiveData<GetStartInfoResponse> data = new MutableLiveData<>();
+        call(url, GetStartInfoResponse.class, data);
 
-        return response;
+        return data;
     }
 
     @Override
-    public GetAllThemesResponse getAllThemesResponse(GetAllThemesRequest request) throws AppException {
+    public LiveData<GetAllThemesResponse> getAllThemesResponse(GetAllThemesRequest request) {
         AppLog.d("ZhihuApiOkHttpImpl.getAllThemesResponse request = " + request);
 
-        String url = "http://news-at.zhihu.com/api/4/themes";
-        GetAllThemesResponse response = call(url, GetAllThemesResponse.class);
+        String url = "https://news-at.zhihu.com/api/4/themes";
 
-        AppLog.i(MSG, request, response);
+        MutableLiveData<GetAllThemesResponse> data = new MutableLiveData<>();
+        call(url, GetAllThemesResponse.class, data);
 
-        return response;
+        return data;
     }
 
     @Override
-    public GetLastThemeResponse getLastThemeResponse(GetLastThemeRequest request) throws AppException {
+    public LiveData<GetLastThemeResponse> getLastThemeResponse(GetLastThemeRequest request) {
         AppLog.d("ZhihuApiOkHttpImpl.getLastThemeResponse request = " + request);
 
-        String url = "http://news-at.zhihu.com/api/4/news/latest";
-        GetLastThemeResponse response = call(url, GetLastThemeResponse.class);
+        String url = "https://news-at.zhihu.com/api/4/news/latest";
 
-        AppLog.i(MSG, request, response);
+        MutableLiveData<GetLastThemeResponse> data = new MutableLiveData<>();
+        call(url, GetLastThemeResponse.class, data);
 
-        return response;
+        return data;
     }
 
     @Override
-    public GetNewsResponse getNewsResponse(GetNewsRequest request) throws AppException {
+    public LiveData<GetNewsResponse> getNewsResponse(GetNewsRequest request) {
         AppLog.d("ZhihuApiOkHttpImpl.getNewsResponse request = " + request);
 
-        String url = "http://news-at.zhihu.com/api/4/news/%s";
+        String url = "https://news-at.zhihu.com/api/4/news/%s";
         url = String.format(url, request.id);
-        GetNewsResponse response = call(url, GetNewsResponse.class);
 
-        AppLog.i(MSG, request, response);
+        MutableLiveData<GetNewsResponse> data = new MutableLiveData<>();
+        call(url, GetNewsResponse.class, data);
 
-        return response;
+        return data;
     }
 
     @Override
-    public GetThemeResponse getThemeResponse(GetThemeRequest request) throws AppException {
+    public LiveData<GetThemeResponse> getThemeResponse(GetThemeRequest request) {
         AppLog.d("ZhihuApiOkHttpImpl.getThemeResponse request = " + request);
 
-        String url = "http://news-at.zhihu.com/api/4/theme/%s";
+        String url = "https://news-at.zhihu.com/api/4/theme/%s";
         url = String.format(url, request.id);
-        GetThemeResponse response = call(url, GetThemeResponse.class);
 
-        AppLog.i(MSG, request, response);
+        MutableLiveData<GetThemeResponse> data = new MutableLiveData<>();
+        call(url, GetThemeResponse.class, data);
 
-        return response;
+        return data;
     }
 
     @Override
-    public GetStoryExtraResponse getStoryExtraResponse(GetStoryExtraRequest request) throws AppException {
+    public LiveData<GetStoryExtraResponse> getStoryExtraResponse(GetStoryExtraRequest request) {
         AppLog.d("ZhihuApiOkHttpImpl.getStoryExtraResponse request = " + request);
 
-        String url = "http://news-at.zhihu.com/api/4/story-extra/%s";
+        String url = "https://news-at.zhihu.com/api/4/story-extra/%s";
         url = String.format(url, request.id);
-        GetStoryExtraResponse response = call(url, GetStoryExtraResponse.class);
 
-        AppLog.i(MSG, request, response);
+        MutableLiveData<GetStoryExtraResponse> data = new MutableLiveData<>();
+        call(url, GetStoryExtraResponse.class, data);
 
-        return response;
+        return data;
     }
 
     @Override
-    public GetShortCommentsResponse getShortComments(GetShortCommentsRequest request) throws AppException {
+    public LiveData<GetShortCommentsResponse> getShortComments(GetShortCommentsRequest request) {
         AppLog.d("ZhihuApiOkHttpImpl.getShortComments request = " + request);
 
-        String url = "http://news-at.zhihu.com/api/4/story/%s/short-comments";
+        String url = "https://news-at.zhihu.com/api/4/story/%s/short-comments";
         url = String.format(url, request.id);
-        GetShortCommentsResponse response = call(url, GetShortCommentsResponse.class);
 
-        AppLog.i(MSG, request, response);
+        MutableLiveData<GetShortCommentsResponse> data = new MutableLiveData<>();
+        call(url, GetShortCommentsResponse.class, data);
 
-        return response;
+        return data;
     }
 
     @Override
-    public GetLongCommentsResponse getLongComments(GetLongCommentsRequest request) throws AppException {
+    public LiveData<GetLongCommentsResponse> getLongComments(GetLongCommentsRequest request) {
         AppLog.d("ZhihuApiOkHttpImpl.getLongComments request = " + request);
 
-        String url = "http://news-at.zhihu.com/api/4/story/%s/long-comments";
+        String url = "https://news-at.zhihu.com/api/4/story/%s/long-comments";
         url = String.format(url, request.id);
-        GetLongCommentsResponse response = call(url, GetLongCommentsResponse.class);
 
-        AppLog.i(MSG, request, response);
+        MutableLiveData<GetLongCommentsResponse> data = new MutableLiveData<>();
+        call(url, GetLongCommentsResponse.class, data);
 
-        return response;
+        return data;
     }
 
-    private <T> T call(String url, Class<T> tClass) throws AppException {
+    private <T> void call(final String url, final Class<T> tClass, final MutableLiveData<T> data) {
         AppLog.i("ZhihuApiOkHttpImpl.call url = " + url);
+
         Request request = new Request.Builder()
                 .url(url)
                 .get()
                 .cacheControl(OkHttpUtil.getCacheControl())
                 .build();
 
-        T t = null;
-        try {
-            Response response = okHttpClient.newCall(request).execute();
-            AppLog.i("response = " + response);
-            if (response != null && response.isSuccessful()) {
-                String body = response.body().string();
-                t = gson.fromJson(body, tClass);
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                AppLog.i("ZhihuApiOkHttpImpl.call url = " + url);
+                AppLog.e("ZhihuApiOkHttpImpl.call e = " + e, e);
             }
-        } catch (IOException e) {
-            AppLog.e("ZhihuApiOkHttpImpl.call e = " + e, e);
-            throw new AppException(e);
-        }
-        return t;
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                AppLog.i("ZhihuApiOkHttpImpl.call url = " + url);
+
+                AppLog.i("response = " + response);
+
+                if (response != null && response.isSuccessful()) {
+                    ResponseBody body = response.body();
+                    if (body != null) {
+                        data.postValue(gson.fromJson(body.string(), tClass));
+                    } else {
+                        data.postValue(null);
+                    }
+                }
+            }
+        });
     }
 }

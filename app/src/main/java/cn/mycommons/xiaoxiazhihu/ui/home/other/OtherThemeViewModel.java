@@ -5,9 +5,10 @@ import android.arch.lifecycle.ViewModel;
 
 import javax.inject.Inject;
 
-import cn.mycommons.xiaoxiazhihu.biz.callback.SimpleSubscriber;
-import cn.mycommons.xiaoxiazhihu.biz.domain.ZhihuDomain;
+import cn.mycommons.xiaoxiazhihu.biz.api.ZhihuApi;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.request.ext.GetThemeRequest;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetThemeResponse;
+import cn.mycommons.xiaoxiazhihu.util.SimpleObserver;
 
 /**
  * OtherThemeViewModel <br/>
@@ -15,24 +16,17 @@ import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetThemeResponse;
  */
 public class OtherThemeViewModel extends ViewModel {
 
-    ZhihuDomain zhihuDomain;
-
+    private final ZhihuApi zhihuApi;
     private final MutableLiveData<GetThemeResponse> themeResponse = new MutableLiveData<>();
 
     @Inject
-    public OtherThemeViewModel(ZhihuDomain zhihuDomain) {
-        this.zhihuDomain = zhihuDomain;
+    OtherThemeViewModel(ZhihuApi zhihuApi) {
+        this.zhihuApi = zhihuApi;
     }
 
     MutableLiveData<GetThemeResponse> getThemeResponse(int id) {
-        zhihuDomain.getThemeById(id)
-                .subscribe(new SimpleSubscriber<GetThemeResponse>() {
-                    @Override
-                    public void onHandleSuccess(GetThemeResponse response) {
-                        super.onHandleSuccess(response);
-                        themeResponse.setValue(response);
-                    }
-                });
+        zhihuApi.getThemeResponse(new GetThemeRequest(id)).observeForever(new SimpleObserver<>(themeResponse));
+
         return themeResponse;
     }
 }

@@ -1,13 +1,15 @@
 package cn.mycommons.xiaoxiazhihu.ui;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import javax.inject.Inject;
 
-import cn.mycommons.xiaoxiazhihu.biz.callback.SimpleSubscriber;
-import cn.mycommons.xiaoxiazhihu.biz.domain.ZhihuDomain;
+import cn.mycommons.xiaoxiazhihu.biz.api.ZhihuApi;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.request.ext.GetAllThemesRequest;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetAllThemesResponse;
+import cn.mycommons.xiaoxiazhihu.util.SimpleObserver;
 
 /**
  * MainViewModel <br/>
@@ -15,28 +17,17 @@ import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetAllThemesResponse;
  */
 public class MainViewModel extends ViewModel {
 
-    ZhihuDomain zhihuDomain;
-
-    private final MutableLiveData<GetAllThemesResponse> allThemeResponse;
+    private ZhihuApi zhihuApi;
+    private final MutableLiveData<GetAllThemesResponse> allThemeResponse = new MutableLiveData<>();
 
     @Inject
-    public MainViewModel(ZhihuDomain zhihuDomain) {
-        this.zhihuDomain = zhihuDomain;
-        allThemeResponse = new MutableLiveData<>();
+    MainViewModel(ZhihuApi zhihuApi) {
+        this.zhihuApi = zhihuApi;
     }
 
-    void loadAllTheme() {
-        zhihuDomain.getAllThemes().subscribe(new SimpleSubscriber<GetAllThemesResponse>() {
-            @Override
-            public void onHandleSuccess(GetAllThemesResponse response) {
-                super.onHandleSuccess(response);
-
-                allThemeResponse.postValue(response);
-            }
-        });
-    }
-
-    MutableLiveData<GetAllThemesResponse> getAllThemeResponse() {
+    LiveData<GetAllThemesResponse> loadAllTheme() {
+        zhihuApi.getAllThemesResponse(new GetAllThemesRequest())
+                .observeForever(new SimpleObserver<>(allThemeResponse));
         return allThemeResponse;
     }
 }

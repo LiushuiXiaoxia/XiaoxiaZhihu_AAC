@@ -13,8 +13,6 @@ import cn.mycommons.xiaoxiazhihu.biz.api.impl.okhttp.ZhihuApiOkHttpImpl;
 import cn.mycommons.xiaoxiazhihu.biz.api.impl.retrofit.IZhihuRetrofitApi;
 import cn.mycommons.xiaoxiazhihu.biz.api.impl.retrofit.RetrofitUtil;
 import cn.mycommons.xiaoxiazhihu.biz.api.impl.retrofit.ZhihuApiRetrofitImpl;
-import cn.mycommons.xiaoxiazhihu.biz.domain.ZhihuDomain;
-import cn.mycommons.xiaoxiazhihu.biz.domain.impl.ZhihuDomainImpl;
 import cn.mycommons.xiaoxiazhihu.viewmodel.ViewModelFactory;
 import dagger.Module;
 import dagger.Provides;
@@ -28,17 +26,12 @@ import okhttp3.OkHttpClient;
 @Module(subcomponents = ViewModelSubComponent.class)
 class AppModule {
 
-    @Provides
-    ZhihuDomain providerZhihuDomain(ZhihuApi zhihuApi) {
-        return new ZhihuDomainImpl(zhihuApi);
-    }
-
-    @Provides
-    ZhihuApi providerZhihuApi(IZhihuRetrofitApi zhihuRetorfitApi) {
-        return new ZhihuApiRetrofitImpl(zhihuRetorfitApi);
-    }
-
     // @Provides
+    ZhihuApi providerZhihuApi(IZhihuRetrofitApi zhihuRetrofitApi) {
+        return new ZhihuApiRetrofitImpl(zhihuRetrofitApi);
+    }
+
+    @Provides
     ZhihuApi providerZhihuApi(OkHttpClient client) {
         return new ZhihuApiOkHttpImpl(client);
     }

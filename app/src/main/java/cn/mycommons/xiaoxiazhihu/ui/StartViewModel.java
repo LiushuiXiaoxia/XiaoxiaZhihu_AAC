@@ -7,9 +7,10 @@ import android.support.annotation.VisibleForTesting;
 
 import javax.inject.Inject;
 
-import cn.mycommons.xiaoxiazhihu.biz.callback.SimpleSubscriber;
-import cn.mycommons.xiaoxiazhihu.biz.domain.ZhihuDomain;
+import cn.mycommons.xiaoxiazhihu.biz.api.ZhihuApi;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.request.ext.GetStartInfoRequest;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStartInfoResponse;
+import cn.mycommons.xiaoxiazhihu.util.SimpleObserver;
 
 /**
  * StartViewModel <br/>
@@ -17,26 +18,19 @@ import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStartInfoResponse;
  */
 public class StartViewModel extends ViewModel {
 
-    private ZhihuDomain zhihuDomain;
+    private ZhihuApi zhihuApi;
 
     @VisibleForTesting
     private final MutableLiveData<GetStartInfoResponse> startInfo = new MutableLiveData<>();
 
     @Inject
-    public StartViewModel(ZhihuDomain zhihuDomain) {
-        this.zhihuDomain = zhihuDomain;
+    StartViewModel(ZhihuApi zhihuApi) {
+        this.zhihuApi = zhihuApi;
     }
 
     LiveData<GetStartInfoResponse> getStartInfo() {
-        zhihuDomain.getStartInfo(1080, 1776)
-                .subscribe(new SimpleSubscriber<GetStartInfoResponse>() {
-                    @Override
-                    public void onHandleSuccess(GetStartInfoResponse response) {
-                        super.onHandleSuccess(response);
-
-                        startInfo.setValue(getResponse());
-                    }
-                });
+        zhihuApi.getStartInfoResponse(new GetStartInfoRequest(1080, 1776))
+                .observeForever(new SimpleObserver<>(startInfo));
         return startInfo;
     }
 }

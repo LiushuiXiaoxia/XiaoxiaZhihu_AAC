@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,7 +17,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import cn.mycommons.xiaoxiazhihu.R;
+import cn.mycommons.xiaoxiazhihu.app.InjectHelp;
+import cn.mycommons.xiaoxiazhihu.biz.api.impl.retrofit.IZhihuRetrofitApi;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.ThemeItem;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetAllThemesResponse;
 import cn.mycommons.xiaoxiazhihu.databinding.ActivityMainBinding;
@@ -29,6 +32,10 @@ import cn.mycommons.xiaoxiazhihu.ui.home.other.OtherThemeFragment;
 public class MainActivity extends AacBaseActivity<ActivityMainBinding> {
 
     LinearLayout llMainMenuContainer;
+
+    @Inject
+    IZhihuRetrofitApi zhihuRetrofitApi;
+
     ThemeItem currentThemeItem;
 
     @Override
@@ -39,6 +46,8 @@ public class MainActivity extends AacBaseActivity<ActivityMainBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        InjectHelp.appComponent().inject(this);
 
         init();
         initSlideMenu();
@@ -77,7 +86,7 @@ public class MainActivity extends AacBaseActivity<ActivityMainBinding> {
 
     private void loadData() {
         MainViewModel mainViewModel = ViewModelProviders.of(this, viewModelFactory()).get(MainViewModel.class);
-        mainViewModel.getAllThemeResponse().observe(this, new Observer<GetAllThemesResponse>() {
+        mainViewModel.loadAllTheme().observe(this, new Observer<GetAllThemesResponse>() {
             @Override
             public void onChanged(@Nullable GetAllThemesResponse getAllThemesResponse) {
                 if (getAllThemesResponse != null) {
@@ -85,7 +94,6 @@ public class MainActivity extends AacBaseActivity<ActivityMainBinding> {
                 }
             }
         });
-        mainViewModel.loadAllTheme();
     }
 
     void update(List<ThemeItem> themeItems) {
@@ -106,8 +114,7 @@ public class MainActivity extends AacBaseActivity<ActivityMainBinding> {
                         updateFragment();
                         clearBackground(v);
                     }
-                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                    drawer.closeDrawer(GravityCompat.START);
+                    ((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START);
                 }
             });
             llMainMenuContainer.addView(view);
@@ -116,14 +123,16 @@ public class MainActivity extends AacBaseActivity<ActivityMainBinding> {
 
     void updateFragment() {
         String tag = "content_fragment";
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment fragment;
         if (currentThemeItem != null) {
             fragment = OtherThemeFragment.newInstance(currentThemeItem);
         } else {
-            fragment = new HotNewsFragment();
+            fragment = HotNewsFragment.newInstance();
         }
-        transaction.replace(R.id.flFragmentContainer, fragment, tag).commitAllowingStateLoss();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.flFragmentContainer, fragment, tag)
+                .commitAllowingStateLoss();
     }
 
     void clearBackground(View selectView) {

@@ -1,6 +1,8 @@
 package cn.mycommons.xiaoxiazhihu.biz.api.impl.retrofit;
 
 
+import android.arch.lifecycle.LiveData;
+
 import cn.mycommons.xiaoxiazhihu.biz.api.ZhihuApi;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.request.ext.GetAllThemesRequest;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.request.ext.GetLastThemeRequest;
@@ -19,106 +21,71 @@ import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStartInfoResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStoryExtraResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetThemeResponse;
 import cn.mycommons.xiaoxiazhihu.core.log.AppLog;
-import cn.mycommons.xiaoxiazhihu.core.net.AppException;
 
 /**
  * ZhihuApiRetrofitImpl <br/>
  * Created by xiaqiulei on 2016-01-10.
  */
-public class ZhihuApiRetrofitImpl implements ZhihuApi {
+public final class ZhihuApiRetrofitImpl implements ZhihuApi {
 
-    private IZhihuRetrofitApi httpApi;
+    private final IZhihuRetrofitApi httpApi;
 
     public ZhihuApiRetrofitImpl(IZhihuRetrofitApi httpApi) {
         this.httpApi = httpApi;
     }
 
     @Override
-    public GetStartInfoResponse getStartInfoResponse(final GetStartInfoRequest request) throws AppException {
+    public LiveData<GetStartInfoResponse> getStartInfoResponse(GetStartInfoRequest request) {
         AppLog.i("ZhihuApiRetrofitImpl.getStartInfoResponse request = " + request);
 
-        return new RetrofitAdapter<GetStartInfoResponse>() {
-            @Override
-            GetStartInfoResponse call() throws Exception {
-                return httpApi.getStartInfoResponse(request.width, request.height).execute().body();
-            }
-        }.get();
+        return httpApi.getStartInfoResponse(request.width, request.height);
     }
 
     @Override
-    public GetAllThemesResponse getAllThemesResponse(GetAllThemesRequest request) throws AppException {
+    public LiveData<GetAllThemesResponse> getAllThemesResponse(GetAllThemesRequest request) {
         AppLog.i("ZhihuApiRetrofitImpl.getAllThemesResponse request = " + request);
-        return new RetrofitAdapter<GetAllThemesResponse>() {
-            @Override
-            GetAllThemesResponse call() throws Exception {
-                return httpApi.getAllThemesResponse().execute().body();
-            }
-        }.get();
+        return httpApi.getAllThemesResponse();
     }
 
     @Override
-    public GetLastThemeResponse getLastThemeResponse(GetLastThemeRequest request) throws AppException {
+    public LiveData<GetLastThemeResponse> getLastThemeResponse(GetLastThemeRequest request) {
         AppLog.i("ZhihuApiRetrofitImpl.getLastThemeResponse request = " + request);
-        return new RetrofitAdapter<GetLastThemeResponse>() {
-            @Override
-            GetLastThemeResponse call() throws Exception {
-                return httpApi.getLastThemeResponse().execute().body();
-            }
-        }.get();
+
+        return httpApi.getLastThemeResponse();
     }
 
     @Override
-    public GetNewsResponse getNewsResponse(final GetNewsRequest request) throws AppException {
+    public LiveData<GetNewsResponse> getNewsResponse(GetNewsRequest request) {
         AppLog.i("ZhihuApiRetrofitImpl.getNewsResponse request = " + request);
-        return new RetrofitAdapter<GetNewsResponse>() {
-            @Override
-            GetNewsResponse call() throws Exception {
-                return httpApi.getNewsResponse(request.id).execute().body();
-            }
-        }.get();
+
+        return httpApi.getNewsResponse(request.id);
     }
 
     @Override
-    public GetThemeResponse getThemeResponse(final GetThemeRequest request) throws AppException {
+    public LiveData<GetThemeResponse> getThemeResponse(GetThemeRequest request) {
         AppLog.i("ZhihuApiRetrofitImpl.getThemeResponse request = " + request);
-        return new RetrofitAdapter<GetThemeResponse>() {
-            @Override
-            GetThemeResponse call() throws Exception {
-                return httpApi.getThemeResponse(request.id).execute().body();
-            }
-        }.get();
+
+        return httpApi.getThemeResponse(request.id);
     }
 
     @Override
-    public GetStoryExtraResponse getStoryExtraResponse(final GetStoryExtraRequest request) throws AppException {
+    public LiveData<GetStoryExtraResponse> getStoryExtraResponse(GetStoryExtraRequest request) {
         AppLog.i("ZhihuApiRetrofitImpl.getStoryExtraResponse request = " + request);
-        return new RetrofitAdapter<GetStoryExtraResponse>() {
-            @Override
-            GetStoryExtraResponse call() throws Exception {
-                return httpApi.getStoryExtraResponse(request.id).execute().body();
-            }
-        }.get();
+
+        return httpApi.getStoryExtraResponse(request.id);
     }
 
     @Override
-    public GetShortCommentsResponse getShortComments(final GetShortCommentsRequest request) throws AppException {
+    public LiveData<GetShortCommentsResponse> getShortComments(GetShortCommentsRequest request) {
         AppLog.i("ZhihuApiRetrofitImpl.getShortComments request = " + request);
-        return new RetrofitAdapter<GetShortCommentsResponse>() {
-            @Override
-            GetShortCommentsResponse call() throws Exception {
-                return httpApi.getShortComments(request.id).execute().body();
-            }
-        }.get();
+
+        return httpApi.getShortComments(request.id);
     }
 
     @Override
-    public GetLongCommentsResponse getLongComments(final GetLongCommentsRequest request) throws AppException {
+    public LiveData<GetLongCommentsResponse> getLongComments(GetLongCommentsRequest request) {
         AppLog.i("ZhihuApiRetrofitImpl.GetStartInfoResponse request = " + request);
-        return new RetrofitAdapter<GetLongCommentsResponse>() {
-            @Override
-            GetLongCommentsResponse call() throws Exception {
-                return httpApi.getLongComments(request.id).execute().body();
-            }
-        }.get();
+
+        return httpApi.getLongComments(request.id);
     }
 }

@@ -18,6 +18,7 @@ public class RetrofitUtil {
                 .client(client)
                 .baseUrl("https://news-at.zhihu.com/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(new LiveDataCallAdapterFactory())
                 .build()
                 .create(tClass);
     }

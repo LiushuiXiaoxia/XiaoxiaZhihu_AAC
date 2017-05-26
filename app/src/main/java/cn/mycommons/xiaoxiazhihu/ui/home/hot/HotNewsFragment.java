@@ -18,6 +18,10 @@ import cn.mycommons.xiaoxiazhihu.ui.base.AacFragment;
  */
 public class HotNewsFragment extends AacFragment<FragmentHotnewsBinding> {
 
+    public static HotNewsFragment newInstance() {
+        return new HotNewsFragment();
+    }
+
     private HotNewsAdapter adapter;
 
     @Override

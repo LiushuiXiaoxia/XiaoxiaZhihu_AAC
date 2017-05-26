@@ -5,10 +5,12 @@ import android.arch.lifecycle.ViewModel;
 
 import javax.inject.Inject;
 
-import cn.mycommons.xiaoxiazhihu.biz.callback.SimpleSubscriber;
-import cn.mycommons.xiaoxiazhihu.biz.domain.ZhihuDomain;
+import cn.mycommons.xiaoxiazhihu.biz.api.ZhihuApi;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.request.ext.GetLongCommentsRequest;
+import cn.mycommons.xiaoxiazhihu.biz.pojo.request.ext.GetShortCommentsRequest;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetLongCommentsResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetShortCommentsResponse;
+import cn.mycommons.xiaoxiazhihu.util.SimpleObserver;
 
 /**
  * CommentsViewModel <br/>
@@ -16,40 +18,28 @@ import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetShortCommentsResponse;
  */
 public class CommentsViewModel extends ViewModel {
 
-    private final ZhihuDomain zhihuDomain;
+    private final ZhihuApi zhihuApi;
     private boolean isLoadShort = false;
     private final MutableLiveData<GetShortCommentsResponse> shortCommentsResponse = new MutableLiveData<>();
     private final MutableLiveData<GetLongCommentsResponse> longCommentsResponse = new MutableLiveData<>();
 
     @Inject
-    public CommentsViewModel(ZhihuDomain zhihuDomain) {
-        this.zhihuDomain = zhihuDomain;
+    CommentsViewModel(ZhihuApi zhihuApi) {
+        this.zhihuApi = zhihuApi;
     }
 
     MutableLiveData<GetLongCommentsResponse> getLongCommentsResponse(int id) {
-        zhihuDomain.getLongCommentsById(id)
-                .subscribe(new SimpleSubscriber<GetLongCommentsResponse>() {
-                    @Override
-                    public void onHandleSuccess(GetLongCommentsResponse response) {
-                        super.onHandleSuccess(response);
+        zhihuApi.getLongComments(new GetLongCommentsRequest(id))
+                .observeForever(new SimpleObserver<>(longCommentsResponse));
 
-                        longCommentsResponse.setValue(response);
-                    }
-                });
         return longCommentsResponse;
     }
 
     MutableLiveData<GetShortCommentsResponse> getShortCommentsResponse(int id) {
         isLoadShort = true;
-        zhihuDomain.getShortCommentsById(id)
-                .subscribe(new SimpleSubscriber<GetShortCommentsResponse>() {
-                    @Override
-                    public void onHandleSuccess(GetShortCommentsResponse response) {
-                        super.onHandleSuccess(response);
+        zhihuApi.getShortComments(new GetShortCommentsRequest(id))
+                .observeForever(new SimpleObserver<>(shortCommentsResponse));
 
-                        shortCommentsResponse.setValue(response);
-                    }
-                });
         return shortCommentsResponse;
     }
 

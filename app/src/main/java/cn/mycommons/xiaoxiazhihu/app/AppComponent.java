@@ -1,7 +1,10 @@
 package cn.mycommons.xiaoxiazhihu.app;
 
+import com.google.gson.Gson;
+
 import javax.inject.Singleton;
 
+import cn.mycommons.xiaoxiazhihu.ui.MainActivity;
 import cn.mycommons.xiaoxiazhihu.ui.MainViewModel;
 import cn.mycommons.xiaoxiazhihu.ui.StartViewModel;
 import cn.mycommons.xiaoxiazhihu.ui.home.CommentsViewModel;
@@ -18,6 +21,8 @@ import dagger.Component;
 @Component(modules = {AppModule.class})
 public interface AppComponent {
 
+    Gson gson();
+
     void inject(AppContext context);
 
     void inject(StartViewModel model);
@@ -31,4 +36,6 @@ public interface AppComponent {
     void inject(DetailViewModel model);
 
     void inject(CommentsViewModel model);
+
+    void inject(MainActivity mainActivity);
 }
