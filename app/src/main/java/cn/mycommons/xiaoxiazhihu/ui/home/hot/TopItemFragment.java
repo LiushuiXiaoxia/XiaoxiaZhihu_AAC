@@ -26,8 +26,6 @@ public class TopItemFragment extends AacFragment<ItemTopItemFragmentBinding> {
         return fragment;
     }
 
-    LastThemeTopStory topStory;
-
     @Override
     protected int getFragmentLayout() {
         return R.layout.item_top_item_fragment;
@@ -35,10 +33,11 @@ public class TopItemFragment extends AacFragment<ItemTopItemFragmentBinding> {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        topStory = (LastThemeTopStory) getArguments().getSerializable(EXTRA_TOP_STORY);
+        final LastThemeTopStory topStory = (LastThemeTopStory) getArguments().getSerializable(EXTRA_TOP_STORY);
 
         if (topStory != null) {
-            binding.setStory(topStory);
+            binding.setText(topStory.getTitle());
+            binding.setImage(topStory.getImage());
 
             binding.getRoot().setOnClickListener(new View.OnClickListener() {
                 @Override

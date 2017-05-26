@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.ButterKnife;
 import cn.mycommons.xiaoxiazhihu.app.AppContext;
 
 public abstract class BaseFragment extends Fragment {
@@ -23,7 +22,6 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
     }
 
     protected ActionBar getSupportActionBar() {

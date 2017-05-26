@@ -5,8 +5,6 @@ import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.view.View;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import cn.mycommons.xiaoxiazhihu.ui.base.AacFragment;
 
 
@@ -19,7 +17,6 @@ public abstract class CommonFragment<T extends ViewDataBinding> extends AacFragm
     protected Context context;
 
     private FragmentDelegate<CommonFragment, CommonExtraParam> delegate;
-    private Unbinder unbinder;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -32,8 +29,6 @@ public abstract class CommonFragment<T extends ViewDataBinding> extends AacFragm
         delegate.beforeOnViewCreated(view, savedInstanceState);
         super.onViewCreated(view, savedInstanceState);
         delegate.afterOnViewCreated(view, savedInstanceState);
-
-        unbinder = ButterKnife.bind(this, view);
 
         init(savedInstanceState);
     }
@@ -58,14 +53,5 @@ public abstract class CommonFragment<T extends ViewDataBinding> extends AacFragm
 
     public boolean onActivitySupportNavigateUp() {
         return false;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        if (unbinder != null) {
-            unbinder.unbind();
-        }
     }
 }

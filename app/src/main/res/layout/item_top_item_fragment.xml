@@ -5,8 +5,12 @@
     <data>
 
         <variable
-            name="story"
-            type="cn.mycommons.xiaoxiazhihu.biz.pojo.bean.LastThemeTopStory" />
+            name="image"
+            type="String" />
+
+        <variable
+            name="text"
+            type="String" />
     </data>
 
     <RelativeLayout
@@ -16,7 +20,7 @@
 
         <ImageView
             android:id="@+id/icon"
-            imageUrl="@{story.image}"
+            imageUrl="@{image}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -29,7 +33,7 @@
             android:layout_alignParentBottom="true"
             android:maxLines="2"
             android:padding="10dp"
-            android:text="@{story.title}"
+            android:text="@{text}"
             android:textColor="#fff"
             android:textSize="16sp"
             tools:text="呵呵呵呵" />

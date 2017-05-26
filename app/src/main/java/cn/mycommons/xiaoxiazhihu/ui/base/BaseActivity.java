@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import butterknife.ButterKnife;
 import cn.mycommons.xiaoxiazhihu.app.AppContext;
 
 public abstract class BaseActivity extends AppCompatActivity implements ILoadDataView {
@@ -30,7 +29,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ILoadDat
 
     protected void initContentView() {
         setContentView(getLayoutId());
-        ButterKnife.bind(this);
     }
 
     protected abstract int getLayoutId();

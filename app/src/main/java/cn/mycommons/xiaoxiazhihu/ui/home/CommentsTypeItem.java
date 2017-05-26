@@ -1,10 +1,9 @@
 package cn.mycommons.xiaoxiazhihu.ui.home;
 
+import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -12,10 +11,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import cn.mycommons.xiaoxiazhihu.R;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.Comment;
+import cn.mycommons.xiaoxiazhihu.databinding.ItemLastCommentBinding;
 
 /**
  * CommentsTypeItem <br/>
@@ -23,39 +21,30 @@ import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.Comment;
  */
 class CommentsTypeItem extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    @BindView(R.id.text)
-    TextView textView;
-    @BindView(R.id.text2)
-    TextView textView2;
-    @BindView(R.id.text3)
-    TextView textView3;
-    @BindView(R.id.icon)
-    ImageView icon;
-
-    private SimpleDateFormat simpleDateFormat;
+    private final ItemLastCommentBinding binding;
+    private final SimpleDateFormat simpleDateFormat;
 
     CommentsTypeItem(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+
+        binding = DataBindingUtil.bind(itemView);
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
 
         itemView.setOnClickListener(this);
-        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
-        textView.setSingleLine();
+        binding.text.setSingleLine();
     }
 
     void bind(Comment comment) {
-        itemView.setTag(comment);
-        textView.setText(comment.getAuthor());
-        textView2.setText(comment.getContent());
-        textView3.setText(simpleDateFormat.format(new Date(comment.getTime() * 1000L)));
+        binding.setDate(simpleDateFormat.format(new Date(comment.getTime() * 1000L)));
+        binding.setComment(comment);
 
         if (TextUtils.isEmpty(comment.getAvatar())) {
-            icon.setImageResource(0);
+            binding.icon.setImageResource(0);
         } else {
-            Picasso.with(icon.getContext())
+            Picasso.with(binding.icon.getContext())
                     .load(comment.getAvatar())
                     .placeholder(R.drawable.ic_launcher)
-                    .into(icon);
+                    .into(binding.icon);
         }
     }
 

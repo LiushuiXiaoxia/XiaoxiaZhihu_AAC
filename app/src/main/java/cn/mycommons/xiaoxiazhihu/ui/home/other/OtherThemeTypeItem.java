@@ -1,16 +1,15 @@
 package cn.mycommons.xiaoxiazhihu.ui.home.other;
 
+import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import cn.mycommons.xiaoxiazhihu.R;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.LastThemeStory;
+import cn.mycommons.xiaoxiazhihu.databinding.ItemLastItemBinding;
 import cn.mycommons.xiaoxiazhihu.ui.base.common.FragmentLauncher;
 import cn.mycommons.xiaoxiazhihu.ui.home.detail.DetailFragment;
 
@@ -20,21 +19,20 @@ import cn.mycommons.xiaoxiazhihu.ui.home.detail.DetailFragment;
  */
 class OtherThemeTypeItem extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    @BindView(R.id.text)
-    TextView textView;
-    @BindView(R.id.icon)
-    ImageView icon;
+    private final ItemLastItemBinding binding;
 
     OtherThemeTypeItem(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
 
+        binding = DataBindingUtil.bind(itemView);
         itemView.setOnClickListener(this);
     }
 
     void bind(LastThemeStory story) {
         itemView.setTag(story);
-        textView.setText(story.getTitle());
+        binding.setTitle(story.getTitle());
+
+        ImageView icon = binding.icon;
         if (story.getImages() != null && !story.getImages().isEmpty()) {
             Picasso.with(icon.getContext())
                     .load(story.getImages().get(0))

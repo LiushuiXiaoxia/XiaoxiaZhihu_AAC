@@ -2,6 +2,7 @@ package cn.mycommons.xiaoxiazhihu.ui.home;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,19 +10,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import cn.mycommons.xiaoxiazhihu.R;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.bean.Comment;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetLongCommentsResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetShortCommentsResponse;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetStoryExtraResponse;
 import cn.mycommons.xiaoxiazhihu.databinding.FragmentCommentsBinding;
+import cn.mycommons.xiaoxiazhihu.databinding.ItemLastTitleBinding;
 import cn.mycommons.xiaoxiazhihu.ui.base.common.CommonExtraParam;
 import cn.mycommons.xiaoxiazhihu.ui.base.common.CommonFragment;
 
@@ -47,8 +46,6 @@ public class CommentsFragment extends CommonFragment<FragmentCommentsBinding> {
         }
     }
 
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
 
     private CommentsExtraParam commentsExtraParam;
     private List<Object> data;
@@ -65,9 +62,10 @@ public class CommentsFragment extends CommonFragment<FragmentCommentsBinding> {
 
         data = new ArrayList<>();
         data.add(commentsExtraParam.storyExtraResponse.getLongComments());
+
         adapter = new CommentsAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(adapter);
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerView.setAdapter(adapter);
 
         doGetRequest();
     }
@@ -78,7 +76,6 @@ public class CommentsFragment extends CommonFragment<FragmentCommentsBinding> {
                 .observe(this, new Observer<GetLongCommentsResponse>() {
                     @Override
                     public void onChanged(@Nullable GetLongCommentsResponse response) {
-
                         adapter.notifyLong(response);
                     }
                 });
@@ -146,21 +143,20 @@ public class CommentsFragment extends CommonFragment<FragmentCommentsBinding> {
 
     class CommentsTypeTitle extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.text)
-        TextView textView;
+        private final ItemLastTitleBinding titleBinding;
 
         CommentsTypeTitle(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
 
+            titleBinding = DataBindingUtil.bind(itemView);
             itemView.setOnClickListener(this);
         }
 
         void bind(Integer count) {
             if (getAdapterPosition() == 0) {
-                textView.setText(String.format("%s条长评论", count));
+                titleBinding.text.setText(String.format("%s条长评论", count));
             } else {
-                textView.setText(String.format("%s条短评论", count));
+                titleBinding.text.setText(String.format("%s条短评论", count));
             }
         }
 
@@ -175,7 +171,7 @@ public class CommentsFragment extends CommonFragment<FragmentCommentsBinding> {
                                 adapter.notifyShort(response);
 
                                 int top = itemView.getTop();
-                                recyclerView.scrollBy(0, top);
+                                binding.recyclerView.scrollBy(0, top);
                             }
                         });
             }

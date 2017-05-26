@@ -1,12 +1,10 @@
 package cn.mycommons.xiaoxiazhihu.ui.home.other;
 
+import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import cn.mycommons.xiaoxiazhihu.R;
+import cn.mycommons.xiaoxiazhihu.databinding.ItemLastTitleBinding;
 
 /**
  * OtherThemeTypeTitle <br/>
@@ -14,15 +12,15 @@ import cn.mycommons.xiaoxiazhihu.R;
  */
 class OtherThemeTypeTitle extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.text)
-    TextView textView;
+    private final ItemLastTitleBinding titleBinding;
 
     OtherThemeTypeTitle(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+
+        titleBinding = DataBindingUtil.bind(itemView);
     }
 
     void bind(String text) {
-        textView.setText(text);
+        titleBinding.text.setText(text);
     }
 }

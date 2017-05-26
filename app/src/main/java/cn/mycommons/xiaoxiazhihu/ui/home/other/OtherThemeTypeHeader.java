@@ -1,16 +1,11 @@
 package cn.mycommons.xiaoxiazhihu.ui.home.other;
 
+import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import cn.mycommons.xiaoxiazhihu.R;
 import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetThemeResponse;
+import cn.mycommons.xiaoxiazhihu.databinding.ItemTopItemFragmentBinding;
 
 /**
  * OtherThemeTypeHeader <br/>
@@ -18,21 +13,16 @@ import cn.mycommons.xiaoxiazhihu.biz.pojo.response.ext.GetThemeResponse;
  */
 class OtherThemeTypeHeader extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.text)
-    TextView textView;
-
-    @BindView(R.id.icon)
-    ImageView icon;
+    private final ItemTopItemFragmentBinding binding;
 
     OtherThemeTypeHeader(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+
+        binding = DataBindingUtil.bind(itemView);
     }
 
     void bind(GetThemeResponse response) {
-        textView.setText(response.getName());
-        Picasso.with(icon.getContext())
-                .load(response.getImage())
-                .into(icon);
+        binding.setText(response.getName());
+        binding.setImage(response.getImage());
     }
 }

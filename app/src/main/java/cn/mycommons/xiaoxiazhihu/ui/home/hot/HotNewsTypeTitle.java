@@ -1,12 +1,10 @@
 package cn.mycommons.xiaoxiazhihu.ui.home.hot;
 
+import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import cn.mycommons.xiaoxiazhihu.R;
+import cn.mycommons.xiaoxiazhihu.databinding.ItemLastTitleBinding;
 
 /**
  * HotNewsTypeTitle <br/>
@@ -14,15 +12,15 @@ import cn.mycommons.xiaoxiazhihu.R;
  */
 class HotNewsTypeTitle extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.text)
-    TextView textView;
+    private final ItemLastTitleBinding binding;
 
     HotNewsTypeTitle(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+
+        binding = DataBindingUtil.bind(itemView);
     }
 
     void bind(String text) {
-        textView.setText(text);
+        binding.text.setText(text);
     }
 }
