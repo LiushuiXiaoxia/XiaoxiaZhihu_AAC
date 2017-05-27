@@ -1,4 +1,4 @@
-# XiaoxiaZhihu
+# XiaoxiaZhihu_AAC
 
 ---
 
@@ -6,8 +6,9 @@
 
 由于使用非正常手段获取Api，若被告知需停止共享与使用，本人会及时删除此页面与整个项目。
 
-客户端使用了MVP架构，网络层使用了okhttp+retrofit2，json解析使用gson，模型层使用了autovalue。
-图片加载使用picasso，注解使用了dagger2+butterknife，各个层次之间通信使用rxjava+rxandroid+eventbus。
+客户端使用了17年google IO发布的最新架构——
+[Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html)，网络层使用了okhttp+retrofit2，json解析使用gson，模型层使用了autovalue。
+图片加载使用picasso，注解使用了dagger2，UI层移除了Butterknife，使用Databinding。
 
 [![Build Status](https://travis-ci.org/LiushuiXiaoxia/XiaoxiaZhihu.svg?branch=master)](https://travis-ci.org/LiushuiXiaoxia/XiaoxiaZhihu)
 
@@ -18,6 +19,8 @@
 [XiaoxiaZhihu Android客户端Java版本](https://github.com/LiushuiXiaoxia/XiaoxiaZhihu)
 
 [XiaoxiaZhihu Android客户端Kotlin版本](https://github.com/LiushuiXiaoxia/XiaoxiaZhihu_Kotlin)
+
+[XiaoxiaZhihu Android客户端Android Architecture Components版本](https://github.com/LiushuiXiaoxia/XiaoxiaZhihu_AAC)
 
 [XiaoxiaZhihu客户端ReactNative版本](https://github.com/LiushuiXiaoxia/XiaoxiaZhihuRN)
 
