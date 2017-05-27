@@ -10,7 +10,7 @@
 [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html)，网络层使用了okhttp+retrofit2，json解析使用gson，模型层使用了autovalue。
 图片加载使用picasso，注解使用了dagger2，UI层移除了Butterknife，使用Databinding。
 
-[![Build Status](https://travis-ci.org/LiushuiXiaoxia/XiaoxiaZhihu.svg?branch=master)](https://travis-ci.org/LiushuiXiaoxia/XiaoxiaZhihu)
+[![Build Status](https://travis-ci.org/LiushuiXiaoxia/XiaoxiaZhihu_AAC.svg?branch=master)](https://travis-ci.org/LiushuiXiaoxia/XiaoxiaZhihu_AAC)
 
 ## 其他客户端
 
