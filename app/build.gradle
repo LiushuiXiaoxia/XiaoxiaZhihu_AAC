@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 project.ext {
-    extSupportVersion = '26.0.0'
+    extSupportVersion = '26.1.0'
 }
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.3'
 
     defaultConfig {
         applicationId "cn.mycommons.xiaoxiazhihu"
@@ -41,21 +41,21 @@ dependencies {
     implementation "com.android.support:design:${extSupportVersion}"
 
     // arch
-    implementation "android.arch.lifecycle:runtime:1.0.0-alpha6"
-    implementation "android.arch.lifecycle:extensions:1.0.0-alpha6"
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha6"
+    implementation "android.arch.lifecycle:runtime:1.0.3"
+    implementation "android.arch.lifecycle:extensions:1.0.0"
+    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
 
-    implementation "android.arch.persistence.room:runtime:1.0.0-alpha6"
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha6"
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
 
     // 第三方库
     implementation 'de.greenrobot:eventbus:2.4.1'
-    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.google.code.gson:gson:2.8.1'
     // implementation 'com.jakewharton:butterknife:8.6.0'
     // annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
-    implementation 'com.google.dagger:dagger:2.7'
+    implementation 'com.google.dagger:dagger:2.11'
     implementation 'javax.annotation:jsr250-api:1.0'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.7'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
